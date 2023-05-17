@@ -19,7 +19,6 @@ export function Product({
         </button>
         <div className="w-16 flex justify-end me-2">{price} €</div>
       </div>
-      <div> prueba fad</div>
     </div>
   );
 }
