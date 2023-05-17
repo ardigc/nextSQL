@@ -12,7 +12,7 @@ export default async function Home() {
      <div className="fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-200">
      <h1>Eshop</h1>
       </div>
-      <div className="relative top-12 bg-slate-200">
+      <div className="relative top-12 grid grid-cols-2 bg-slate-200">
       {result.rows.map(row => <Product {...row} />)}
       </div>
     </div>
