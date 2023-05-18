@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <div>
       {/* { user.rows.map(row=> <h1> {row.name} {row.email}</h1>)} */}
-      <div className="fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-200">
+      <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-200">
         <h1>Eshop</h1>
         <Sesion />
       </div>
