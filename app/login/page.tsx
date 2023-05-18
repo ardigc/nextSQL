@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function SignIn() {
   return (
     <div className="top-7 border rounded-lg min-w-fit right-9 bg-blue-300 ">
@@ -14,6 +16,7 @@ export default function SignIn() {
           </button>
         </div>
       </form>
+      <Link href="/register">No tienes cuenta?</Link>
     </div>
   );
 }

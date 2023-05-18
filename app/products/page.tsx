@@ -1,5 +1,5 @@
 import { pool } from '@/lib/server/pg';
-import { Product } from '../MyClientComponent';
+import { Product } from '../../components/MyClientComponent';
 
 export default async function Products() {
   const result = await pool.query('SELECT * FROM products;');

@@ -1,5 +1,5 @@
 import { pool } from '@/lib/server/pg';
-import { Product } from './MyClientComponent';
+import { Product } from '../components/MyClientComponent';
 import Link from 'next/link';
 
 export default async function Home() {
@@ -22,11 +22,14 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="relative top-12 grid grid-cols-2 bg-slate-200">
+      <Link href="/products" className="relative top-12">
+        Products
+      </Link>
+      {/* <div className="relative top-12 grid grid-cols-2 bg-slate-200">
         {result.rows.map((row) => (
           <Product {...row} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
