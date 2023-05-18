@@ -4,7 +4,7 @@ import { MouseEventHandler, useState } from 'react';
 export default function Sesion() {
   const [inLogging, setInLogging] = useState(false);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
-    setInLogging(true);
+    setInLogging(!inLogging);
   };
   const clickHandler2: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setInLogging(false);
