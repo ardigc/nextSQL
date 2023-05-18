@@ -11,7 +11,7 @@ export default function SignIn() {
     const name = formData.get('name');
     const phone = formData.get('phone');
     const subname = formData.get('subname');
-    console.log(email, pass, name, subname);
+    console.log(email, pass, name, subname, phone);
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name, subname, email, phone }),
