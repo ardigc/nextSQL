@@ -37,7 +37,7 @@ export default function SignIn() {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-1 border bg-blue-400 rounded-3xl my-2 mx-3"
+              className="px-1 border bg-blue-400 rounded-3xl my-2 ml-3"
             >
               Registrarse
             </button>
