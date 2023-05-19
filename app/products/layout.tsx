@@ -16,24 +16,9 @@ export default async function RootLayout({
       id
   );
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
-          <h1>Eshop</h1>
-          <div className="absolute flex right-9 ">
-            <Cart cart={cart.rows} />
-            <div className="rounded-lg min-w-fit items-center flex">
-              <Link
-                href="/login"
-                className="border rounded-3xl bg-blue-400 px-2 mx-10"
-              >
-                Iniciar sesión
-              </Link>
-            </div>
-          </div>
-        </div>
-        {children}
-      </body>
-    </html>
+    <div>
+      <Cart cart={cart.rows} />
+      {children}
+    </div>
   );
 }
