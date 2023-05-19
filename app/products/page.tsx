@@ -1,6 +1,7 @@
 import { pool } from '@/lib/server/pg';
 import { Product } from '../../components/MyClientComponent';
 import { cookies } from 'next/headers';
+import { verify } from 'jsonwebtoken';
 
 export default async function Products() {
   const cookiesValue = cookies();
