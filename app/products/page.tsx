@@ -5,11 +5,10 @@ import { verify } from 'jsonwebtoken';
 
 export default async function Products() {
   const cookiesValue = cookies();
+
   console.log(cookiesValue.get('token'));
 
-  console.log(
-    verify(cookiesValue.get('token')?.value || '', process.env.JWT_SECRET || '')
-  );
+  verify(cookiesValue.get('token')?.value || '', process.env.JWT_SECRET || '');
 
   const result = await pool.query('SELECT * FROM products;');
   return (
