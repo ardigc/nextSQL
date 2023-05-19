@@ -14,7 +14,7 @@ export default function SignIn() {
     console.log(email, pass, name, subname, phone);
     const response = await fetch('/api/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ name, subname, email, phone }),
+      body: JSON.stringify({ name, subname, email, phone, pass }),
       headers: {
         'Content-type': 'application/json',
       },
