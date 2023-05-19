@@ -16,6 +16,9 @@ export default function SignIn() {
         'Content-type': 'application/json',
       },
     });
+    if (!response.ok) return;
+    const data = await response.json();
+    document.cookie = `token=${data.token}; Secure; HttpOnly`;
   };
 
   return (
