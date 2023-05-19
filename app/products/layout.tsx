@@ -19,7 +19,7 @@ export default async function RootLayout({
   return (
     <div>
       <Cart cart={cart.rows} />
-      <LogOut />
+      {/* <LogOut /> */}
       {children}
     </div>
   );

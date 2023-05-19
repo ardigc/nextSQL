@@ -8,7 +8,7 @@ export default async function Products() {
 
   console.log(cookiesValue.get('token'));
 
-  verify(cookiesValue.get('token')?.value || '', process.env.JWT_SECRET || '');
+  // verify(cookiesValue.get('token')?.value || '', process.env.JWT_SECRET || '');
 
   const result = await pool.query('SELECT * FROM products;');
   return (

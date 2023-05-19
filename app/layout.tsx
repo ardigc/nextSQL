@@ -19,16 +19,24 @@ export default function RootLayout({
 }) {
   const cookiesValue = cookies();
   let user = null;
-  if (cookiesValue) {
+  try {
     user = verify(
       cookiesValue.get('token')?.value || '',
       process.env.JWT_SECRET || ''
     );
+  } catch (error: any) {
+    console.error('Error al verificar el token:', error.message);
   }
+  // let user = null;
+  // if (cookiesValue.get('token')) {
+  //   user = verify(
+  //     cookiesValue.get('token')?.value|| '',
+  //     process.env.JWT_SECRET || ''
+  //   );
+  // }
   console.log(user);
   return (
     <html lang="en">
-      &&
       <body className={inter.className}>
         <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
           <h1>Eshop</h1>
