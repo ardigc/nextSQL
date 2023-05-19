@@ -18,7 +18,7 @@ export default function SignIn() {
     });
     if (!response.ok) return;
     const data = await response.json();
-    document.cookie = `token=${data.token}; Secure; HttpOnly`;
+    document.cookie = `token=${data.token};`;
   };
 
   return (
