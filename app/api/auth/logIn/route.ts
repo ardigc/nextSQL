@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { pool } from '@/lib/server/pg';
 import { compare } from 'bcrypt';
+import { sign } from 'jsonwebtoken';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -16,6 +17,6 @@ export async function POST(req: NextRequest) {
   const pass = result.rows[0].password;
   const isOk = await compare(unhasedPass, pass);
   if (!isOk) return new Response(null, { status: 401 });
-
-  return new Response(null, { status: 200 });
+  const token = sign({ email: body.email }, process.env.JWT_SECRET || '');
+  return new Response(JSON.stringify({ token }), { status: 200 });
 }
