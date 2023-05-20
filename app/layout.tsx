@@ -27,10 +27,12 @@ export default async function RootLayout({
       cookiesValue.get('token')?.value || '',
       process.env.JWT_SECRET || ''
     );
-    const id = user.id;
+    const cartId = 4;
+    // const cartId = await pool.query('SELECT id FROM carts WHERE user_id ='+user.id)
+    // falta correlacionar cartID con el id para mostrar
     cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
-        id
+        cartId
     );
     console.log(user.id);
   } catch (error: any) {
