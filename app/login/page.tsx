@@ -2,8 +2,10 @@
 import { FormEventHandler } from 'react';
 
 import Link from 'next/link';
+// import { useRouter } from 'next/router';
 
 export default function SignIn() {
+  // const router =useRouter()
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -19,6 +21,8 @@ export default function SignIn() {
     if (!response.ok) return;
     const data = await response.json();
     document.cookie = `token=${data.token};`;
+    // router.push("/products")
+    window.location.assign('/products');
   };
 
   return (
