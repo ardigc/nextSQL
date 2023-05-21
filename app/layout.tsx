@@ -27,6 +27,10 @@ export default async function RootLayout({
       cookiesValue.get('token')?.value || '',
       process.env.JWT_SECRET || ''
     );
+    if (typeof user === 'string') {
+      return;
+    }
+
     const cartId = 4;
     // const cartId = await pool.query('SELECT id FROM carts WHERE user_id ='+user.id)
     // falta correlacionar cartID con el id para mostrar
