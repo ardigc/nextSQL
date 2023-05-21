@@ -31,12 +31,15 @@ export default async function RootLayout({
       return;
     }
 
-    const cartId = 4;
-    // const cartId = await pool.query('SELECT id FROM carts WHERE user_id ='+user.id)
+    // const cartId = 4;
+    const cartId = await pool.query(
+      'SELECT id FROM carts WHERE user_id =' + user.id
+    );
+    console.log(cartId.rows[0].id);
     // falta correlacionar cartID con el id para mostrar
     cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
-        cartId
+        cartId.rows[0].id
     );
     console.log(user.id);
   } catch (error: any) {

@@ -2,6 +2,7 @@
 import { pool } from '@/lib/server/pg';
 import { Product } from '../components/MyClientComponent';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 // import { useRouter } from 'next/router';
 
 export default async function Home() {
@@ -10,7 +11,7 @@ export default async function Home() {
   const user = await pool.query('SELECT * FROM users_info WHERE id=1');
   // router.push("/products")
   // window.location.assign("/products")
-
+  redirect('/products');
   // console.log(user);
   return (
     <div>
