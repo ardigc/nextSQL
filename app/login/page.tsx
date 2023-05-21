@@ -1,30 +1,7 @@
 'use client';
 import { FormEventHandler } from 'react';
-import { verify } from 'jsonwebtoken';
-import { cookies } from 'next/headers';
-
 import Link from 'next/link';
-import { redirect } from 'next/dist/server/api-utils';
-// import { useRouter } from 'next/router';
-
 export default async function SignIn() {
-  const cookiesValue = cookies();
-  let user = null;
-  let cart = null;
-  try {
-    user = verify(
-      cookiesValue.get('token')?.value || '',
-      process.env.JWT_SECRET || ''
-    );
-    if (typeof user === 'string') {
-      return;
-    }
-  } catch (error: any) {
-    console.error('Error al verificar el token:', error.message);
-  }
-  if (user !== null) {
-    window.location.assign('/products');
-  }
   // const router =useRouter()
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
