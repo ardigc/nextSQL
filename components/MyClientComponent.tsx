@@ -16,7 +16,7 @@ export function Product({
 }) {
   const enlace = '/products/' + id;
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
-    const response = await fetch('/api/auth/cart', {
+    const response = await fetch('/api/cart', {
       method: 'POST',
       body: JSON.stringify({ id }),
       credentials: 'include',
@@ -26,6 +26,7 @@ export function Product({
     });
   };
   return (
+    // hacer que no se vaya al enlace al hacer click sobre button
     <Link href={enlace} className="border border-blue-400">
       <div className="flex justify-center">{name}</div>
       <div className="flex justify-center items-center">{description}</div>
