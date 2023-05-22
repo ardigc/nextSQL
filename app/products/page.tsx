@@ -6,7 +6,7 @@ import { verify } from 'jsonwebtoken';
 export default async function Products() {
   const cookiesValue = cookies();
 
-  console.log(cookiesValue.get('token'));
+  // console.log(cookiesValue.get('token'));
 
   // verify(cookiesValue.get('token')?.value || '', process.env.JWT_SECRET || '');
 
