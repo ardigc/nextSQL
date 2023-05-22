@@ -16,6 +16,7 @@ export function Product({
 }) {
   const enlace = '/products/' + id;
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
+    ev.preventDefault();
     const response = await fetch('/api/cart', {
       method: 'POST',
       body: JSON.stringify({ id }),
@@ -24,6 +25,7 @@ export function Product({
         'Content-type': 'application/json',
       },
     });
+    window.location.reload();
   };
   return (
     // hacer que no se vaya al enlace al hacer click sobre button

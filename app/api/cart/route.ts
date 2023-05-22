@@ -2,11 +2,6 @@ import { NextRequest } from 'next/server';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 
-// export async function GET() {
-//     return new Response("Hello, world!", {status: 200})
-// }
-
-// Handler para fetch con method POST a esta ruta /api/cart
 export async function POST(req: NextRequest) {
   // Body del fetch en el front
   const body = await req.json();
@@ -18,9 +13,8 @@ export async function POST(req: NextRequest) {
       cookiesValue.get('token')?.value || '',
       process.env.JWT_SECRET || ''
     );
-    if (typeof userId === 'string') {
-      return;
-    }
+    if (typeof userId === 'string') return;
+
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + userId.id
     );
@@ -35,5 +29,4 @@ export async function POST(req: NextRequest) {
     // redireccionar a iniciar
     // return new Response('Se ha subido bien', { status: 200 });
   }
-  pool.query('query para insertar en db');
 }
