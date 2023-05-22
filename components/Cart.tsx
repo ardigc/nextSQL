@@ -1,5 +1,5 @@
 'use client';
-import { CartIcon } from '@/Icons/Icons';
+import { CartIcon, TrashIcon } from '@/Icons/Icons';
 import { MouseEventHandler, useState } from 'react';
 interface Cart {
   cart_id: number;
@@ -37,8 +37,15 @@ export default function Cart(cart: { cart: Array<Cart> }) {
           {cartfin.map((product) => (
             <div className="border px-3">
               <div className="flex justify-center">{product.name}</div>
-              <div className="flex justify-end">Precio: {product.price}€</div>
-              <div className="flex justify-end">Unidades: {product.qt}</div>
+              <div className="flex">
+                <TrashIcon />
+                <div>
+                  <div className="flex justify-end">
+                    Precio: {product.price}€
+                  </div>
+                  <div className="flex justify-end">Unidades: {product.qt}</div>
+                </div>
+              </div>
             </div>
           ))}
           <div>Precio total: {totalPrice(cartfin)} €</div>
