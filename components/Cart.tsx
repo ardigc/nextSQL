@@ -18,6 +18,18 @@ export default function Cart(cart: { cart: Array<Cart> }) {
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowCart(!showCart);
   };
+  const clickHandler2 = async (product: Cart) => {
+    const id = product.product_id;
+    const response = await fetch('/api/cart/remove', {
+      method: 'POST',
+      body: JSON.stringify({ id }),
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    window.location.reload();
+  };
   function totalPrice(products: Array<Cart>) {
     let total = 0;
     products.map((product) => {
@@ -37,13 +49,16 @@ export default function Cart(cart: { cart: Array<Cart> }) {
           {cartfin.map((product) => (
             <div className="border px-3">
               <div className="flex justify-center">{product.name}</div>
-              <div className="flex">
-                <TrashIcon />
-                <div>
-                  <div className="flex justify-end">
-                    Precio: {product.price}€
-                  </div>
-                  <div className="flex justify-end">Unidades: {product.qt}</div>
+              <div className="flex justify-between">
+                <button
+                  onClick={() => clickHandler2(product)}
+                  className="order-first"
+                >
+                  <TrashIcon />
+                </button>
+                <div className="text-right">
+                  <div>Precio: {product.price}€</div>
+                  <div>Unidades: {product.qt}</div>
                 </div>
               </div>
             </div>

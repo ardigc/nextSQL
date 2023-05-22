@@ -43,13 +43,6 @@ export default async function RootLayout({
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
-  // let user = null;
-  // if (cookiesValue.get('token')) {
-  //   user = verify(
-  //     cookiesValue.get('token')?.value|| '',
-  //     process.env.JWT_SECRET || ''
-  //   );
-  // }
 
   return (
     <html lang="en">
