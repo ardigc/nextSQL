@@ -14,6 +14,7 @@ interface Cart {
 
 export default function Cart(cart: { cart: Array<Cart> }) {
   const cartfin = cart.cart;
+  // rpueba
   const [showCart, setShowCart] = useState(false);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowCart(!showCart);
