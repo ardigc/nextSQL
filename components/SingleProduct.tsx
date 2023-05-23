@@ -18,6 +18,7 @@ export default function SingleProduct({
     const response = await fetch('/api/cart', {
       method: 'POST',
       body: JSON.stringify({ id }),
+      // prueba
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
