@@ -16,7 +16,16 @@ export async function POST(req: NextRequest) {
     );
     if (typeof userId === 'string') return;
 
-    const cartId = await pool.query(
+    let cartId = await pool.query(
+      'SELECT id FROM carts WHERE user_id =' + userId.id
+    );
+    console.log(cartId);
+    if (cartId.rowCount === 0) {
+      const createCart = await pool.query(
+        'INSERT INTO carts(user_id) VALUES (' + userId.id + ')'
+      );
+    }
+    cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + userId.id
     );
     const cart = await pool.query(
