@@ -6,6 +6,7 @@ import { verify } from 'jsonwebtoken';
 import LogOut from '@/components/LogOut';
 import Cart from '@/components/Cart';
 import { pool } from '@/lib/server/pg';
+import { Provider } from '@/components/ContextProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -47,26 +48,28 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
-          <h1>Eshop</h1>
-          <div className="absolute rounded-lg min-w-fit right-9 ">
-            {!user && (
-              <Link
-                href="/login"
-                className="border rounded-3xl bg-blue-400 px-2 mx-10"
-              >
-                Iniciar sesión
-              </Link>
-            )}
-            {user && cart && (
-              <div className="flex">
-                <Cart cart={cart.rows} />
-                <LogOut />
-              </div>
-            )}
+        <Provider>
+          <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
+            <h1>Eshop</h1>
+            <div className="absolute rounded-lg min-w-fit right-9 ">
+              {!user && (
+                <Link
+                  href="/login"
+                  className="border rounded-3xl bg-blue-400 px-2 mx-10"
+                >
+                  Iniciar sesión
+                </Link>
+              )}
+              {user && cart && (
+                <div className="flex">
+                  <Cart cart={cart.rows} />
+                  <LogOut />
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-        {children}
+          {children}
+        </Provider>
       </body>
     </html>
   );

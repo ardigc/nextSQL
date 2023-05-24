@@ -1,6 +1,7 @@
 'use client';
 import { CartIcon, TrashIcon } from '@/Icons/Icons';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useContext, useState } from 'react';
+import { GlobalContext } from './ContextProvider';
 interface Cart {
   cart_id: number;
   description: string;
@@ -13,6 +14,7 @@ interface Cart {
 }
 
 export default function Cart(cart: { cart: Array<Cart> }) {
+  const { number } = useContext(GlobalContext);
   const cartfin = cart.cart;
   const [showCart, setShowCart] = useState(false);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
@@ -40,6 +42,7 @@ export default function Cart(cart: { cart: Array<Cart> }) {
   }
   return (
     <div className="relative">
+      <p>{number}</p>
       <button onClick={clickHandler}>
         <CartIcon />
       </button>

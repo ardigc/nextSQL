@@ -1,8 +1,9 @@
 'use client';
 import { FormEventHandler } from 'react';
+// import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 export default async function SignIn() {
-  // const router =useRouter()
+  // const {push} =useRouter()
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -18,7 +19,7 @@ export default async function SignIn() {
     if (!response.ok) return;
     const data = await response.json();
     document.cookie = `token=${data.token};`;
-    // router.push("/products")
+    // push("/products")
     window.location.assign('/products');
   };
 
