@@ -2,7 +2,7 @@
 import { CartIcon, TrashIcon, UserIcon } from '@/Icons/Icons';
 import { MouseEventHandler, useContext, useState } from 'react';
 import { GlobalContext } from './ContextProvider';
-import Link from 'next/link';
+import ProfileButton from './profile';
 interface Cart {
   cart_id: number;
   description: string;
@@ -51,9 +51,7 @@ export default function Cart() {
         <button onClick={clickHandler}>
           <CartIcon />
         </button>
-        <Link href="/profile">
-          <UserIcon />
-        </Link>
+        <ProfileButton />
       </div>
 
       {showCart && (

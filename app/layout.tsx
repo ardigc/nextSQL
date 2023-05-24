@@ -63,7 +63,7 @@ export default async function RootLayout({
         <Provider initialCart={cart.rows}>
           <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
             <h1>Eshop</h1>
-            <div className="absolute rounded-lg min-w-fit right-9 ">
+            <div className="absolute rounded-lg min-w-fit right-32 ">
               {!user && (
                 <Link
                   href="/login"
@@ -75,7 +75,6 @@ export default async function RootLayout({
               {user && cart && (
                 <div className="flex">
                   <Cart />
-                  <LogOut />
                 </div>
               )}
             </div>
