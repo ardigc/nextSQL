@@ -1,7 +1,8 @@
 'use client';
-import { CartIcon, TrashIcon } from '@/Icons/Icons';
+import { CartIcon, TrashIcon, UserIcon } from '@/Icons/Icons';
 import { MouseEventHandler, useContext, useState } from 'react';
 import { GlobalContext } from './ContextProvider';
+import Link from 'next/link';
 interface Cart {
   cart_id: number;
   description: string;
@@ -46,9 +47,15 @@ export default function Cart() {
   }
   return (
     <div className="relative">
-      <button onClick={clickHandler}>
-        <CartIcon />
-      </button>
+      <div className="flex">
+        <button onClick={clickHandler}>
+          <CartIcon />
+        </button>
+        <Link href="/profile">
+          <UserIcon />
+        </Link>
+      </div>
+
       {showCart && (
         <div className="fixed left-0 top-12 bottom-0 bg-slate-400 w-52">
           <div className="bg-slate-500 flex justify-center">Carrito</div>
