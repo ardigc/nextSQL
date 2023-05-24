@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Cart from './Cart';
 import LogOut from './LogOut';
 import { verify } from 'jsonwebtoken';
+import Link from 'next/link';
 
 export default function ProfileButton({ user }: { user: string }) {
   const [open, setOpen] = useState(false);
@@ -18,9 +19,13 @@ export default function ProfileButton({ user }: { user: string }) {
       {open && (
         <div className="absolute bg-blue-300 border border-blue-400 w-32 ">
           <ul>
-            <li>Tu perfil</li>
-            <li>Pedidos</li>
             <li>
+              <Link href="/profile" onClick={() => setOpen(false)}>
+                Tu perfil
+              </Link>
+            </li>
+            <li>Pedidos</li>
+            <li onClick={() => setOpen(false)}>
               <LogOut />
             </li>
           </ul>
