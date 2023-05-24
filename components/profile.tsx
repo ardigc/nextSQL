@@ -4,7 +4,7 @@ import Cart from './Cart';
 import LogOut from './LogOut';
 import { verify } from 'jsonwebtoken';
 
-export default function ProfileButton() {
+export default function ProfileButton({ user }: { user: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ export default function ProfileButton() {
         className="hover:ring-2 hover:ring-blue-800"
         onClick={() => setOpen(!open)}
       >
-        {/* acceder con cookies a correo */}
+        {user}
       </button>
       {open && (
         <div className="absolute bg-blue-300 border border-blue-400 w-32 ">

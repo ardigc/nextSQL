@@ -34,6 +34,7 @@ export default async function RootLayout({
   const cookiesValue = cookies();
   let user = null;
   let cart = null;
+  let name = 'und';
   try {
     user = verify(
       cookiesValue.get('token')?.value || '',
@@ -43,7 +44,7 @@ export default async function RootLayout({
       return;
     }
     console.log(user);
-    // const cartId = 4;
+    name = user.name;
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id
     );
@@ -56,14 +57,13 @@ export default async function RootLayout({
     const noCart: Array<Cart> = [];
     cart = { rows: noCart };
   }
-  // console.log(cart?.rows)
   return (
     <html lang="en">
       <body className={inter.className}>
         <Provider initialCart={cart.rows}>
           <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
             <h1>Eshop</h1>
-            <div className="absolute rounded-lg min-w-fit right-10 ">
+            <div className="absolute rounded-lg min-w-fit right-20 ">
               {!user && (
                 <Link
                   href="/login"
@@ -74,7 +74,7 @@ export default async function RootLayout({
               )}
               {user && cart && (
                 <div className="flex">
-                  <Cart />
+                  <Cart user={name} />
                 </div>
               )}
             </div>

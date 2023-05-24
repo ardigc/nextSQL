@@ -14,7 +14,7 @@ interface Cart {
   user_id: number;
 }
 
-export default function Cart() {
+export default function Cart({ user }: { user: string }) {
   // const { number } = useContext(GlobalContext);
   // console.log(cart)
   // const cartfin = cart.cart;
@@ -47,8 +47,8 @@ export default function Cart() {
   }
   return (
     <div className="relative">
-      <div className="flex items-center">
-        <ProfileButton />
+      <div className="flex w-48 justify-between items-center">
+        <ProfileButton user={user} />
         <button onClick={clickHandler}>
           <CartIcon />
         </button>
