@@ -47,11 +47,11 @@ export default function Cart() {
   }
   return (
     <div className="relative">
-      <div className="flex">
+      <div className="flex items-center">
+        <ProfileButton />
         <button onClick={clickHandler}>
           <CartIcon />
         </button>
-        <ProfileButton />
       </div>
 
       {showCart && (

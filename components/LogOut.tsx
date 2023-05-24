@@ -1,4 +1,7 @@
 'use client';
+
+import { LogOutIcon } from '@/Icons/Icons';
+
 // import { useRouter } from "next/router";
 
 export default function LogOut() {
@@ -9,11 +12,12 @@ export default function LogOut() {
     window.location.reload();
   };
   return (
-    <div>
+    <div className="flex items-center">
+      <LogOutIcon />
       <button
         type="button"
         onClick={cerrarSesion}
-        className="px-1 my-2 border bg-blue-400 rounded-3xl ml-7"
+        // className="px-1 my-2 border bg-blue-400 rounded-3xl ml-7"
       >
         Cerrar sesión
       </button>
