@@ -13,24 +13,28 @@ interface Cart {
   user_id: number;
 }
 
-export default function Cart(cart: { cart: Array<Cart> }) {
+export default function Cart() {
   // const { number } = useContext(GlobalContext);
-  const cartfin = cart.cart;
+  // console.log(cart)
+  // const cartfin = cart.cart;
+  const { setCart } = useContext(GlobalContext);
+  const { cart } = useContext(GlobalContext);
+  const cartfin = cart;
   const [showCart, setShowCart] = useState(false);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowCart(!showCart);
   };
   const clickHandler2 = async (product: Cart) => {
     const id = product.product_id;
-    const response = await fetch('/api/cart/remove', {
-      method: 'POST',
+    const response = await fetch('/api/cart', {
+      method: 'PATCH',
       body: JSON.stringify({ id }),
-      credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
     });
-    window.location.reload();
+    const data = await response.json();
+    setCart(data);
   };
   function totalPrice(products: Array<Cart>) {
     let total = 0;
@@ -42,7 +46,6 @@ export default function Cart(cart: { cart: Array<Cart> }) {
   }
   return (
     <div className="relative">
-      {/* <p>{number}</p> */}
       <button onClick={clickHandler}>
         <CartIcon />
       </button>

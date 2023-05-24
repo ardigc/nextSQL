@@ -1,7 +1,8 @@
 'use client';
 
-import { MouseEventHandler } from 'react';
-import { useRouter } from 'next/navigation';
+import { MouseEventHandler, useContext } from 'react';
+import { GlobalContext } from './ContextProvider';
+// import { useRouter } from 'next/navigation';
 
 export default function SingleProduct({
   name,
@@ -14,20 +15,20 @@ export default function SingleProduct({
   price: number;
   id: number;
 }) {
-  const { refresh } = useRouter();
+  const { setCart } = useContext(GlobalContext);
+  // const { refresh } = useRouter();
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
     const response = await fetch('/api/cart', {
       method: 'POST',
       body: JSON.stringify({ id }),
       // prueba
-      credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
     });
-    // window.location.reload();
-    refresh();
+    const data = await response.json();
+    setCart(data);
   };
   return (
     <div className="grid grid-cols-1 border border-blue-400 bg-blue-200">

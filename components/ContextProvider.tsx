@@ -30,8 +30,14 @@ const initialState: ContextType = {
 
 export const GlobalContext = createContext<ContextType>(initialState);
 
-export function Provider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<Array<Cart>>([]);
+export function Provider({
+  children,
+  initialCart,
+}: {
+  children: ReactNode;
+  initialCart: Array<Cart>;
+}) {
+  const [cart, setCart] = useState<Array<Cart>>(initialCart);
 
   return (
     <GlobalContext.Provider value={{ cart, setCart }}>
