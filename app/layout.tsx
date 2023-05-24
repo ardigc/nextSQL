@@ -40,7 +40,6 @@ export default async function RootLayout({
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
         cartId.rows[0].id
     );
-    console.log(user.id);
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }

@@ -1,7 +1,6 @@
 'use client';
 
-import { MouseEventHandler, useContext } from 'react';
-import { GlobalContext } from './ContextProvider';
+import { MouseEventHandler } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function SingleProduct({
@@ -15,10 +14,8 @@ export default function SingleProduct({
   price: number;
   id: number;
 }) {
-  const { setNumber } = useContext(GlobalContext);
   const { refresh } = useRouter();
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
-    setNumber(Math.random());
     ev.preventDefault();
     const response = await fetch('/api/cart', {
       method: 'POST',

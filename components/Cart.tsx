@@ -14,7 +14,7 @@ interface Cart {
 }
 
 export default function Cart(cart: { cart: Array<Cart> }) {
-  const { number } = useContext(GlobalContext);
+  // const { number } = useContext(GlobalContext);
   const cartfin = cart.cart;
   const [showCart, setShowCart] = useState(false);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
@@ -42,7 +42,7 @@ export default function Cart(cart: { cart: Array<Cart> }) {
   }
   return (
     <div className="relative">
-      <p>{number}</p>
+      {/* <p>{number}</p> */}
       <button onClick={clickHandler}>
         <CartIcon />
       </button>
