@@ -40,9 +40,25 @@ export default function CheckOutComponent() {
     });
     return total;
   }
+
+  const qtOnClick = async (ev, mode, product: Cart) => {
+    const id = product.product_id;
+    const response = await fetch('/api/cart', {
+      method: 'UPDATE',
+      body: JSON.stringify({ id, mode }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    if (mode === 1) {
+      // sumar
+    } else if (mode === 2) {
+      // restar
+    }
+  };
   return (
     <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg w-2/4 flex justify-center bg-blue-300 shadow-black shadow-2xl">
-      <div className="p-5 grid grid-cols-1 w-full">
+      <div className="m-5 grid grid-cols-1 w-full">
         <p className="justify-center items-center flex">Tu carrito</p>
         {cart.map((product) => (
           <div className="m-5">
@@ -58,11 +74,17 @@ export default function CheckOutComponent() {
                 <div>Precio: {product.price}€</div>
                 <div className="flex justify-center items-center">
                   Unidades:{' '}
-                  <button className="bg-blue-400 m-1 ml-2">
+                  <button
+                    className="bg-blue-400 border  border-blue-500 m-1 ml-2"
+                    onClick={(ev) => qtOnClick(ev, 1, product)}
+                  >
                     <PlusIcon />
                   </button>
                   {product.qt}
-                  <button className="bg-blue-400 m-1 mr-2">
+                  <button
+                    className="bg-blue-400 border border-blue-500 m-1 mr-2"
+                    onClick={(ev) => qtOnClick(ev, 2, product)}
+                  >
                     <MinusIcon />
                   </button>
                 </div>
