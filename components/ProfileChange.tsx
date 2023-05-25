@@ -58,24 +58,54 @@ export default function ProfileChange({ user }: { user: User }) {
             </button>
           </form>
         )}
-        <div>
-          Apellido: {user.subname}{' '}
-          <button>
-            <PenIcon />
-          </button>
-        </div>
-        <div>
-          Email: {user.email}{' '}
-          <button>
-            <PenIcon />
-          </button>
-        </div>
-        <div>
-          Telefono: {user.phone}{' '}
-          <button>
-            <PenIcon />
-          </button>
-        </div>
+        {edit !== 2 && (
+          <div>
+            Apellido: {user.subname}{' '}
+            <button onClick={() => setEdit(2)}>
+              <PenIcon />
+            </button>
+          </div>
+        )}
+        {edit === 2 && (
+          <form onSubmit={submitHandler}>
+            Nombre: <input name="subname" type="text"></input>
+            <button type="submit">
+              <CheckIcon />
+            </button>
+          </form>
+        )}
+        {edit !== 3 && (
+          <div>
+            Email: {user.email}{' '}
+            <button onClick={() => setEdit(3)}>
+              <PenIcon />
+            </button>
+          </div>
+        )}
+        {edit === 3 && (
+          <form onSubmit={submitHandler}>
+            Nombre: <input name="email" type="text"></input>
+            <button type="submit">
+              <CheckIcon />
+            </button>
+          </form>
+        )}
+        {edit !== 4 && (
+          <div>
+            Telefono: {user.phone}{' '}
+            <button onClick={() => setEdit(4)}>
+              <PenIcon />
+            </button>
+          </div>
+        )}
+        {edit === 4 && (
+          <form onSubmit={submitHandler}>
+            Nombre: <input name="phone" type="text"></input>
+            <button type="submit">
+              <CheckIcon />
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
