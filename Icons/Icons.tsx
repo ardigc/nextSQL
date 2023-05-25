@@ -1,3 +1,46 @@
+export function PenIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-pencil"
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+        <path d="M13.5 6.5l4 4" />
+      </svg>
+    </div>
+  );
+}
+export function CheckIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-check"
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M5 12l5 5l10 -10" />
+      </svg>
+    </div>
+  );
+}
 export function CartIcon() {
   return (
     <div>
