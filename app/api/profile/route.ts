@@ -13,7 +13,30 @@ export async function POST(req: NextRequest) {
       mode,
       id,
     ];
-    console.log(parameters);
+    const result = await pool.query(query, parameters);
+  } else if (set === 'subname') {
+    const query = 'UPDATE users_info SET subname=$1 WHERE id=$2';
+    const parameters = [
+      // set,
+      mode,
+      id,
+    ];
+    const result = await pool.query(query, parameters);
+  } else if (set === 'email') {
+    const query = 'UPDATE users_info SET email=$1 WHERE id=$2';
+    const parameters = [
+      // set,
+      mode,
+      id,
+    ];
+    const result = await pool.query(query, parameters);
+  } else if (set === 'phone') {
+    const query = 'UPDATE users_info SET phone=$1 WHERE id=$2';
+    const parameters = [
+      // set,
+      mode,
+      id,
+    ];
     const result = await pool.query(query, parameters);
   }
   return new Response('Se ha subido bien', { status: 200 });

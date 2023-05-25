@@ -14,28 +14,38 @@ interface User {
 }
 export default function ProfileChange({ user }: { user: User }) {
   const [edit, setEdit] = useState(0);
-  const router = useRouter();
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
     const id = user.id;
     const formData = new FormData(ev.currentTarget);
-    const email = formData.get('email');
-    const name = formData.get('name');
-    const subname = formData.get('subname');
-    const phone = formData.get('phone');
-    if (name !== null) {
-      const set = 'name';
-      const mode = name;
-      const response = await fetch('/api/profile', {
-        method: 'POST',
-        body: JSON.stringify({ id, mode, set }),
-        headers: {
-          'content-type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        window.location.reload();
-      }
+    let set = '';
+    let mode = null;
+    if (edit === 1) {
+      const name = formData.get('name');
+      set = 'name';
+      mode = name;
+    } else if (edit === 2) {
+      const subname = formData.get('subname');
+      set = 'subname';
+      mode = subname;
+    } else if (edit === 3) {
+      const email = formData.get('email');
+      set = 'email';
+      mode = email;
+    } else if (edit === 4) {
+      const phone = formData.get('phone');
+      set = 'phone';
+      mode = phone;
+    }
+    const response = await fetch('/api/profile', {
+      method: 'POST',
+      body: JSON.stringify({ id, mode, set }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    if (response.ok) {
+      window.location.reload();
     }
   };
   return (
@@ -68,7 +78,7 @@ export default function ProfileChange({ user }: { user: User }) {
         )}
         {edit === 2 && (
           <form onSubmit={submitHandler}>
-            Nombre: <input name="subname" type="text"></input>
+            Apellido: <input name="subname" type="text"></input>
             <button type="submit">
               <CheckIcon />
             </button>
@@ -84,7 +94,7 @@ export default function ProfileChange({ user }: { user: User }) {
         )}
         {edit === 3 && (
           <form onSubmit={submitHandler}>
-            Nombre: <input name="email" type="text"></input>
+            Email: <input name="email" type="text"></input>
             <button type="submit">
               <CheckIcon />
             </button>
@@ -100,7 +110,7 @@ export default function ProfileChange({ user }: { user: User }) {
         )}
         {edit === 4 && (
           <form onSubmit={submitHandler}>
-            Nombre: <input name="phone" type="text"></input>
+            Telefono: <input name="phone" type="text"></input>
             <button type="submit">
               <CheckIcon />
             </button>
