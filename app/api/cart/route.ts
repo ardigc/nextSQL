@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function PATCH(req: NextRequest) {
+export async function PUT(req: NextRequest) {
   // Body del fetch en el front
   const body = await req.json();
   const productId = body.id;

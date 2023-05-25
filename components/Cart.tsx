@@ -28,7 +28,7 @@ export default function Cart({ user }: { user: string }) {
   const clickHandler2 = async (product: Cart) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {
-      method: 'PATCH',
+      method: 'PUT',
       body: JSON.stringify({ id }),
       headers: {
         'Content-type': 'application/json',
