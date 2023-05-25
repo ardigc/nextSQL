@@ -137,3 +137,46 @@ export function LogOutIcon() {
     </div>
   );
 }
+export function PlusIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-plus"
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 5l0 14" />
+        <path d="M5 12l14 0" />
+      </svg>
+    </div>
+  );
+}
+export function MinusIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-minus"
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M5 12l14 0" />
+      </svg>
+    </div>
+  );
+}
