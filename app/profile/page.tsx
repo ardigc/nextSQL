@@ -18,7 +18,7 @@ export default async function Profile() {
       'SELECT id, name, subname, email, phone FROM users_info WHERE id=' +
         userId.id
     );
-    console.log(user.rows);
+    // console.log(user.rows);
   } catch (error: any) {
     throw 'No tienes iniciada sesion';
   }

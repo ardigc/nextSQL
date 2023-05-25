@@ -1,6 +1,8 @@
 'use client';
 
 import { CheckIcon, PenIcon } from '@/Icons/Icons';
+import { useRouter } from 'next/navigation';
+
 import { FormEventHandler, useState } from 'react';
 
 interface User {
@@ -12,6 +14,7 @@ interface User {
 }
 export default function ProfileChange({ user }: { user: User }) {
   const [edit, setEdit] = useState(0);
+  const router = useRouter();
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
     const id = user.id;
@@ -24,12 +27,15 @@ export default function ProfileChange({ user }: { user: User }) {
       const set = 'name';
       const mode = name;
       const response = await fetch('/api/profile', {
-        method: 'UPDATE',
+        method: 'POST',
         body: JSON.stringify({ id, mode, set }),
         headers: {
           'content-type': 'application/json',
         },
       });
+      if (response.ok) {
+        window.location.reload();
+      }
     }
   };
   return (

@@ -6,7 +6,8 @@ import { redirect } from 'next/navigation';
 // import { useRouter } from 'next/router';
 
 export default async function Home() {
-  // const router =useRouter()
+  // const router = useRouter();
+
   const result = await pool.query('SELECT * FROM products;');
   const user = await pool.query('SELECT * FROM users_info WHERE id=1');
   // router.push("/products")

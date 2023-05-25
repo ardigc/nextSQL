@@ -43,7 +43,7 @@ export default async function RootLayout({
     if (typeof user === 'string') {
       return;
     }
-    console.log(user);
+    // console.log(user);
     name = user.name;
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id

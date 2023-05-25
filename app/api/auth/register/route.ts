@@ -16,6 +16,6 @@ export async function POST(req: NextRequest) {
     hashedPass,
   ];
   const result = await pool.query(query, parameters);
-  console.log(result);
+  // console.log(result);
   return new Response('Se ha subido bien', { status: 200 });
 }
