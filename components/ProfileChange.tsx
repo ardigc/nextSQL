@@ -24,6 +24,8 @@ export default function ProfileChange({ user }: { user: User }) {
       const name = formData.get('name');
       set = 'name';
       mode = name;
+      document.cookie =
+        'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     } else if (edit === 2) {
       const subname = formData.get('subname');
       set = 'subname';
@@ -44,6 +46,11 @@ export default function ProfileChange({ user }: { user: User }) {
         'content-type': 'application/json',
       },
     });
+    if (edit === 1) {
+      if (!response.ok) return;
+      const data = await response.json();
+      document.cookie = `token=${data.token};`;
+    }
     if (response.ok) {
       window.location.reload();
     }

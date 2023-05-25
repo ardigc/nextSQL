@@ -1,6 +1,6 @@
 import { pool } from '@/lib/server/pg';
 import { NextRequest } from 'next/server';
-
+import { sign } from 'jsonwebtoken';
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const mode = body.mode;
@@ -14,6 +14,10 @@ export async function POST(req: NextRequest) {
       id,
     ];
     const result = await pool.query(query, parameters);
+
+    console.log(result);
+    const token = sign({ id: id, name: mode }, process.env.JWT_SECRET || '');
+    return new Response(JSON.stringify({ token }), { status: 200 });
   } else if (set === 'subname') {
     const query = 'UPDATE users_info SET subname=$1 WHERE id=$2';
     const parameters = [
@@ -22,6 +26,7 @@ export async function POST(req: NextRequest) {
       id,
     ];
     const result = await pool.query(query, parameters);
+    return new Response('Se ha subido bien', { status: 200 });
   } else if (set === 'email') {
     const query = 'UPDATE users_info SET email=$1 WHERE id=$2';
     const parameters = [
@@ -30,6 +35,7 @@ export async function POST(req: NextRequest) {
       id,
     ];
     const result = await pool.query(query, parameters);
+    return new Response('Se ha subido bien', { status: 200 });
   } else if (set === 'phone') {
     const query = 'UPDATE users_info SET phone=$1 WHERE id=$2';
     const parameters = [
@@ -38,6 +44,6 @@ export async function POST(req: NextRequest) {
       id,
     ];
     const result = await pool.query(query, parameters);
+    return new Response('Se ha subido bien', { status: 200 });
   }
-  return new Response('Se ha subido bien', { status: 200 });
 }
