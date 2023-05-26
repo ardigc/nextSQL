@@ -17,16 +17,16 @@ export async function POST(req: NextRequest) {
     if (typeof userId === 'string') return;
 
     let cartId = await pool.query(
-      'SELECT id FROM carts WHERE user_id =' + userId.id
+      'SELECT id FROM carts WHERE user_id =' + userId.id + " AND state='unpay'"
     );
     console.log(cartId);
     if (cartId.rowCount === 0) {
       const createCart = await pool.query(
-        'INSERT INTO carts(user_id) VALUES (' + userId.id + ')'
+        'INSERT INTO carts(user_id, state) VALUES (' + userId.id + ",'unpay' )"
       );
     }
     cartId = await pool.query(
-      'SELECT id FROM carts WHERE user_id =' + userId.id
+      'SELECT id FROM carts WHERE user_id =' + userId.id + " AND state='unpay'"
     );
     const cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
@@ -90,7 +90,7 @@ export async function PUT(req: NextRequest) {
     );
     if (typeof userId === 'string') return;
     const cartId = await pool.query(
-      'SELECT id FROM carts WHERE user_id =' + userId.id
+      'SELECT id FROM carts WHERE user_id =' + userId.id + " AND state='unpay'"
     );
 
     const query = 'DELETE FROM cart_items WHERE product_id=$1 AND cart_id=$2';
@@ -121,7 +121,7 @@ export async function PATCH(req: NextRequest) {
     );
     if (typeof userId === 'string') return;
     const cartId = await pool.query(
-      'SELECT id FROM carts WHERE user_id =' + userId.id
+      'SELECT id FROM carts WHERE user_id =' + userId.id + " AND state='unpay'"
     );
     const query =
       'UPDATE cart_items SET qt=$1 WHERE cart_id=$2 AND product_id=$3';

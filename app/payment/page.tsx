@@ -1,15 +1,10 @@
 import { FormEventHandler, MouseEventHandler, useContext } from 'react';
 // import {useRouter} from 'next/navigation';
-import Link from 'next/link';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { GlobalContext } from '@/components/ContextProvider';
+
 import { stripeClient } from '@/lib/server/stripe';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { pool } from '@/lib/server/pg';
-import CheckOutForm from '@/components/paymentComponent';
 import CheckOutPage from '@/components/paymentComponent';
 
 interface Cart {
@@ -47,7 +42,7 @@ export default async function Payment() {
     // console.log(user);
     name = user.name;
     const cartId = await pool.query(
-      'SELECT id FROM carts WHERE user_id =' + user.id
+      'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
     cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
@@ -62,13 +57,13 @@ export default async function Payment() {
     amount: totalPrice(cart.rows) * 100,
     currency: 'eur',
     payment_method_types: ['card'],
-    metadata: { 'order_id:': cart.rows[0].cart_id },
+    metadata: { cartId: cart.rows[0].cart_id },
   });
 
   const clientSecret = paymentIntent.client_secret;
 
   console.log(paymentIntent);
-  console.log(clientSecret);
+  // console.log(clientSecret);
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full">
       {clientSecret && <CheckOutPage clientSecret={clientSecret} />}
