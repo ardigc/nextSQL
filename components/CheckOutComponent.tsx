@@ -1,8 +1,9 @@
 'use client';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from './ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/Icons/Icons';
+import { Spiner } from './Spiner';
 
 interface Cart {
   cart_id: number;
@@ -18,6 +19,7 @@ interface Cart {
 export default function CheckOutComponent() {
   const { cart } = useContext(GlobalContext);
   const { setCart } = useContext(GlobalContext);
+  const [isLoading, setIsLoading] = useState(-1);
 
   console.log(cart);
   const clickHandler2 = async (product: Cart) => {
@@ -41,20 +43,25 @@ export default function CheckOutComponent() {
     return total;
   }
 
-  const qtOnClick = async (ev, mode, product: Cart) => {
+  const qtOnClick = async (mode: number, product: Cart) => {
+    setIsLoading(product.id);
     const id = product.product_id;
+    if (mode === 1) {
+      product.qt++;
+    } else if (mode === 2) {
+      product.qt--;
+    }
+    const qt = product.qt;
     const response = await fetch('/api/cart', {
-      method: 'UPDATE',
-      body: JSON.stringify({ id, mode }),
+      method: 'PATCH',
+      body: JSON.stringify({ id, qt }),
       headers: {
         'Content-type': 'application/json',
       },
     });
-    if (mode === 1) {
-      // sumar
-    } else if (mode === 2) {
-      // restar
-    }
+    const data = await response.json();
+    setCart(data);
+    setIsLoading(-1);
   };
   return (
     <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg w-2/4 flex justify-center bg-blue-300 shadow-black shadow-2xl">
@@ -76,14 +83,15 @@ export default function CheckOutComponent() {
                   Unidades:{' '}
                   <button
                     className="bg-blue-400 border  border-blue-500 m-1 ml-2"
-                    onClick={(ev) => qtOnClick(ev, 1, product)}
+                    onClick={(ev) => qtOnClick(1, product)}
                   >
                     <PlusIcon />
                   </button>
-                  {product.qt}
+                  {isLoading !== product.id && product.qt}
+                  {isLoading === product.id && <Spiner />}
                   <button
                     className="bg-blue-400 border border-blue-500 m-1 mr-2"
-                    onClick={(ev) => qtOnClick(ev, 2, product)}
+                    onClick={(ev) => qtOnClick(2, product)}
                   >
                     <MinusIcon />
                   </button>

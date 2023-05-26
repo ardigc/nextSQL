@@ -3,6 +3,7 @@ import { CartIcon, TrashIcon, UserIcon } from '@/Icons/Icons';
 import { MouseEventHandler, useContext, useState } from 'react';
 import { GlobalContext } from './ContextProvider';
 import ProfileButton from './profile';
+import Link from 'next/link';
 interface Cart {
   cart_id: number;
   description: string;
@@ -74,7 +75,10 @@ export default function Cart({ user }: { user: string }) {
               </div>
             </div>
           ))}
-          <div>Precio total: {totalPrice(cartfin)} €</div>
+          <div>
+            Precio total: {totalPrice(cartfin)} €{' '}
+            <Link href="/checkout">CHECKOUT</Link>
+          </div>
         </div>
       )}
     </div>
