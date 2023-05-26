@@ -8,7 +8,7 @@ const stripe = new Stripe(`${process.env.STRIPE_KEY_SECRET}`, {
 export async function POST(req: NextRequest) {
   const body = await req.json();
   try {
-    const paymentIntent = stripe.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: body.amount,
       currency: 'eur',
       payment_method_types: ['card'],
