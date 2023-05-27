@@ -36,12 +36,10 @@ export default function CheckOutComponent() {
     setCart(data);
   };
   function totalPrice(products: Array<Cart>) {
-    let total = 0;
-    products.map((product) => {
-      const price = product.price * product.qt;
-      total = total + price;
-    });
-    return total;
+    return products.reduce((total, products) => {
+      const price = products.price * products.qt;
+      return total + price;
+    }, 0);
   }
 
   const qtOnClick = async (mode: number, product: Cart) => {
