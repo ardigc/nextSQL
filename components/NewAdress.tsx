@@ -14,7 +14,7 @@ export default function NewAdress({ userId }: { userId: number }) {
         <div className="flex justify-end">
           <button
             onClick={clickHandler}
-            className='className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-10"'
+            className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-1"
           >
             Enviar a otra direccion
           </button>

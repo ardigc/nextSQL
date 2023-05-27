@@ -7,6 +7,7 @@ import NewAdress from '@/components/NewAdress';
 import { QueryResult } from 'pg';
 import AdressDefault from '@/components/AdressDefault';
 import { AdressProvider } from '@/components/AdressContextProvider';
+import Link from 'next/link';
 
 export default async function adressConfiguration() {
   const cookiesValue = cookies();
@@ -55,7 +56,16 @@ export default async function adressConfiguration() {
                 <AdressDefault userId={userId!} adressId={adress.id} />
               </div>
             ))}
-            <NewAdress userId={userId!} />
+            <div className="flex justify-between items-center">
+              <Link
+                className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-1"
+                href="/payment"
+              >
+                Pagar
+              </Link>
+
+              <NewAdress userId={userId!} />
+            </div>
           </div>
         )}
       </AdressProvider>

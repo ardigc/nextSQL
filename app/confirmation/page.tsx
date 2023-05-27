@@ -1,5 +1,7 @@
+import { OrderIcon } from '@/Icons/Icons';
 import { pool } from '@/lib/server/pg';
 import { stripeClient } from '@/lib/server/stripe';
+import Link from 'next/link';
 
 interface SearchParams {
   payment_intent: string;
@@ -29,8 +31,17 @@ export default async function confirmation({
   // console.log(userId)
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full ">
-      <div className="border rounded-lg min-w-fit flex justify-center bg-blue-300 shadow-black shadow-2xl ">
-        {' '}
+      <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center text-center bg-blue-300 shadow-black shadow-2xl  ">
+        <div>Pedido realizado correctamente!</div>
+        <div className="flex justify-center my-4">
+          <OrderIcon />
+        </div>
+        <Link
+          className="border rounded-3xl bg-blue-400 px-2 mx-10"
+          href="/orders"
+        >
+          Ir a mis pedidos
+        </Link>
       </div>
     </div>
   );

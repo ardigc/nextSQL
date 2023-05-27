@@ -24,7 +24,9 @@ export default function ProfileButton({ user }: { user: string }) {
                 Tu perfil
               </Link>
             </li>
-            <li>Pedidos</li>
+            <li>
+              <Link href="/orders">Pedidos</Link>
+            </li>
             <li onClick={() => setOpen(false)}>
               <LogOut />
             </li>
