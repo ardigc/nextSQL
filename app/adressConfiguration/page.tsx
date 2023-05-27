@@ -7,6 +7,7 @@ import AdressComponent from '@/components/AdressComponent';
 export default async function adressConfiguration() {
   const cookiesValue = cookies();
   let user = null;
+  let userId = null;
   let adress = null;
   try {
     user = verify(
@@ -16,6 +17,7 @@ export default async function adressConfiguration() {
     if (typeof user === 'string') {
       return;
     }
+    userId = user.id;
     adress = await pool.query(
       'SELECT * FROM users_adress WHERE user_id=' + user.id
     );
@@ -26,7 +28,7 @@ export default async function adressConfiguration() {
 
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full ">
-      {adress?.rowCount === 0 && <AdressComponent />}
+      {adress?.rowCount === 0 && <AdressComponent userId={userId} />}
     </div>
   );
 }

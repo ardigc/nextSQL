@@ -1,7 +1,7 @@
 'use client';
 import { FormEventHandler } from 'react';
 
-export default function AdressComponent() {
+export default function AdressComponent({ userId }: { userId: number }) {
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
     const formData = new FormData(ev.currentTarget);
@@ -12,6 +12,10 @@ export default function AdressComponent() {
     console.log(line, city, postalCode, country);
     const response = await fetch('/api/adress', {
       method: 'POST',
+      body: JSON.stringify({ line, city, postalCode, country, userId }),
+      headers: {
+        'Content-type': 'application/json',
+      },
     });
   };
   return (
