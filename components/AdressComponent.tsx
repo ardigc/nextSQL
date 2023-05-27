@@ -2,7 +2,7 @@
 import { FormEventHandler } from 'react';
 
 export default function AdressComponent() {
-  const submitHandler: FormEventHandler<HTMLFormElement> = (ev) => {
+  const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
     const formData = new FormData(ev.currentTarget);
     const line = formData.get('adress');
@@ -10,6 +10,9 @@ export default function AdressComponent() {
     const postalCode = formData.get('postalCode');
     const country = formData.get('country');
     console.log(line, city, postalCode, country);
+    const response = await fetch('/api/adress', {
+      method: 'POST',
+    });
   };
   return (
     <div>
