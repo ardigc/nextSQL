@@ -17,6 +17,7 @@ export default function AdressDefault({
         'Content-type': 'application/json',
       },
     });
+    if (response.ok) window.location.reload();
   };
 
   return (
