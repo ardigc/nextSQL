@@ -50,10 +50,11 @@ export default async function Payment() {
         cartId.rows[0].id
     );
     adress = await pool.query(
-      `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY marked_by_default DESC LIMIT 1`
+      `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY marked_as_default DESC LIMIT 1`
     );
-  } catch (error) {
-    throw new Error('no tienes iniciada sesion');
+    //  console.log(adress.rows[0].id)
+  } catch (error: any) {
+    throw error;
   }
 
   // Create a PaymentIntent with the order amount and currency
@@ -61,12 +62,12 @@ export default async function Payment() {
     amount: totalPrice(cart.rows) * 100,
     currency: 'eur',
     payment_method_types: ['card'],
-    metadata: { cartId: cart.rows[0].cart_id },
+    metadata: { cartId: cart.rows[0].cart_id, adressId: adress.rows[0].id },
   });
 
   const clientSecret = paymentIntent.client_secret;
 
-  console.log(paymentIntent);
+  // console.log(paymentIntent);
   // console.log(clientSecret);
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full">
