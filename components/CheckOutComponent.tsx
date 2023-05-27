@@ -102,7 +102,14 @@ export default function CheckOutComponent() {
           </div>
         ))}
         <div>Precio total: {totalPrice(cart)} €</div>
-        <Link href="/adressConfiguration">Continuar la pago</Link>
+        <div className="flex justify-end">
+          <Link
+            className="border rounded-3xl bg-blue-400 px-2 mx-10"
+            href="/adressConfiguration"
+          >
+            Direccion de envio
+          </Link>
+        </div>
       </div>
     </div>
   );
