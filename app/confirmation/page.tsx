@@ -24,7 +24,7 @@ export default async function confirmation({
   );
   // console.log(userId.rows[0]);
   const order = await pool.query(
-    `INSERT INTO orders (user_id, cart_id) VALUES (${userId.rows[0].user_id}, ${userId.rows[0].id})`
+    `INSERT INTO orders (user_id, cart_id, adress) VALUES (${userId.rows[0].user_id}, ${userId.rows[0].id}, ${paymentIntent.metadata.adressId})`
   );
   // console.log(userId)
   return (
