@@ -30,6 +30,7 @@ export default async function Payment() {
   const cookiesValue = cookies();
   let user = null;
   let cart = null;
+  let adress = null;
   let name = 'und';
   try {
     user = verify(
@@ -47,6 +48,9 @@ export default async function Payment() {
     cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
         cartId.rows[0].id
+    );
+    adress = await pool.query(
+      `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY marked_by_default DESC LIMIT 1`
     );
   } catch (error) {
     throw new Error('no tienes iniciada sesion');

@@ -17,6 +17,9 @@ export default function AdressComponent({ userId }: { userId: number }) {
         'Content-type': 'application/json',
       },
     });
+    const id = await response.json();
+    console.log(id);
+    if (response.ok) window.location.assign('/payment');
   };
   return (
     <div>
