@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     ];
     const result = await pool.query(query, parameters);
 
-    console.log(result);
+    // console.log(result);
     const token = sign({ id: id, name: mode }, process.env.JWT_SECRET || '');
     return new Response(JSON.stringify({ token }), { status: 200 });
   } else if (set === 'subname') {

@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from './ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/Icons/Icons';
 import { Spiner } from './Spiner';
+import Link from 'next/link';
 
 interface Cart {
   cart_id: number;
@@ -21,7 +22,7 @@ export default function CheckOutComponent() {
   const { setCart } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(-1);
 
-  console.log(cart);
+  // console.log(cart);
   const clickHandler2 = async (product: Cart) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {
@@ -101,6 +102,7 @@ export default function CheckOutComponent() {
           </div>
         ))}
         <div>Precio total: {totalPrice(cart)} €</div>
+        <Link href="/adressConfiguration">Continuar la pago</Link>
       </div>
     </div>
   );

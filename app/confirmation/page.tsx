@@ -16,13 +16,13 @@ export default async function confirmation({
   const paymentIntent = await stripe.paymentIntents.retrieve(
     searchParams.payment_intent
   );
-  console.log(paymentIntent.metadata.cartId);
+  // console.log(paymentIntent.metadata.cartId);
   const userId = await pool.query(
     "UPDATE carts SET state='pay' WHERE id=" +
       paymentIntent.metadata.cartId +
       ' returning *'
   );
-  console.log(userId.rows[0]);
+  // console.log(userId.rows[0]);
   const order = await pool.query(
     `INSERT INTO orders (user_id, cart_id) VALUES (${userId.rows[0].user_id}, ${userId.rows[0].id})`
   );
