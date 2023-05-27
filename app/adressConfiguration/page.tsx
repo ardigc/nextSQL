@@ -6,6 +6,7 @@ import AdressComponent from '@/components/AdressComponent';
 import NewAdress from '@/components/NewAdress';
 import { QueryResult } from 'pg';
 import AdressDefault from '@/components/AdressDefault';
+import { AdressProvider } from '@/components/AdressContextProvider';
 
 export default async function adressConfiguration() {
   const cookiesValue = cookies();
@@ -32,34 +33,32 @@ export default async function adressConfiguration() {
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
-  console.log(adress?.rows);
+  console.log(adressDefault?.rows[0].id);
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full ">
-      {adress?.rowCount === 0 && (
-        <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
-          <AdressComponent userId={userId!} />
-        </div>
-      )}
-      {adress?.rows.length! > 0 && (
-        <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
-          Tus direcciones:
-          {adress?.rows.map((adress) => (
-            <div className="flex justify-between items-center my-3">
-              <div>Calle: {adress.line} </div>
-              <div>CP: {adress.postal_code} </div>
-              <div>Ciudad: {adress.city} </div>
-              <div>Pais: {adress.country} </div>
-              {adressDefault?.rows[0].id !== adress.id && (
+      <AdressProvider initialAdress={adressDefault?.rows[0].id}>
+        {adress?.rowCount === 0 && (
+          <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
+            <AdressComponent userId={userId!} />
+          </div>
+        )}
+        {adress?.rows.length! > 0 && (
+          <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
+            Tus direcciones:
+            {adress?.rows.map((adress) => (
+              <div className="flex justify-between items-center my-3">
+                <div>Calle: {adress.line} </div>
+                <div>CP: {adress.postal_code} </div>
+                <div>Ciudad: {adress.city} </div>
+                <div>Pais: {adress.country} </div>
+
                 <AdressDefault userId={userId!} adressId={adress.id} />
-              )}
-              {adressDefault?.rows[0].id === adress.id && (
-                <div>Seleccionada</div>
-              )}
-            </div>
-          ))}
-          <NewAdress userId={userId!} />
-        </div>
-      )}
+              </div>
+            ))}
+            <NewAdress userId={userId!} />
+          </div>
+        )}
+      </AdressProvider>
     </div>
   );
 }

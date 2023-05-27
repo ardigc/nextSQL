@@ -17,9 +17,10 @@ export async function POST(req: NextRequest) {
 }
 export async function PATCH(req: NextRequest) {
   const body = await req.json();
-  const query = 'UPDATE users_adress SET marked_as_default=now() WHERE id=$1';
+  const query =
+    'UPDATE users_adress SET marked_as_default=now() WHERE id=$1 RETURNING id';
   const parameters = [body.adressId];
   const result = await pool.query(query, parameters);
   console.log(result);
-  return new Response(JSON.stringify(result), { status: 200 });
+  return new Response(JSON.stringify(result.rows[0]), { status: 200 });
 }
