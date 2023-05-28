@@ -19,15 +19,18 @@ export default async function confirmation({
     searchParams.payment_intent
   );
   // console.log(paymentIntent.metadata.cartId);
+
   const userId = await pool.query(
     "UPDATE carts SET state='pay' WHERE id=" +
       paymentIntent.metadata.cartId +
       ' returning *'
   );
   // console.log(userId.rows[0]);
-  const order = await pool.query(
-    `INSERT INTO orders (user_id, cart_id, adress) VALUES (${userId.rows[0].user_id}, ${userId.rows[0].id}, ${paymentIntent.metadata.adressId})`
-  );
+  try {
+    const order = await pool.query(
+      `INSERT INTO orders (user_id, cart_id, adress) VALUES (${userId.rows[0].user_id}, ${userId.rows[0].id}, ${paymentIntent.metadata.adressId})`
+    );
+  } catch {}
   // console.log(userId)
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full ">

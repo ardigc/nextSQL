@@ -57,14 +57,13 @@ export default async function adressConfiguration() {
               </div>
             ))}
             <div className="flex justify-between items-center">
+              <NewAdress userId={userId!} />
               <Link
                 className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-1"
                 href="/payment"
               >
                 Pagar
               </Link>
-
-              <NewAdress userId={userId!} />
             </div>
           </div>
         )}
