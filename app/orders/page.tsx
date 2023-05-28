@@ -56,7 +56,7 @@ export default async function Orders() {
     //     return cartBeta.rows;
     //   })
     // );
-    console.log('cart', cart);
+    // console.log('cart', cart);
   } catch (error: any) {
     throw error;
   }

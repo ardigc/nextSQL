@@ -1,4 +1,5 @@
 'use client';
+import { MinusIcon } from '@/Icons/Icons';
 import { pool } from '@/lib/server/pg';
 import { useEffect, useState } from 'react';
 
@@ -38,15 +39,16 @@ export default function OrdersPrev({
       return total + price;
     }, 0);
   }
-
+  const options = { timeZone: 'Europe/Madrid' };
+  // console.log(cart)
   return (
     <div className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400">
       {!showOrder && (
         <button onClick={() => setShowOrder(true)}>
           <div>
             Pedido nº {order.id} realizado el{' '}
-            {order.marked_as_default.toLocaleDateString()} a las{' '}
-            {order.marked_as_default.toLocaleTimeString()}
+            {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
+            {order.marked_as_default.toLocaleTimeString('en-Us', options)}
           </div>
           <div>
             A la direccion {order.line} con CP {order.postal_code}{' '}
@@ -56,6 +58,39 @@ export default function OrdersPrev({
           </div>
           <div>Precio: {totalPrice(cart)} €</div>
         </button>
+      )}
+      {showOrder && (
+        <div>
+          <div className="flex justify-end">
+            <button onClick={() => setShowOrder(false)}>
+              <MinusIcon />
+            </button>
+          </div>
+          <div>
+            Pedido nº {order.id} realizado el{' '}
+            {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
+            {order.marked_as_default.toLocaleTimeString('en-Us', options)}
+          </div>
+          <div>
+            A la direccion {order.line} con CP {order.postal_code}{' '}
+          </div>
+          <div>
+            {order.city}, {order.country}
+          </div>
+          <div>Productos</div>
+          <div className="grid grid-cols-2">
+            {cart.map((product) => (
+              <div className="border border-blue-900 m-2 p-2 rounded-md">
+                <div>{product.name}</div>
+                <div className="flex justify-between">
+                  <div>Cantidad: {product.qt}</div>
+                  <div>Precio: {product.price}€</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>Precio: {totalPrice(cart)} €</div>
+        </div>
       )}
     </div>
   );

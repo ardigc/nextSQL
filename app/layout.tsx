@@ -49,7 +49,7 @@ export default async function RootLayout({
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
 
-    console.log(cartId.rows);
+    // console.log(cartId.rows);
 
     cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +

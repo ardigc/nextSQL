@@ -34,7 +34,7 @@ export default async function adressConfiguration() {
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
-  console.log(adressDefault?.rows[0].id);
+  // console.log(adressDefault?.rows[0].id);
   return (
     <div className="relative top-12 bg-blue-100 h-screen w-full ">
       <AdressProvider initialAdress={adressDefault?.rows[0].id}>
