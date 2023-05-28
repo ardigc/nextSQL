@@ -23,9 +23,10 @@ interface Cart {
 }
 export default function OrdersPrev({
   order,
+  cart,
 }: {
   order: Order;
-  cart?: Array<Cart>;
+  cart: Array<Cart>;
 }) {
   const cartId = order.cart_id;
 
@@ -35,13 +36,13 @@ export default function OrdersPrev({
       return total + price;
     }, 0);
   }
-  async function getCart() {
-    const cart = await pool.query(
-      'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
-        order.cart_id +
-        ' ORDER BY product_id DESC'
-    );
-  }
+  // async function getCart() {
+  //   const cart = await pool.query(
+  //     'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+  //       order.cart_id +
+  //       ' ORDER BY product_id DESC'
+  //   );
+  // }
 
   return (
     <button className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400">
@@ -56,7 +57,7 @@ export default function OrdersPrev({
       <div>
         {order.city}, {order.country}
       </div>
-      <div>Precio: {} €</div>
+      <div>Precio: {totalPrice(cart)} €</div>
     </button>
   );
 }
