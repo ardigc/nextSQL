@@ -56,7 +56,7 @@ export default function OrdersPrev({
           <div>
             {order.city}, {order.country}
           </div>
-          <div>Precio: {totalPrice(cart)} €</div>
+          <div>Total del pedido: {totalPrice(cart)} €</div>
         </button>
       )}
       {showOrder && (
@@ -77,7 +77,7 @@ export default function OrdersPrev({
           <div>
             {order.city}, {order.country}
           </div>
-          <div>Productos</div>
+          <div className="mt-3">Productos</div>
           <div className="grid grid-cols-2">
             {cart.map((product) => (
               <div className="border border-blue-900 m-2 p-2 rounded-md">
@@ -89,7 +89,7 @@ export default function OrdersPrev({
               </div>
             ))}
           </div>
-          <div>Precio: {totalPrice(cart)} €</div>
+          <div className="mt-3">Total del pedido: {totalPrice(cart)} €</div>
         </div>
       )}
     </div>
