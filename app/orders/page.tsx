@@ -18,6 +18,7 @@ export default async function Orders() {
     orders = await pool.query(
       `SELECT orders.id, orders.user_id, orders.cart_id , users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country, users_adress.marked_as_default FROM orders INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.user_id= ${user.id} ORDER BY orders.id DESC`
     );
+
     // const orders = await pool.query(
     //   `SELECT * FROM orders INNER JOIN carts ON orders.cart_id=carts.id INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.user_id= ${user.id} ORDER BY orders.id DESC`
     // );
