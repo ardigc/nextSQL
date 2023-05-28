@@ -1,6 +1,6 @@
 'use client';
 import { pool } from '@/lib/server/pg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Order {
   id: number;
@@ -23,32 +23,38 @@ interface Cart {
   user_id: number;
 }
 export default function OrdersPrev({ order }: { order: Order }) {
-  const [cart, setCart] = useState<Array<Cart>>([]);
+  //   const [cart, setCart] = useState<Array<Cart>>([]);
   const cartId = order.cart_id;
 
-  async function getCart() {
-    const response = await fetch('/api/cart', {
-      method: 'GET',
-      body: JSON.stringify(cartId),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    setCart(data);
-  }
-  getCart();
-  async function totalPrice() {
-    // const cart = await pool.query('SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
-    // cart_id +
-    // ' ORDER BY product_id DESC')
-    const products = cart;
-    return products.reduce((total, products) => {
-      const price = products.price * products.qt;
-      return total + price;
-    }, 0);
-  }
+  //   async function getCart() {
 
+  // setCart(data);
+  //   }
+  //   getCart();
+  useEffect(() => {
+    async function totalPrice() {
+      const response = await fetch('/api/order', {
+        method: 'POST',
+        body: JSON.stringify({ cartId }),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      const products = data;
+      console.log('hola');
+      return 'hola';
+
+      // const cart = await pool.query('SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+      // cart_id +
+      // ' ORDER BY product_id DESC')
+      // return products.reduce((total: number, products: { price: number; qt: number; }) => {
+      //   const price = products.price * products.qt;
+      //   return total + price;
+      // }, 0);
+    }
+    const price = totalPrice();
+  });
   return (
     <button className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400">
       <div>
@@ -62,7 +68,7 @@ export default function OrdersPrev({ order }: { order: Order }) {
       <div>
         {order.city}, {order.country}
       </div>
-      <div>Precio: {totalPrice()} €</div>
+      <div>Precio: {} €</div>
     </button>
   );
 }
