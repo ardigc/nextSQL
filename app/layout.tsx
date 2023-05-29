@@ -3,10 +3,10 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
-import LogOut from '@/components/LogOut';
-import Cart from '@/components/Cart';
+import LogOut from '@/components/profile/LogOut';
+import Cart from '@/components/cart/Cart';
 import { pool } from '@/lib/server/pg';
-import { Provider } from '@/components/ContextProvider';
+import { Provider } from '@/components/context/ContextProvider';
 
 interface Cart {
   cart_id: number;

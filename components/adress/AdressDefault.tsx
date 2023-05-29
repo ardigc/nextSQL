@@ -1,7 +1,7 @@
 'use client';
 
 import { MouseEventHandler, useContext } from 'react';
-import { AdressContext } from './AdressContextProvider';
+import { AdressContext } from '../context/AdressContextProvider';
 
 export default function AdressDefault({
   adressId,

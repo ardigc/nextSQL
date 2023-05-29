@@ -1,4 +1,4 @@
-import SingleProduct from '@/components/SingleProduct';
+import SingleProduct from '@/components/product/SingleProduct';
 import { pool } from '@/lib/server/pg';
 
 export default async function ProductDetail({

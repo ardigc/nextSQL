@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { MouseEventHandler, useContext } from 'react';
-import { GlobalContext } from './ContextProvider';
+import { GlobalContext } from '../context/ContextProvider';
 
 export function Product({
   name,

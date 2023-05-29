@@ -1,8 +1,8 @@
 'use client';
-import { CartIcon, TrashIcon, UserIcon } from '@/Icons/Icons';
+import { CartIcon, TrashIcon, UserIcon } from '@/components/Icons/Icons';
 import { MouseEventHandler, useContext, useState } from 'react';
-import { GlobalContext } from './ContextProvider';
-import ProfileButton from './profile';
+import { GlobalContext } from '../context/ContextProvider';
+import ProfileButton from '../profile/profile';
 import Link from 'next/link';
 interface Cart {
   cart_id: number;

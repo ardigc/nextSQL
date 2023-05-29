@@ -1,4 +1,4 @@
-import OrdersPrev from '@/components/OrderPrev';
+import OrdersPrev from '@/components/order/OrderPrev';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';

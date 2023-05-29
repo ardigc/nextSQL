@@ -1,6 +1,6 @@
 'use client';
 
-import { LogOutIcon } from '@/Icons/Icons';
+import { LogOutIcon } from '@/components/Icons/Icons';
 
 // import { useRouter } from "next/router";
 

@@ -1,4 +1,4 @@
-import CheckOutComponent from '@/components/CheckOutComponent';
+import CheckOutComponent from '@/components/checkout/CheckOutComponent';
 
 export default function CheckOut() {
   return (

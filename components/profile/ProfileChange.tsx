@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckIcon, PenIcon } from '@/Icons/Icons';
+import { CheckIcon, PenIcon } from '@/components/Icons/Icons';
 import { useRouter } from 'next/navigation';
 
 import { FormEventHandler, useState } from 'react';

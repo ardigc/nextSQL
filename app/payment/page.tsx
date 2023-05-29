@@ -5,7 +5,7 @@ import { stripeClient } from '@/lib/server/stripe';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { pool } from '@/lib/server/pg';
-import CheckOutPage from '@/components/paymentComponent';
+import CheckOutPage from '@/components/payment/paymentComponent';
 
 interface Cart {
   cart_id: number;

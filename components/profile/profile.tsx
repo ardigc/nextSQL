@@ -1,6 +1,6 @@
-import { UserIcon } from '@/Icons/Icons';
+import { UserIcon } from '@/components/Icons/Icons';
 import { useState } from 'react';
-import Cart from './Cart';
+import Cart from '../cart/Cart';
 import LogOut from './LogOut';
 import { verify } from 'jsonwebtoken';
 import Link from 'next/link';

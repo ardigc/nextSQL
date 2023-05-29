@@ -1,7 +1,7 @@
 'use client';
 
 import { MouseEventHandler, useContext } from 'react';
-import { GlobalContext } from './ContextProvider';
+import { GlobalContext } from '../context/ContextProvider';
 // import { useRouter } from 'next/navigation';
 
 export default function SingleProduct({

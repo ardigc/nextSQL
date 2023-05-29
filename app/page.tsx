@@ -1,6 +1,6 @@
 // 'use client'
 import { pool } from '@/lib/server/pg';
-import { Product } from '../components/MyClientComponent';
+import { Product } from '../components/product/MyClientComponent';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 // import { useRouter } from 'next/router';

@@ -1,4 +1,4 @@
-import { OrderIcon } from '@/Icons/Icons';
+import { OrderIcon } from '@/components/Icons/Icons';
 import { pool } from '@/lib/server/pg';
 import { stripeClient } from '@/lib/server/stripe';
 import Link from 'next/link';

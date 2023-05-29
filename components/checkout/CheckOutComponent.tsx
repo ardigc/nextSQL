@@ -1,9 +1,9 @@
 'use client';
 
 import { useContext, useState } from 'react';
-import { GlobalContext } from './ContextProvider';
-import { MinusIcon, PlusIcon, TrashIcon } from '@/Icons/Icons';
-import { Spiner } from './Spiner';
+import { GlobalContext } from '../context/ContextProvider';
+import { MinusIcon, PlusIcon, TrashIcon } from '@/components/Icons/Icons';
+import { Spiner } from '../UI/Spiner';
 import Link from 'next/link';
 
 interface Cart {

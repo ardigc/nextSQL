@@ -1,4 +1,4 @@
-import OrderDetails from '@/components/OrderDetails';
+import OrderDetails from '@/components/order/OrderDetails';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';

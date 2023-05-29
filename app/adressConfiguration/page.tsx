@@ -2,11 +2,11 @@ import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { FormEventHandler } from 'react';
-import AdressComponent from '@/components/AdressComponent';
-import NewAdress from '@/components/NewAdress';
+import AdressComponent from '@/components/adress/AdressComponent';
+import NewAdress from '@/components/adress/NewAdress';
 import { QueryResult } from 'pg';
-import AdressDefault from '@/components/AdressDefault';
-import { AdressProvider } from '@/components/AdressContextProvider';
+import AdressDefault from '@/components/adress/AdressDefault';
+import { AdressProvider } from '@/components/context/AdressContextProvider';
 import Link from 'next/link';
 
 export default async function adressConfiguration() {
