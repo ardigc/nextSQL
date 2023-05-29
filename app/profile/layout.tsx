@@ -36,8 +36,8 @@ export default async function RootLayout({
           <div className="sticky top-12 flex flex-col justify-around items-center h-1/4">
             <Link href="/profile/orders"> Mis pedidos</Link>
             <Link href="/profile">Mis datos</Link>
-            <Link href="/profile/payment">Mis datos de envio</Link>
-            <Link href="/profile/adress">Mis medios de pago</Link>
+            <Link href="/profile/adress">Mis datos de envio</Link>
+            <Link href="/profile/payment">Mis medios de pago</Link>
           </div>
         </div>
         <div>{children}</div>
