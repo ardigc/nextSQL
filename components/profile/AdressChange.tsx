@@ -1,5 +1,5 @@
 'use client';
-import { FormEventHandler, useState } from 'react';
+import { FormEventHandler, MouseEventHandler, useState } from 'react';
 import { CheckIcon, PenIcon } from '../Icons/Icons';
 import { headers } from 'next/headers';
 
@@ -22,7 +22,6 @@ export default function AddressChange({ adress }: { adress: Adress }) {
     const city = formData.get('city');
     const postalCode = formData.get('postalCode');
     const country = formData.get('country');
-
     const response = await fetch(`/api/adress/${adress.id}`, {
       method: 'PATCH',
       body: JSON.stringify({ line, city, postalCode, country }),
@@ -34,6 +33,14 @@ export default function AddressChange({ adress }: { adress: Adress }) {
       window.location.reload();
     }
     console.log(response);
+  };
+  const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
+    const response = await fetch(`/api/adress/${adress.id}`, {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      window.location.reload();
+    }
   };
   return (
     <div>
@@ -55,6 +62,12 @@ export default function AddressChange({ adress }: { adress: Adress }) {
             >
               {' '}
               Editar
+            </button>
+            <button
+              className="px-1 border bg-blue-400 rounded-3xl mx-5"
+              onClick={clickHandler}
+            >
+              Borrar
             </button>
           </div>
         </div>

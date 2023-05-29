@@ -16,9 +16,10 @@ export default async function Adress() {
       return;
     }
     const adressBeta = await pool.query(
-      `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY id DESC`
+      `SELECT * FROM users_adress WHERE user_id=${user.id} AND deleted_at IS NULL ORDER BY id DESC`
     );
     adress = adressBeta.rows;
+    console.log(adress);
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }

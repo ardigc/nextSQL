@@ -15,3 +15,14 @@ export async function PATCH(
   console.log(result);
   return new Response('Se ha subido bien', { status: 200 });
 }
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { adressId: string } }
+) {
+  const id = params.adressId;
+  const result = await pool.query(
+    `UPDATE users_adress SET deleted_at=NOW() WHERE id=${id}`
+  );
+  console.log(result);
+  return new Response('Se ha subido bien', { status: 200 });
+}
