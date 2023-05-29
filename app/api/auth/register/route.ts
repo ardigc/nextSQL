@@ -1,7 +1,8 @@
 import { NextRequest } from 'next/server';
 import { pool } from '@/lib/server/pg';
 import { hash } from 'bcrypt';
-
+import { stripeClient } from '@/lib/server/stripe';
+const stripe = stripeClient;
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const unhasedPass = body.pass;
@@ -15,6 +16,7 @@ export async function POST(req: NextRequest) {
     body.phone,
     hashedPass,
   ];
+  const customer = await stripe.customers.create({ email: body.email });
   const result = await pool.query(query, parameters);
   // console.log(result);
   return new Response('Se ha subido bien', { status: 200 });
