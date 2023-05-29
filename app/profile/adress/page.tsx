@@ -22,5 +22,11 @@ export default async function Adress() {
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
-  return <div>{adress && <AddressChange adress={adress} />}</div>;
+  return (
+    <div className="relative bg-blue-100 min-h-screen w-full">
+      <div className="w-11/12 max-w-2xl mx-auto border rounded-lg grid grid-cols-1 p-3 relative top-7 justify-center text-center bg-blue-300 shadow-black shadow-2xl  ">
+        {adress && adress.map((adress) => <AddressChange adress={adress} />)}
+      </div>
+    </div>
+  );
 }
