@@ -67,17 +67,40 @@ export default function AddressChange({ adress }: { adress: Adress }) {
             <div className="my-5 flex-grow flex flex-col">
               <div>
                 Dirección:{' '}
-                <input className="w-4/6" name="line" type="text"></input>
+                <input
+                  className="w-4/6 bg-blue-200"
+                  defaultValue={adress.line}
+                  name="line"
+                  type="text"
+                ></input>
               </div>
-              <div className="flex justify-around my-1">
+              <div className="flex justify-around  my-1">
                 <div>
-                  Ciudad: <input name="line" type="text"></input>
+                  Ciudad:{' '}
+                  <input
+                    defaultValue={adress.city}
+                    className="w-11/12  bg-blue-200"
+                    name="line"
+                    type="text"
+                  ></input>
                 </div>
                 <div>
-                  CP: <input name="postal_code" type="number"></input>
+                  CP:{' '}
+                  <input
+                    defaultValue={adress.postal_code}
+                    className="w-11/12 bg-blue-200"
+                    name="postal_code"
+                    type="number"
+                  ></input>
                 </div>
                 <div>
-                  Pais: <input name="country" type="text"></input>
+                  Pais:{' '}
+                  <input
+                    defaultValue={adress.country}
+                    className="w-11/12 bg-blue-200"
+                    name="country"
+                    type="text"
+                  ></input>
                 </div>
               </div>
             </div>
