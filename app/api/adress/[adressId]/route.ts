@@ -10,7 +10,7 @@ export async function PATCH(
   const set = body.set;
   const id = params.adressId;
 
-  const query = `UPDATE users_adress SET line=$1 WHERE id=$2`;
+  const query = 'UPDATE users_adress SET line=$1 WHERE id=$2';
   const parameters = [
     // set,
     mod,

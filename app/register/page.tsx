@@ -1,4 +1,6 @@
 'use client';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import { FormEventHandler } from 'react';
 
@@ -33,7 +35,11 @@ export default function SignIn() {
           <label>Apellido</label>
           <input name="subname" type="text"></input>
           <label>Telefono</label>
-          <input name="phone" type="text"></input>
+          <PhoneInput
+            inputProps={{ name: 'phone', id: 'phone-input' }}
+            country={'es'}
+            countryCodeEditable
+          />
           <div className="flex justify-end">
             <button
               type="submit"

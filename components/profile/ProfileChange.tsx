@@ -1,9 +1,12 @@
 'use client';
 
 import { CheckIcon, PenIcon } from '@/components/Icons/Icons';
+import 'react-phone-input-2/lib/style.css';
+
 import { useRouter } from 'next/navigation';
 
 import { FormEventHandler, useState } from 'react';
+import PhoneInput from 'react-phone-input-2';
 
 interface User {
   id: number;
@@ -117,10 +120,18 @@ export default function ProfileChange({ user }: { user: User }) {
         )}
         {edit === 4 && (
           <form onSubmit={submitHandler}>
-            Telefono: <input name="phone" type="text"></input>
-            <button type="submit">
-              <CheckIcon />
-            </button>
+            {/* Telefono: <input name="phone" type="text"></input> */}
+            Telefono:
+            <div className="flex mb-3">
+              <PhoneInput
+                inputProps={{ name: 'phone', id: 'phone-input' }}
+                country={'es'}
+                countryCodeEditable
+              />
+              <button type="submit">
+                <CheckIcon />
+              </button>
+            </div>
           </form>
         )}
       </div>
