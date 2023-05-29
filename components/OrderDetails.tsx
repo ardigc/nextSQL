@@ -9,7 +9,7 @@ interface Order {
   postal_code: number;
   city: string;
   country: string;
-  marked_as_default: Date;
+  created_at: Date;
 }
 interface Cart {
   cart_id: number;
@@ -41,8 +41,8 @@ export default function OrderDetails({
         <div className="flex justify-end"></div>
         <div>
           Pedido nº {order.id} realizado el{' '}
-          {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
-          {order.marked_as_default.toLocaleTimeString('en-Us', options)}
+          {order.created_at.toLocaleDateString('en-Us', options)} a las{' '}
+          {order.created_at.toLocaleTimeString('en-Us', options)}
         </div>
         <div>
           A la direccion {order.line} con CP {order.postal_code}{' '}

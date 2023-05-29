@@ -42,7 +42,7 @@ export default async function OrderDetail({
       return;
     }
     orders = await pool.query(
-      `SELECT orders.id, orders.user_id, orders.cart_id , users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country, users_adress.marked_as_default FROM orders INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.id=${params.ordersId} ORDER BY orders.id DESC`
+      `SELECT orders.id, order.created_at, orders.user_id, orders.cart_id , users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country FROM orders INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.id=${params.ordersId} ORDER BY orders.id DESC`
     );
 
     const cartBeta = await pool.query(
