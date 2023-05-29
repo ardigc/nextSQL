@@ -10,17 +10,5 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // ahora mismo solo he creado carritos a los usuarios id 1, 3 y 7
-  const id = 1;
-  const cart = await pool.query(
-    'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
-      id
-  );
-  return (
-    <div>
-      {/* <Cart cart={cart.rows} /> */}
-      {/* <LogOut /> */}
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

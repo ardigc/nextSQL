@@ -45,18 +45,6 @@ export default async function Orders() {
       return cartBeta.rows;
     });
     cart = await Promise.all(cartPromises);
-    // const cart = [];
-    // cart.push(
-    //   orders.rows.map(async (order) => {
-    //     const cartBeta = await pool.query(
-    //       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
-    //         order.cart_id +
-    //         ' ORDER BY product_id DESC'
-    //     );
-    //     return cartBeta.rows;
-    //   })
-    // );
-    // console.log('cart', cart);
   } catch (error: any) {
     throw error;
   }

@@ -1,3 +1,6 @@
+'use client';
+import { MinusIcon } from '@/Icons/Icons';
+
 interface Order {
   id: number;
   user_id: number;
@@ -20,20 +23,26 @@ interface Cart {
 }
 export default function OrderDetails({
   order,
-  price,
   cart,
 }: {
   order: Order;
-  price: number;
-  cart: Cart;
+  cart: Array<Cart>;
 }) {
+  function totalPrice(products: Array<Cart>) {
+    return products.reduce((total, products) => {
+      const price = products.price * products.qt;
+      return total + price;
+    }, 0);
+  }
+  const options = { timeZone: 'Europe/Madrid' };
   return (
     <div>
       <button className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400">
+        <div className="flex justify-end"></div>
         <div>
           Pedido nº {order.id} realizado el{' '}
-          {order.marked_as_default.toLocaleDateString()} a las{' '}
-          {order.marked_as_default.toLocaleTimeString()}
+          {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
+          {order.marked_as_default.toLocaleTimeString('en-Us', options)}
         </div>
         <div>
           A la direccion {order.line} con CP {order.postal_code}{' '}
@@ -41,7 +50,19 @@ export default function OrderDetails({
         <div>
           {order.city}, {order.country}
         </div>
-        <div>Precio: {} €</div>
+        <div className="mt-3">Productos</div>
+        <div className="grid grid-cols-2">
+          {cart.map((product) => (
+            <div className="border border-blue-900 m-2 p-2 rounded-md">
+              <div>{product.name}</div>
+              <div className="flex justify-between">
+                <div>Cantidad: {product.qt}</div>
+                <div>Precio: {product.price}€</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3">Total del pedido: {totalPrice(cart)} €</div>
       </button>
     </div>
   );

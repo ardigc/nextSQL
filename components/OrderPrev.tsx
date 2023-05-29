@@ -1,6 +1,7 @@
 'use client';
 import { MinusIcon } from '@/Icons/Icons';
 import { pool } from '@/lib/server/pg';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface Order {
@@ -30,9 +31,6 @@ export default function OrdersPrev({
   order: Order;
   cart: Array<Cart>;
 }) {
-  const [showOrder, setShowOrder] = useState(false);
-  const cartId = order.cart_id;
-
   function totalPrice(products: Array<Cart>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
@@ -41,57 +39,23 @@ export default function OrdersPrev({
   }
   const options = { timeZone: 'Europe/Madrid' };
   // console.log(cart)
+  const enlace = '/orders/' + order.id;
   return (
     <div className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400">
-      {!showOrder && (
-        <button onClick={() => setShowOrder(true)}>
-          <div>
-            Pedido nº {order.id} realizado el{' '}
-            {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
-            {order.marked_as_default.toLocaleTimeString('en-Us', options)}
-          </div>
-          <div>
-            A la direccion {order.line} con CP {order.postal_code}{' '}
-          </div>
-          <div>
-            {order.city}, {order.country}
-          </div>
-          <div>Total del pedido: {totalPrice(cart)} €</div>
-        </button>
-      )}
-      {showOrder && (
+      <Link href={enlace}>
         <div>
-          <div className="flex justify-end">
-            <button onClick={() => setShowOrder(false)}>
-              <MinusIcon />
-            </button>
-          </div>
-          <div>
-            Pedido nº {order.id} realizado el{' '}
-            {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
-            {order.marked_as_default.toLocaleTimeString('en-Us', options)}
-          </div>
-          <div>
-            A la direccion {order.line} con CP {order.postal_code}{' '}
-          </div>
-          <div>
-            {order.city}, {order.country}
-          </div>
-          <div className="mt-3">Productos</div>
-          <div className="grid grid-cols-2">
-            {cart.map((product) => (
-              <div className="border border-blue-900 m-2 p-2 rounded-md">
-                <div>{product.name}</div>
-                <div className="flex justify-between">
-                  <div>Cantidad: {product.qt}</div>
-                  <div>Precio: {product.price}€</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3">Total del pedido: {totalPrice(cart)} €</div>
+          Pedido nº {order.id} realizado el{' '}
+          {order.marked_as_default.toLocaleDateString('en-Us', options)} a las{' '}
+          {order.marked_as_default.toLocaleTimeString('en-Us', options)}
         </div>
-      )}
+        <div>
+          A la direccion {order.line} con CP {order.postal_code}{' '}
+        </div>
+        <div>
+          {order.city}, {order.country}
+        </div>
+        <div>Total del pedido: {totalPrice(cart)} €</div>
+      </Link>
     </div>
   );
 }

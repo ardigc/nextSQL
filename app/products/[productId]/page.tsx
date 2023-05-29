@@ -9,7 +9,6 @@ export default async function ProductDetail({
   const product = await pool.query(
     'SELECT * FROM products WHERE id=' + params.productId
   );
-  // console.log(params.productId);
   return (
     <div className="top-12 relative">
       <SingleProduct {...product.rows[0]} />
