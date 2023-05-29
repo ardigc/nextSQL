@@ -33,7 +33,7 @@ export default async function confirmation({
   } catch {}
   // console.log(userId)
   return (
-    <div className="relative top-12 bg-blue-100 h-screen w-full ">
+    <div className="relative top-12 bg-blue-100 min-h-screen w-full ">
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center text-center bg-blue-300 shadow-black shadow-2xl  ">
         <div>Pedido realizado correctamente!</div>
         <div className="flex justify-center my-4">
@@ -41,7 +41,7 @@ export default async function confirmation({
         </div>
         <Link
           className="border rounded-3xl bg-blue-400 px-2 mx-10"
-          href="/orders"
+          href="/profile/orders"
         >
           Ir a mis pedidos
         </Link>

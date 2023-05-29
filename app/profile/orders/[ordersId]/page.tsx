@@ -55,7 +55,7 @@ export default async function OrderDetail({
     throw error;
   }
   return (
-    <div className="top-12 relative">
+    <div className="relative bg-blue-100 min-h-screen w-full">
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg grid grid-cols-1 p-3 relative top-7 justify-center text-center bg-blue-300 shadow-black shadow-2xl  ">
         <OrderDetails order={orders.rows[0]} cart={cart} />
       </div>

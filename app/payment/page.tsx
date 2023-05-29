@@ -71,7 +71,7 @@ export default async function Payment() {
   // console.log(paymentIntent);
   // console.log(clientSecret);
   return (
-    <div className="relative top-12 bg-blue-100 h-screen w-full">
+    <div className="relative top-12 bg-blue-100 min-min-h-screen w-full">
       {clientSecret && <CheckOutPage clientSecret={clientSecret} />}
     </div>
   );

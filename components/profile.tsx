@@ -25,7 +25,7 @@ export default function ProfileButton({ user }: { user: string }) {
               </Link>
             </li>
             <li>
-              <Link href="/orders">Pedidos</Link>
+              <Link href="/profile/orders">Pedidos</Link>
             </li>
             <li onClick={() => setOpen(false)}>
               <LogOut />

@@ -23,7 +23,7 @@ export default async function Profile() {
     throw 'No tienes iniciada sesion';
   }
   return (
-    <div className="relative top-12 bg-blue-100 h-screen w-full">
+    <div className="relative top-0 bg-blue-100 min-h-screen">
       <ProfileChange user={user.rows[0]} />
     </div>
   );

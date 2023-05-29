@@ -4,6 +4,7 @@ import { verify } from 'jsonwebtoken';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 export default async function RootLayout({
@@ -28,5 +29,16 @@ export default async function RootLayout({
   if (user === null) {
     redirect('/login');
   }
-  return <div>{children}</div>;
+  return (
+    <div>
+      <div className="grid grid-cols-[1fr_6fr] top-12 relative">
+        <div className=" left-0 bg-blue-400 h-screen z-10  ">
+          <div className="sticky top-12 ">
+            <Link href="/profile/orders"> Mis pedidos</Link>
+          </div>
+        </div>
+        <div>{children}</div>
+      </div>
+    </div>
+  );
 }
