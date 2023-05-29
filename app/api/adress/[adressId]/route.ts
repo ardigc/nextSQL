@@ -6,16 +6,11 @@ export async function PATCH(
   { params }: { params: { adressId: string } }
 ) {
   const body = await req.json();
-  const mod = body.mod;
-  const set = body.set;
   const id = params.adressId;
 
-  const query = 'UPDATE users_adress SET line=$1 WHERE id=$2';
-  const parameters = [
-    // set,
-    mod,
-    id,
-  ];
+  const query =
+    'UPDATE users_adress SET line=$1, postal_code=$2, city=$3, country=$4 WHERE id=$5';
+  const parameters = [body.line, body.postalCode, body.city, body.country, id];
   const result = await pool.query(query, parameters);
   console.log(result);
   return new Response('Se ha subido bien', { status: 200 });

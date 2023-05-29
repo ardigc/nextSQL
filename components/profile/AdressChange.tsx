@@ -18,16 +18,14 @@ export default function AddressChange({ adress }: { adress: Adress }) {
     ev.preventDefault();
     const id = adress.id;
     const formData = new FormData(ev.currentTarget);
-    let set = '';
-    let mod = null;
-    // if (edit === 1) {
-    //   const line = formData.get('line');
-    //   set = 'line';
-    //   mod = line;
-    // }
+    const line = formData.get('line');
+    const city = formData.get('city');
+    const postalCode = formData.get('postalCode');
+    const country = formData.get('country');
+
     const response = await fetch(`/api/adress/${adress.id}`, {
       method: 'PATCH',
-      body: JSON.stringify({ set, mod }),
+      body: JSON.stringify({ line, city, postalCode, country }),
       headers: {
         'content-type': 'application/json',
       },
@@ -80,7 +78,7 @@ export default function AddressChange({ adress }: { adress: Adress }) {
                   <input
                     defaultValue={adress.city}
                     className="w-11/12  bg-blue-200"
-                    name="line"
+                    name="city"
                     type="text"
                   ></input>
                 </div>
@@ -89,7 +87,7 @@ export default function AddressChange({ adress }: { adress: Adress }) {
                   <input
                     defaultValue={adress.postal_code}
                     className="w-11/12 bg-blue-200"
-                    name="postal_code"
+                    name="postalCode"
                     type="number"
                   ></input>
                 </div>
@@ -106,12 +104,11 @@ export default function AddressChange({ adress }: { adress: Adress }) {
             </div>
             <div>
               <button
-                onClick={() => setOnEdit(false)}
                 className="px-1 border bg-blue-400 rounded-3xl mx-5"
                 type="submit"
               >
                 {' '}
-                Editar
+                Confirmar
               </button>
             </div>
           </form>
