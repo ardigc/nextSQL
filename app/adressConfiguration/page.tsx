@@ -25,7 +25,7 @@ export default async function adressConfiguration() {
     }
     userId = user.id;
     adress = await pool.query(
-      `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY id DESC`
+      `SELECT * FROM users_adress WHERE user_id=${user.id} AND deleted_at IS NULL ORDER BY id DESC`
     );
     adressDefault = await pool.query(
       `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY marked_as_default DESC LIMIT 1`

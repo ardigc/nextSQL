@@ -45,10 +45,12 @@ export default async function Payment() {
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
-
+    const email = await pool.query(
+      'SELECT email FROM users_info WHERE id=' + user.id
+    );
     // intentar unir estps selects
     const customer = await stripe.customers.search({
-      query: `email:\'${user.rows[0].email}\'`,
+      query: `email:\'${email.rows[0].email}\'`,
     });
     customerId = customer.data[0].id;
     cart = await pool.query(
@@ -77,7 +79,7 @@ export default async function Payment() {
   // console.log(paymentIntent);
   // console.log(clientSecret);
   return (
-    <div className="relative bg-blue-100 top-0 min-h-screen w-full">
+    <div className="relative bg-blue-100 top-12 min-h-screen w-full">
       {clientSecret && <CheckOutPage clientSecret={clientSecret} />}
     </div>
   );

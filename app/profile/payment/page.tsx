@@ -1,4 +1,5 @@
 import CheckOutPage from '@/components/payment/paymentComponent';
+import PaymentChange from '@/components/profile/PaymentAdd';
 import { pool } from '@/lib/server/pg';
 import { stripeClient } from '@/lib/server/stripe';
 import { verify } from 'jsonwebtoken';
@@ -24,6 +25,8 @@ export default async function PaymentConfig() {
     });
     customerId = customer.data[0].id;
     console.log(customerId);
+    // Ahora tendria que hacer un retrieve o la lista de setup intents con
+    // const lista= await stripe.setupIntents.list
   } catch (error: any) {
     throw 'No tienes iniciada sesion';
   }
@@ -37,7 +40,8 @@ export default async function PaymentConfig() {
     <div>
       <div className="relative bg-blue-100 min-h-screen w-full">
         {clientSecret && (
-          <CheckOutPage setUp={setUp} clientSecret={clientSecret} />
+          <PaymentChange setUp={setUp} clientSecret={clientSecret} />
+          // <CheckOutPage setUp={setUp} clientSecret={clientSecret} />
         )}
       </div>
     </div>
