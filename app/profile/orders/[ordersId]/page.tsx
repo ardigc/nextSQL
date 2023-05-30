@@ -32,7 +32,7 @@ export default async function OrderDetail({
   let user = null;
   let orders = null;
   let cart: Array<Cart> = [];
-  console.log(params.ordersId);
+  // console.log(params.ordersId);
   try {
     user = verify(
       cookiesValue.get('token')?.value || '',

@@ -19,3 +19,14 @@ export async function POST(req: NextRequest) {
     throw new Error('fallo en el pago' + error);
   }
 }
+export async function PATCH(req: NextRequest) {
+  const body = await req.json();
+  const id = body.id;
+
+  try {
+    const paymentMethod = await stripe.paymentMethods.detach(`${id}`);
+    return new Response('Se ha subido bien', { status: 200 });
+  } catch (error) {
+    throw new Error('fallo en el pago' + error);
+  }
+}
