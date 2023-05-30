@@ -9,17 +9,24 @@ const stripePromise = loadStripe(
 export default function CheckOutPage({
   clientSecret,
   setUp,
+  paymentId,
 }: {
   clientSecret: string;
   setUp?: boolean;
+  paymentId: string;
 }) {
   const options = {
     clientSecret,
   };
+  console.log(paymentId);
   return (
     <div>
       <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm setUp={setUp} />
+        <CheckoutForm
+          setUp={setUp}
+          paymentId={paymentId}
+          clientSecret={clientSecret}
+        />
       </Elements>
     </div>
   );

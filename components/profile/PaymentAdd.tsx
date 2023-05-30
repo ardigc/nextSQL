@@ -24,7 +24,7 @@ export default function PaymentChange({
   const [addPayment, setAddPayment] = useState(false);
   const clickHandler = async (ev: MouseEvent, id: string) => {
     const response = await fetch('/api/payment', {
-      method: 'PATCH',
+      method: 'PUT',
       body: JSON.stringify({ id }),
       headers: {
         'Content-type': 'application/json',

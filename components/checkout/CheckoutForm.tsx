@@ -5,10 +5,20 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { FormEventHandler } from 'react';
-export default function CheckoutForm({ setUp }: { setUp?: boolean }) {
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+export default function CheckoutForm({
+  setUp,
+  clientSecret,
+  paymentId,
+}: {
+  setUp?: boolean;
+  paymentId: string;
+  clientSecret: string;
+}) {
   const stripe = useStripe();
   const elements = useElements();
+
+  console.log(paymentId);
 
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -31,6 +41,18 @@ export default function CheckoutForm({ setUp }: { setUp?: boolean }) {
       },
     });
   };
+
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = async (e) => {
+    // console.log(e.target.checked)
+    const check = e.target.checked;
+    const respone = await fetch('/api/payment', {
+      method: 'PATCH',
+      body: JSON.stringify({ check, paymentId }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+  };
   return (
     <div>
       <form
@@ -38,7 +60,21 @@ export default function CheckoutForm({ setUp }: { setUp?: boolean }) {
         onSubmit={submitHandler}
       >
         <PaymentElement />
-        <div className="flex justify-end">
+        <div className="flex justify-between">
+          {!setUp && (
+            <>
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="check"
+                  onChange={changeHandler}
+                ></input>
+                <label htmlFor="check" className="ml-2">
+                  Guardar para futuras compras
+                </label>
+              </div>
+            </>
+          )}
           <button
             className="px-2 py-1 mt-2 border bg-blue-400 rounded-3xl"
             type="submit"
