@@ -7,14 +7,29 @@ const stripe = new Stripe(`${process.env.STRIPE_KEY_SECRET}`, {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
+
   try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: body.amount,
-      currency: 'eur',
-      payment_method_types: ['card'],
-      description: body.description,
-    });
-    return new Response(JSON.stringify(paymentIntent), { status: 200 });
+    if (body.id) {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: body.price * 100,
+        currency: 'eur',
+        // payment_method_types: ['card'],
+        payment_method: body.id,
+        metadata: { cartId: body.cartId, adressId: body.adressId },
+        customer: body.customerId,
+        confirm: true,
+      });
+      return new Response(JSON.stringify(paymentIntent), { status: 200 });
+    } else {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: body.price * 100,
+        currency: 'eur',
+        payment_method_types: ['card'],
+        metadata: { cartId: body.cartId, adressId: body.adressId },
+        customer: body.customerId,
+      });
+      return new Response(JSON.stringify(paymentIntent), { status: 200 });
+    }
   } catch (error) {
     throw new Error('fallo en el pago' + error);
   }

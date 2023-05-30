@@ -6,6 +6,7 @@ import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { pool } from '@/lib/server/pg';
 import CheckOutPage from '@/components/payment/paymentComponent';
+import PaymentSelect from '@/components/payment/PaymentSelect';
 const stripe = stripeClient;
 
 interface Cart {
@@ -66,21 +67,29 @@ export default async function Payment() {
   }
 
   // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripeClient.paymentIntents.create({
-    amount: totalPrice(cart.rows) * 100,
-    currency: 'eur',
-    payment_method_types: ['card'],
-    metadata: { cartId: cart.rows[0].cart_id, adressId: adress.rows[0].id },
+  // const paymentIntent = await stripeClient.paymentIntents.create({
+  //   amount: totalPrice(cart.rows) * 100,
+  //   currency: 'eur',
+  //   payment_method_types: ['card'],
+  //   metadata: { cartId: cart.rows[0].cart_id, adressId: adress.rows[0].id },
+  //   customer: customerId,
+  // });
+  const paymentMethods = await stripe.paymentMethods.list({
     customer: customerId,
   });
+  // const clientSecret = paymentIntent.client_secret;
 
-  const clientSecret = paymentIntent.client_secret;
-
-  // console.log(paymentIntent);
+  console.log(paymentMethods);
   // console.log(clientSecret);
   return (
     <div className="relative bg-blue-100 top-12 min-h-screen w-full">
-      {clientSecret && <CheckOutPage clientSecret={clientSecret} />}
+      <PaymentSelect
+        cart={cart.rows}
+        adressId={adress.rows[0].id}
+        customerId={customerId}
+        paymentMethod={paymentMethods.data}
+      />
+      {/* {clientSecret && <CheckOutPage clientSecret={clientSecret} />} */}
     </div>
   );
 }
