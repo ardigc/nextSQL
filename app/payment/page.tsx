@@ -6,6 +6,7 @@ import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { pool } from '@/lib/server/pg';
 import CheckOutPage from '@/components/payment/paymentComponent';
+const stripe = stripeClient;
 
 interface Cart {
   cart_id: number;
@@ -30,6 +31,7 @@ export default async function Payment() {
   let cart = null;
   let adress = null;
   let name = 'und';
+  let customerId = null;
   try {
     user = verify(
       cookiesValue.get('token')?.value || '',
@@ -45,7 +47,10 @@ export default async function Payment() {
     );
 
     // intentar unir estps selects
-
+    const customer = await stripe.customers.search({
+      query: `email:\'${user.rows[0].email}\'`,
+    });
+    customerId = customer.data[0].id;
     cart = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
         cartId.rows[0].id
@@ -64,6 +69,7 @@ export default async function Payment() {
     currency: 'eur',
     payment_method_types: ['card'],
     metadata: { cartId: cart.rows[0].cart_id, adressId: adress.rows[0].id },
+    customer: customerId,
   });
 
   const clientSecret = paymentIntent.client_secret;
@@ -71,7 +77,7 @@ export default async function Payment() {
   // console.log(paymentIntent);
   // console.log(clientSecret);
   return (
-    <div className="relative top-12 bg-blue-100 min-h-screen w-full">
+    <div className="relative bg-blue-100 top-0 min-h-screen w-full">
       {clientSecret && <CheckOutPage clientSecret={clientSecret} />}
     </div>
   );

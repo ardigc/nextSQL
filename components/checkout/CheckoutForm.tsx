@@ -6,13 +6,24 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { FormEventHandler } from 'react';
-export default function CheckoutForm() {
+export default function CheckoutForm({ setUp }: { setUp?: boolean }) {
   const stripe = useStripe();
   const elements = useElements();
 
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
+    if (setUp) {
+      const { error } = await stripe.confirmSetup({
+        elements,
+        confirmParams: {
+          return_url: new URL(
+            '/profile/payment',
+            window.location.origin
+          ).toString(),
+        },
+      });
+    }
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {

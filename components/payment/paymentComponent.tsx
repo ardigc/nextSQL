@@ -8,8 +8,10 @@ const stripePromise = loadStripe(
 );
 export default function CheckOutPage({
   clientSecret,
+  setUp,
 }: {
   clientSecret: string;
+  setUp?: boolean;
 }) {
   const options = {
     clientSecret,
@@ -17,7 +19,7 @@ export default function CheckOutPage({
   return (
     <div>
       <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm />
+        <CheckoutForm setUp={setUp} />
       </Elements>
     </div>
   );
