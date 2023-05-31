@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 import LogOut from '@/components/profile/LogOut';
 import Cart from '@/components/cart/Cart';
