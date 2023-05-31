@@ -7,6 +7,7 @@ import LogOut from '@/components/profile/LogOut';
 import Cart from '@/components/cart/Cart';
 import { pool } from '@/lib/server/pg';
 import { Provider } from '@/components/context/ContextProvider';
+import { HomeIcon } from '@/components/Icons/Icons';
 
 interface Cart {
   cart_id: number;
@@ -65,7 +66,7 @@ export default async function RootLayout({
       <body className="relative">
         <Provider initialCart={cart.rows}>
           <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
-            <h1>Eshop</h1>
+            <Link href="/products">Eshop</Link>
             <div className="absolute rounded-lg min-w-fit right-20 ">
               {!user && (
                 <Link
