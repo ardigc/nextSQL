@@ -1,6 +1,11 @@
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 
 export default function productSeller() {
+  const cookiesValue = cookies();
+  const user = null;
+  try {
+  } catch (error) {}
   return (
     <div>
       <div className="relative bg-blue-100 min-h-screen w-full">
