@@ -38,6 +38,7 @@ export default function Cart({ user }: { user: string }) {
     const data = await response.json();
     setCart(data);
   };
+
   function totalPrice(products: Array<Cart>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;

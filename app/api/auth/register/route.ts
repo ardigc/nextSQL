@@ -22,7 +22,11 @@ export async function POST(req: NextRequest) {
   const customer = await stripe.customers.create({ email: body.email });
   // console.log(result);
   const token = sign(
-    { id: result.rows[0].id, name: result.rows[0].name },
+    {
+      id: result.rows[0].id,
+      name: result.rows[0].name,
+      role: result.rows[0].role,
+    },
     process.env.JWT_SECRET || ''
   );
   return new Response(JSON.stringify({ token }), { status: 200 });

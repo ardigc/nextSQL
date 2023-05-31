@@ -46,6 +46,7 @@ export default async function RootLayout({
     }
     // console.log(user);
     name = user.name;
+    console.log(user);
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
