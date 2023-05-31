@@ -15,7 +15,11 @@ interface Cart {
   user_id: number;
 }
 
-export default function Cart({ user }: { user: string }) {
+export default function Cart({
+  user,
+}: {
+  user: { id: number; name: string; role: string };
+}) {
   // const { number } = useContext(GlobalContext);
   // console.log(cart)
   // const cartfin = cart.cart;

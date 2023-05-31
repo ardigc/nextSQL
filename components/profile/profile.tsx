@@ -5,7 +5,11 @@ import LogOut from './LogOut';
 import { verify } from 'jsonwebtoken';
 import Link from 'next/link';
 
-export default function ProfileButton({ user }: { user: string }) {
+export default function ProfileButton({
+  user,
+}: {
+  user: { id: number; name: string; role: string };
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -14,7 +18,7 @@ export default function ProfileButton({ user }: { user: string }) {
         className="hover:ring-2 hover:ring-blue-800"
         onClick={() => setOpen(!open)}
       >
-        {user}
+        {user.name}
       </button>
       {open && (
         <div className="absolute bg-blue-300 border border-blue-400 w-32 ">
@@ -27,6 +31,11 @@ export default function ProfileButton({ user }: { user: string }) {
             <li>
               <Link href="/profile/orders">Pedidos</Link>
             </li>
+            {user.role === 'seller' && (
+              <li>
+                <Link href="/profile/orders">Tus productos</Link>
+              </li>
+            )}
             <li onClick={() => setOpen(false)}>
               <LogOut />
             </li>

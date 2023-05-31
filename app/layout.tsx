@@ -35,7 +35,7 @@ export default async function RootLayout({
   const cookiesValue = cookies();
   let user = null;
   let cart = null;
-  let name = 'und';
+  let userFin = null;
   try {
     user = verify(
       cookiesValue.get('token')?.value || '',
@@ -45,7 +45,7 @@ export default async function RootLayout({
       return;
     }
     // console.log(user);
-    name = user.name;
+    userFin = { id: user.id, name: user.name, role: user.role };
     console.log(user);
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
@@ -77,9 +77,9 @@ export default async function RootLayout({
                   Iniciar sesión
                 </Link>
               )}
-              {user && cart && (
+              {userFin && cart && (
                 <div className="flex">
-                  <Cart user={name} />
+                  <Cart user={userFin} />
                 </div>
               )}
             </div>
