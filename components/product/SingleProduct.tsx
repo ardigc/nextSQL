@@ -31,7 +31,7 @@ export default function SingleProduct({
     setCart(data);
   };
   return (
-    <div className="grid grid-cols-1 border border-blue-400 bg-blue-200">
+    <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
       <div className="flex justify-center">{name}</div>
       <div className="flex justify-center items-center">{description}</div>
       <div className="flex justify-end items-center">

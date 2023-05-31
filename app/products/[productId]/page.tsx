@@ -10,7 +10,7 @@ export default async function ProductDetail({
     'SELECT * FROM products WHERE id=' + params.productId
   );
   return (
-    <div className="top-12 relative">
+    <div className="relative top-12 bg-blue-100 min-h-screen w-full">
       <SingleProduct {...product.rows[0]} />
     </div>
   );
