@@ -1,5 +1,6 @@
 'use client';
 
+import { MouseEvent, MouseEventHandler } from 'react';
 import {
   PenIcon,
   PenIconBig,
@@ -7,6 +8,7 @@ import {
   TrashIconLittle,
   TrashIconMedium,
 } from '../Icons/Icons';
+import { headers } from 'next/headers';
 
 interface Product {
   id: number;
@@ -20,6 +22,15 @@ export default function ModifyProduct({
 }: {
   products: Array<Product>;
 }) {
+  const clickDeleteHandle = async (ev: MouseEvent, id: number) => {
+    const response = await fetch('/upload_product', {
+      method: 'PUT',
+      body: JSON.stringify({ id }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+  };
   return (
     <div>
       <h1>Tus productos</h1>
@@ -40,7 +51,7 @@ export default function ModifyProduct({
               {product.price}€
             </div>
             <div className="content-center flex justify-center">
-              <button>
+              <button onClick={(ev) => clickDeleteHandle(ev, product.id)}>
                 <TrashIconMedium />
               </button>
               <button>
