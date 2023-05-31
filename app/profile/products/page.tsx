@@ -1,9 +1,10 @@
+import ModifyProduct from '@/components/product/ModifyProduct';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 interface Product {
-  id: 13;
+  id: number;
   name: string;
   description: string;
   price: number;
@@ -30,20 +31,7 @@ export default async function productSeller() {
     <div>
       <div className="relative bg-blue-100 min-h-screen w-full">
         <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl ">
-          <div>
-            {products && (
-              <>
-                Tus productos
-                {products.map((product) => (
-                  <div>
-                    <div>{product.name}</div>
-                    <div>{product.description}</div>
-                    <div>{product.price}</div>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
+          <div>{products && <ModifyProduct products={products} />}</div>
           <Link
             href="/profile/products/uploadProduct"
             className="px-1 border bg-blue-400 rounded-3xl mx-5"
