@@ -23,13 +23,16 @@ export default function ModifyProduct({
   products: Array<Product>;
 }) {
   const clickDeleteHandle = async (ev: MouseEvent, id: number) => {
-    const response = await fetch('/upload_product', {
+    const response = await fetch('/api/upload_product', {
       method: 'PUT',
       body: JSON.stringify({ id }),
       headers: {
         'Content-type': 'application/json',
       },
     });
+    if (response.ok) {
+      window.location.reload();
+    }
   };
   return (
     <div>

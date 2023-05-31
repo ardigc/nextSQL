@@ -23,3 +23,9 @@ export async function POST(req: NextRequest) {
     throw 'No se subio bien ' + error;
   }
 }
+export async function PUT(req: NextRequest) {
+  const body = await req.json();
+  const result = await pool.query(`DELETE FROM products WHERE id=${body.id}`);
+  console.log(result);
+  return new Response('Se ha borrado bien', { status: 200 });
+}
