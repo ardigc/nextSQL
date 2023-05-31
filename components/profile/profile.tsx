@@ -33,7 +33,7 @@ export default function ProfileButton({
             </li>
             {user.role === 'seller' && (
               <li>
-                <Link href="/profile/orders">Tus productos</Link>
+                <Link href="/profile/products">Tus productos</Link>
               </li>
             )}
             <li onClick={() => setOpen(false)}>
