@@ -41,7 +41,7 @@ export default function SingleProduct({
         >
           Añadir al carrito
         </button>
-        <div className="w-16 flex justify-end me-2">{price} €</div>
+        <div className="w-16 min-w-fit flex justify-end me-2">{price} €</div>
       </div>
     </div>
   );

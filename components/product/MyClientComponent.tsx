@@ -33,18 +33,20 @@ export function Product({
   };
   return (
     // hacer que no se vaya al enlace al hacer click sobre button
-    <Link href={enlace} className="border border-blue-400">
-      <div className="flex justify-center">{name}</div>
-      <div className="flex justify-center items-center">{description}</div>
-      <div className="flex justify-end items-center">
-        <button
-          className="px-1 border bg-blue-400 rounded-3xl mx-5"
-          onClick={clickHandler}
-        >
-          Añadir al carrito
-        </button>
-        <div className="w-16 flex justify-end me-2">{price} €</div>
-      </div>
-    </Link>
+    <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
+      <Link href={enlace} className="flex-grow">
+        <div className="flex justify-center">{name}</div>
+        <div className="flex justify-center items-center">{description}</div>
+        <div className="flex justify-end items-center">
+          <button
+            className="px-1 border bg-blue-400 rounded-3xl mx-5"
+            onClick={clickHandler}
+          >
+            Añadir al carrito
+          </button>
+          <div className="w-16 flex justify-end me-2">{price} €</div>
+        </div>
+      </Link>
+    </div>
   );
 }

@@ -42,7 +42,7 @@ export default function updateMarkdown() {
     <div>
       <div className="relative bg-blue-100 min-h-screen w-full">
         <div className="w-11/12  mx-auto border rounded-lg p-3 relative  top-7 justify-center bg-blue-300 shadow-black shadow-2xl ">
-          <div className="flex items-center">
+          <div className="flex items-center justify-around">
             <label>Name:</label>
             <textarea
               ref={nameRef}
@@ -79,7 +79,7 @@ export default function updateMarkdown() {
               <button className="px-1 border bg-blue-400 rounded-3xl mx-5">
                 Añadir al carrito
               </button>
-              <div className="w-16 flex justify-end me-2">
+              <div className="w-16 min-w-fit flex justify-end me-2">
                 {product.price} €
               </div>
             </div>
