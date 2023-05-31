@@ -29,14 +29,18 @@ export default function upload() {
             <input name="name" type="text"></input>
             <label> Descripcion del producto:</label>
             <input name="description" type="text"></input>
-            <label> Precio en euros:</label>
-            <input name="price" type="number"></input>
-            <button
-              type="submit"
-              className="px-1 border bg-blue-400 rounded-3xl mx-5"
-            >
-              Subir
-            </button>
+            <div className="flex justify-between mt-2">
+              <div>
+                <label> Precio en euros: </label>
+                <input name="price" type="number"></input>
+              </div>
+              <button
+                type="submit"
+                className="px-1 border bg-blue-400 rounded-3xl mx-5"
+              >
+                Subir
+              </button>
+            </div>
           </form>
         </div>
       </div>
