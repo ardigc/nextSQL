@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEvent, MouseEventHandler } from 'react';
+import { MouseEvent, MouseEventHandler, useState } from 'react';
 import {
   PenIcon,
   PenIconBig,
@@ -22,6 +22,7 @@ export default function ModifyProduct({
 }: {
   products: Array<Product>;
 }) {
+  const [edit, setEdit] = useState(-1);
   const clickDeleteHandle = async (ev: MouseEvent, id: number) => {
     const response = await fetch('/api/upload_product', {
       method: 'PUT',
@@ -44,23 +45,32 @@ export default function ModifyProduct({
         <div></div>
         {products.map((product) => (
           <>
-            <div className="flex my-2 items-center justify-center">
-              {product.name}
-            </div>
-            <div className="flex items-center justify-center text-center">
-              {product.description}
-            </div>
-            <div className="flex items-center justify-center">
-              {product.price}€
-            </div>
-            <div className="content-center flex justify-center">
-              <button onClick={(ev) => clickDeleteHandle(ev, product.id)}>
-                <TrashIconMedium />
-              </button>
-              <button>
-                <PenIconBig />
-              </button>
-            </div>
+            {edit !== product.id && (
+              <>
+                <div className="flex my-2 items-center justify-center">
+                  {product.name}
+                </div>
+                <div className="flex items-center justify-center text-center">
+                  {product.description}
+                </div>
+                <div className="flex items-center justify-center">
+                  {product.price}€
+                </div>
+                <div className="content-center flex justify-center">
+                  <button onClick={(ev) => clickDeleteHandle(ev, product.id)}>
+                    <TrashIconMedium />
+                  </button>
+                  <button onClick={() => setEdit(product.id)}>
+                    <PenIconBig />
+                  </button>
+                </div>
+              </>
+            )}
+            {edit === product.id && (
+              <form>
+                <input defaultValue={product.name}></input>
+              </form>
+            )}
           </>
         ))}
       </div>
