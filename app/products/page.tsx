@@ -4,8 +4,6 @@ import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 
 export default async function Products() {
-  const cookiesValue = cookies();
-
   const result = await pool.query('SELECT * FROM products;');
   return (
     <div>
