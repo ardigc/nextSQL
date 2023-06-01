@@ -3,7 +3,7 @@ import Bold from '@tiptap/extension-bold';
 import Strike from '@tiptap/extension-strike';
 import Underline from '@tiptap/extension-underline';
 import Italic from '@tiptap/extension-italic';
-import Heading from '@tiptap/extension-heading';
+import Heading, { Level } from '@tiptap/extension-heading';
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -50,12 +50,13 @@ const Tiptap = () => {
       </button>
       Heading:
       <select
-      // onSelect={(ev) =>{
-      //   const value= ev.currentTarget.value
-      //   console.log(value)
-      // editor.chain().focus().toggleHeading({  }).run()}}
+        onSelect={(ev) => {
+          const value: Level = parseInt(ev.currentTarget.value);
+          console.log(value);
+          editor.chain().focus().toggleHeading({ level: value }).run();
+        }}
       >
-        <option value={'level: 1'}>H1</option>
+        <option value={1}>H1</option>
         <option value={2}>H2</option>
         <option value={3}>H3</option>
         <option value={4}>H4</option>
