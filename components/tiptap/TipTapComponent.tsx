@@ -8,10 +8,14 @@ import FontFamily from '@tiptap/extension-font-family';
 import TextStyle from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
 import Highlight from '@tiptap/extension-highlight';
-import History from '@tiptap/extension-history';
+import BulletList from '@tiptap/extension-bullet-list';
 
+import History from '@tiptap/extension-history';
+import ListItem from '@tiptap/extension-list-item';
+import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { BulletIcon, OrderedIcon, RedoIcon, UndoIcon } from '../Icons/Icons';
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [
@@ -19,6 +23,9 @@ const Tiptap = () => {
       Bold,
       Strike,
       Underline,
+      BulletList,
+      OrderedList,
+      ListItem,
       TextStyle,
       Italic,
       Highlight.configure({ multicolor: true }),
@@ -41,16 +48,18 @@ const Tiptap = () => {
     <>
       <div className="flex">
         <button
+          className="border italic w-7 h-7 border-black"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().undo()}
         >
-          undo
+          <UndoIcon />
         </button>
         <button
+          className="border italic w-7 h-7 border-black"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().redo()}
         >
-          redo
+          <RedoIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -76,9 +85,19 @@ const Tiptap = () => {
         >
           I
         </button>
-        <div className="ml-2">Heading:</div>
+        <button
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className="border italic w-7 h-7 border-black"
+        >
+          <BulletIcon />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className="border italic w-7 h-7 border-black"
+        >
+          <OrderedIcon />
+        </button>
         <select
-          className="border"
           onChange={(ev) => {
             const value = parseInt(ev.currentTarget.value) as Level;
             console.log(editor);

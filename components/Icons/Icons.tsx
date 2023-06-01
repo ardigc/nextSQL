@@ -333,3 +333,54 @@ export function RedoIcon() {
     </div>
   );
 }
+export function BulletIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-list"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M9 6l11 0" />
+        <path d="M9 12l11 0" />
+        <path d="M9 18l11 0" />
+        <path d="M5 6l0 .01" />
+        <path d="M5 12l0 .01" />
+        <path d="M5 18l0 .01" />
+      </svg>
+    </div>
+  );
+}
+export function OrderedIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-list-numbers"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M11 6h9" />
+        <path d="M11 12h9" />
+        <path d="M12 18h8" />
+        <path d="M4 16a2 2 0 1 1 4 0c0 .591 -.5 1 -1 1.5l-3 2.5h4" />
+        <path d="M6 10v-6l-2 2" />
+      </svg>
+    </div>
+  );
+}
