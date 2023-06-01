@@ -3,7 +3,7 @@ import Bold from '@tiptap/extension-bold';
 import Strike from '@tiptap/extension-strike';
 import Underline from '@tiptap/extension-underline';
 import Italic from '@tiptap/extension-italic';
-import Heading from '@tiptap/extension-heading';
+import Heading, { Level } from '@tiptap/extension-heading';
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -16,7 +16,7 @@ const Tiptap = () => {
       Underline,
       Italic,
       Heading.configure({
-        levels: [1, 2, 3],
+        levels: [1, 2, 3, 4, 5],
       }),
     ],
     content: '<p>Hello World! 🌎️</p>',
@@ -50,23 +50,11 @@ const Tiptap = () => {
       >
         I
       </button>
-      Heading:
+      <div className="ml-2">Heading:</div>
       <select
         onChange={(ev) => {
-          const value = parseInt(ev.target.value);
-          if (value === 1) {
-            editor.chain().focus().toggleHeading({ level: 1 }).run();
-          } else if (value === 2) {
-            editor.chain().focus().toggleHeading({ level: 2 }).run();
-          } else if (value === 3) {
-            editor.chain().focus().toggleHeading({ level: 3 }).run();
-          } else if (value === 4) {
-            editor.chain().focus().toggleHeading({ level: 4 }).run();
-          } else if (value === 5) {
-            editor.chain().focus().toggleHeading({ level: 5 }).run();
-          } else if (value === 6) {
-            editor.chain().focus().toggleHeading({ level: 6 }).run();
-          }
+          const value = parseInt(ev.currentTarget.value) as Level;
+          editor.chain().focus().toggleHeading({ level: value }).run();
         }}
       >
         <option value={1}>H1</option>
@@ -74,27 +62,10 @@ const Tiptap = () => {
         <option value={3}>H3</option>
         <option value={4}>H4</option>
         <option value={5}>H5</option>
-        <option value={6}>H6</option>
       </select>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
-      >
-        H1
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
-      >
-        H2
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
-      >
-        H3
-      </button>
-      <EditorContent className="prose" editor={editor} />
+      <div className="relative top-12 flex items-start justify-start">
+        <EditorContent className="prose top-0 relative" editor={editor} />
+      </div>
     </>
   );
 };
