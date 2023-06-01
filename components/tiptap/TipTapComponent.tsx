@@ -26,46 +26,46 @@ const Tiptap = () => {
   }
   return (
     <>
-      <button
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        className="font-bold italic border  w-7 h-7 border-black"
-      >
-        N
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleStrike().run()}
-        className="line-through border italic w-7 h-7 border-black"
-      >
-        S
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleUnderline().run()}
-        className="underline border italic w-7 h-7 border-black"
-      >
-        U
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleItalic().run()}
-        className="border italic w-7 h-7 border-black"
-      >
-        I
-      </button>
-      <div className="ml-2">Heading:</div>
-      <select
-        onChange={(ev) => {
-          const value = parseInt(ev.currentTarget.value) as Level;
-          editor.chain().focus().toggleHeading({ level: value }).run();
-        }}
-      >
-        <option value={1}>H1</option>
-        <option value={2}>H2</option>
-        <option value={3}>H3</option>
-        <option value={4}>H4</option>
-        <option value={5}>H5</option>
-      </select>
-      <div className="relative top-12 flex items-start justify-start">
-        <EditorContent className="prose top-0 relative" editor={editor} />
+      <div className="flex">
+        <button
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          className="font-bold italic border  w-7 h-7 border-black"
+        >
+          N
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          className="line-through border italic w-7 h-7 border-black"
+        >
+          S
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className="underline border italic w-7 h-7 border-black"
+        >
+          U
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          className="border italic w-7 h-7 border-black"
+        >
+          I
+        </button>
+        <div className="ml-2">Heading:</div>
+        <select
+          onChange={(ev) => {
+            const value = parseInt(ev.currentTarget.value) as Level;
+            editor.chain().focus().toggleHeading({ level: value }).run();
+          }}
+        >
+          <option value={1}>H1</option>
+          <option value={2}>H2</option>
+          <option value={3}>H3</option>
+          <option value={4}>H4</option>
+          <option value={5}>H5</option>
+        </select>
       </div>
+      <EditorContent className="prose top-0 relative" editor={editor} />
     </>
   );
 };
