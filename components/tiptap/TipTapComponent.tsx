@@ -3,7 +3,7 @@ import Bold from '@tiptap/extension-bold';
 import Strike from '@tiptap/extension-strike';
 import Underline from '@tiptap/extension-underline';
 import Italic from '@tiptap/extension-italic';
-import Heading, { Level } from '@tiptap/extension-heading';
+import Heading from '@tiptap/extension-heading';
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -15,7 +15,9 @@ const Tiptap = () => {
       Strike,
       Underline,
       Italic,
-      Heading.configure({ levels: [1, 2, 3, 4, 5, 6] }),
+      Heading.configure({
+        levels: [1, 2, 3],
+      }),
     ],
     content: '<p>Hello World! 🌎️</p>',
   });
@@ -75,11 +77,24 @@ const Tiptap = () => {
         <option value={6}>H6</option>
       </select>
       <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
       >
-        Heading
+        H1
       </button>
-      <EditorContent editor={editor} />
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+      >
+        H2
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+        className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
+      >
+        H3
+      </button>
+      <EditorContent className="prose" editor={editor} />
     </>
   );
 };
