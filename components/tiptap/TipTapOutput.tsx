@@ -17,7 +17,7 @@ import TableRow from '@tiptap/extension-table-row';
 import History from '@tiptap/extension-history';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
-
+import DOMPurify from 'dompurify';
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent, generateHTML } from '@tiptap/react';
@@ -63,11 +63,12 @@ export default function TipTapOutput({ json }: { json: JSONContent }) {
     ]);
   }, [json]);
   // const output =JSON.parse(json)
+  const sanitizedOutput = DOMPurify.sanitize(output);
   return (
     <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
       <div
         className="prose ProseMirror"
-        dangerouslySetInnerHTML={{ __html: output }}
+        dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
       ></div>
       <div className="flex justify-end items-center">
         <button
