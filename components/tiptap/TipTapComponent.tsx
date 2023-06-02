@@ -15,6 +15,7 @@ import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
 import History from '@tiptap/extension-history';
 import Link from '@tiptap/extension-link';
+import TextAlign from '@tiptap/extension-text-align';
 
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
@@ -46,6 +47,9 @@ const Tiptap = () => {
       BulletList,
       OrderedList,
       ListItem,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
       Link,
       TextStyle,
       Table.configure({
@@ -284,10 +288,38 @@ const Tiptap = () => {
         <button onClick={setLink}>
           <LinkIcon />
         </button>
+        <button
+          onClick={() => editor.chain().focus().setTextAlign('left').run()}
+          className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+        >
+          left
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setTextAlign('center').run()}
+          className={
+            editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''
+          }
+        >
+          center
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setTextAlign('right').run()}
+          className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
+        >
+          right
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+          className={
+            editor.isActive({ textAlign: 'justify' }) ? 'is-active' : ''
+          }
+        >
+          justify
+        </button>
       </div>
       <EditorContent
         id="editor"
-        className="prose top-0 relative"
+        className="prose p-5  top-0 relative"
         editor={editor}
       />
     </>
