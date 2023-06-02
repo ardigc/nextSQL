@@ -457,15 +457,11 @@ export function ColumDeleteIcon() {
   return (
     <div>
       <svg
+        width="18px"
+        height="18px"
+        viewBox="0 0 24 24"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink"
-        fill="#000000"
-        height="19px"
-        width="19px"
-        version="1.1"
-        id="Capa_1"
-        viewBox="0 0 60 60"
-        xmlSpace="preserve"
       >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g
@@ -475,18 +471,123 @@ export function ColumDeleteIcon() {
         />
         <g id="SVGRepo_iconCarrier">
           {' '}
-          <g>
+          <g id="Edit / Delete_Column">
             {' '}
-            <path d="M39,60h-0.5c-1.104,0-2-0.896-2-2c0-0.68,0.34-1.28,0.858-1.642C37.72,55.84,38.32,55.5,39,55.5c1.104,0,2,0.896,2,2V58 C41,59.104,40.104,60,39,60z" />{' '}
-            <path d="M33.4,60h-0.85c-1.104,0-2-0.896-2-2s0.896-2,2-2h0.85c1.104,0,2,0.896,2,2S34.505,60,33.4,60z M27.45,60h-0.85 c-1.104,0-2-0.896-2-2s0.896-2,2-2h0.85c1.104,0,2,0.896,2,2S28.555,60,27.45,60z" />{' '}
-            <path d="M21.5,60H21c-1.104,0-2-0.896-2-2v-0.5c0-1.104,0.896-2,2-2c0.68,0,1.28,0.34,1.642,0.858C23.16,56.72,23.5,57.32,23.5,58 C23.5,59.104,22.604,60,21.5,60z" />{' '}
-            <path d="M21,53.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1C23,52.604,22.104,53.5,21,53.5z M21,46.5 c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1C23,45.604,22.104,46.5,21,46.5z M21,39.5c-1.104,0-2-0.896-2-2v-1 c0-1.104,0.896-2,2-2s2,0.896,2,2v1C23,38.604,22.104,39.5,21,39.5z M21,32.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2 s2,0.896,2,2v1C23,31.604,22.104,32.5,21,32.5z M21,25.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1 C23,24.604,22.104,25.5,21,25.5z M21,18.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1 C23,17.604,22.104,18.5,21,18.5z M21,11.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1 C23,10.604,22.104,11.5,21,11.5z" />{' '}
-            <path d="M21,4.5c-1.104,0-2-0.896-2-2V2c0-1.104,0.896-2,2-2h0.5c1.104,0,2,0.896,2,2c0,0.68-0.34,1.28-0.858,1.642 C22.28,4.16,21.68,4.5,21,4.5z" />{' '}
-            <path d="M33.399,4h-0.85c-1.104,0-2-0.896-2-2s0.896-2,2-2h0.85c1.104,0,2,0.896,2,2S34.504,4,33.399,4z M27.449,4H26.6 c-1.104,0-2-0.896-2-2s0.896-2,2-2h0.85c1.104,0,2,0.896,2,2S28.554,4,27.449,4z" />{' '}
-            <path d="M39,4.5c-0.68,0-1.28-0.34-1.642-0.858C36.84,3.28,36.5,2.68,36.5,2c0-1.104,0.896-2,2-2H39c1.104,0,2,0.896,2,2v0.5 C41,3.604,40.104,4.5,39,4.5z" />{' '}
-            <path d="M39,53.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1C41,52.604,40.104,53.5,39,53.5z M39,46.5 c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1C41,45.604,40.104,46.5,39,46.5z M39,39.5c-1.104,0-2-0.896-2-2v-1 c0-1.104,0.896-2,2-2s2,0.896,2,2v1C41,38.604,40.104,39.5,39,39.5z M39,32.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2 s2,0.896,2,2v1C41,31.604,40.104,32.5,39,32.5z M39,25.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1 C41,24.604,40.104,25.5,39,25.5z M39,18.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1 C41,17.604,40.104,18.5,39,18.5z M39,11.5c-1.104,0-2-0.896-2-2v-1c0-1.104,0.896-2,2-2s2,0.896,2,2v1 C41,10.604,40.104,11.5,39,11.5z" />{' '}
+            <path
+              id="Vector"
+              d="M10 21H9C7.89543 21 7 20.1046 7 19V5C7 3.89543 7.89543 3 9 3H11C12.1046 3 13 3.89543 13 5V11M19 16H13"
+              stroke="#000000"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />{' '}
           </g>{' '}
         </g>
+      </svg>
+    </div>
+  );
+}
+export function RowBeforeIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-row-insert-top"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 18v-4a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" />
+        <path d="M12 9v-4" />
+        <path d="M10 7l4 0" />
+      </svg>
+    </div>
+  );
+}
+
+export function RowAfterIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-row-insert-bottom"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M20 6v4a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1z" />
+        <path d="M12 15l0 4" />
+        <path d="M14 17l-4 0" />
+      </svg>
+    </div>
+  );
+}
+export function RowDeleteIcon() {
+  return (
+    <div>
+      <svg
+        width="18px"
+        height="18px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+        <g
+          id="SVGRepo_tracerCarrier"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <g id="SVGRepo_iconCarrier">
+          {' '}
+          <g id="Edit / Delete_Row">
+            {' '}
+            <path
+              id="Vector"
+              d="M14 16H20M21 10V9C21 7.89543 20.1046 7 19 7H5C3.89543 7 3 7.89543 3 9V11C3 12.1046 3.89543 13 5 13H11"
+              stroke="#000000"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />{' '}
+          </g>{' '}
+        </g>
+      </svg>
+    </div>
+  );
+}
+export function TableDeleteIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-table-off"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M7 3h12a2 2 0 0 1 2 2v12m-.585 3.413a1.994 1.994 0 0 1 -1.415 .587h-14a2 2 0 0 1 -2 -2v-14c0 -.55 .223 -1.05 .583 -1.412" />
+        <path d="M3 10h7m4 0h7" />
+        <path d="M10 3v3m0 4v11" />
+        <path d="M3 3l18 18" />
       </svg>
     </div>
   );

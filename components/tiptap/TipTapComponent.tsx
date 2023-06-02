@@ -14,6 +14,8 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
 import History from '@tiptap/extension-history';
+import Link from '@tiptap/extension-link';
+
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent } from '@tiptap/react';
@@ -25,9 +27,14 @@ import {
   ColumDeleteIcon,
   OrderedIcon,
   RedoIcon,
+  RowAfterIcon,
+  RowBeforeIcon,
+  RowDeleteIcon,
+  TableDeleteIcon,
   TableIcon,
   UndoIcon,
 } from '../Icons/Icons';
+import { useCallback } from 'react';
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [
@@ -38,6 +45,7 @@ const Tiptap = () => {
       BulletList,
       OrderedList,
       ListItem,
+
       TextStyle,
       Table.configure({
         resizable: true,
@@ -62,6 +70,32 @@ const Tiptap = () => {
     ],
     content: '<p>Hello World! 🌎️</p>',
   });
+  const setLink = useCallback(() => {
+    if (!editor) {
+      return null;
+    }
+    const previousUrl = editor.getAttributes('link').href;
+    const url = window.prompt('URL', previousUrl);
+
+    if (url === null) {
+      return;
+    }
+
+    if (url === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
+
+      return;
+    }
+
+    // editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange('link')
+      .toggleLink({ href: url })
+      .run();
+  }, [editor]);
+
   if (!editor) {
     return null;
   }
@@ -125,11 +159,11 @@ const Tiptap = () => {
             editor.chain().focus().toggleHeading({ level: value }).run();
           }}
         >
-          <option value={1}>H1</option>
-          <option value={2}>H2</option>
-          <option value={3}>H3</option>
-          <option value={4}>H4</option>
           <option value={5}>H5</option>
+          <option value={4}>H4</option>
+          <option value={3}>H3</option>
+          <option value={2}>H2</option>
+          <option value={1}>H1</option>
         </select>
         <div className="ml-2">Font:</div>
         <select
@@ -197,6 +231,8 @@ const Tiptap = () => {
           <option value={'#000000'} className="w-2 h-2 bg-black"></option>
           <option value={'#FFFFFF'} className="w-2 h-2 bg-white"></option>
         </select>
+      </div>
+      <div className="flex">
         <button
           onClick={() =>
             editor
@@ -218,31 +254,38 @@ const Tiptap = () => {
           <ColumDeleteIcon />
         </button>
         <button onClick={() => editor.chain().focus().addRowBefore().run()}>
-          addRowBefore
+          <RowBeforeIcon />
         </button>
         <button onClick={() => editor.chain().focus().addRowAfter().run()}>
-          addRowAfter
+          <RowAfterIcon />
         </button>
         <button onClick={() => editor.chain().focus().deleteRow().run()}>
-          deleteRow
+          <RowDeleteIcon />
         </button>
         <button onClick={() => editor.chain().focus().deleteTable().run()}>
-          deleteTable
+          <TableDeleteIcon />
         </button>
-        <button onClick={() => editor.chain().focus().mergeCells().run()}>
-          mergeCells
-        </button>
-        <button onClick={() => editor.chain().focus().splitCell().run()}>
-          splitCell
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeaderColumn().run()}
+        <select
+          onChange={(ev) => {
+            const value = ev.currentTarget.value;
+            if (value === '1') {
+              editor.chain().focus().mergeCells().run();
+            } else if (value === '2') {
+              editor.chain().focus().splitCell().run();
+            } else if (value === '3') {
+              editor.chain().focus().toggleHeaderColumn().run();
+            } else if (value === '4') {
+              editor.chain().focus().toggleHeaderRow().run();
+            }
+          }}
         >
-          toggleHeaderColumn
-        </button>
-        <button onClick={() => editor.chain().focus().toggleHeaderRow().run()}>
-          toggleHeaderRow
-        </button>
+          <option></option>
+          <option value="1">Fusionar celdas</option>
+          <option value="2">Separar celdas</option>
+          <option value="3">Columna encabezado</option>
+          <option value="4">Fila encabezado</option>
+        </select>
+        <button onClick={setLink}>setLink</button>
       </div>
       <EditorContent
         id="editor"

@@ -127,6 +127,24 @@
   cursor: ew-resize;
   cursor: col-resize;
 } */
+#editor h1 {
+  margin: 0;
+}
+#editor h2 {
+  margin: 0;
+}
+#editor h3 {
+  margin: 0;
+}
+#editor h4 {
+  margin: 0;
+}
+#editor h5 {
+  margin: 0;
+}
+#editor h6 {
+  margin: 0;
+}
 .ProseMirror table {
   border-collapse: collapse;
   margin: 0;
@@ -190,4 +208,20 @@
 .resize-cursor {
   cursor: ew-resize;
   cursor: col-resize;
+}
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+.ProseMirror a {
+  color: #68cef8;
+}
+
+.ProseMirror code {
+  background-color: rgba(#616161, 0.1);
+  border-radius: 0.25em;
+  box-decoration-break: clone;
+  color: #616161;
+  font-size: 0.9rem;
+  padding: 0.25em;
 }
