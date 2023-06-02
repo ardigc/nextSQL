@@ -1,5 +1,5 @@
+'use client';
 import { JSONContent } from '@tiptap/react';
-('use client');
 import Bold from '@tiptap/extension-bold';
 import Strike from '@tiptap/extension-strike';
 import Underline from '@tiptap/extension-underline';
