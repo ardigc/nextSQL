@@ -25,6 +25,7 @@ import {
   ColumAfterIcon,
   ColumBeforeIcon,
   ColumDeleteIcon,
+  LinkIcon,
   OrderedIcon,
   RedoIcon,
   RowAfterIcon,
@@ -88,12 +89,7 @@ const Tiptap = () => {
     }
 
     // editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
-    editor
-      .chain()
-      .focus()
-      .extendMarkRange('link')
-      .toggleLink({ href: url })
-      .run();
+    editor.chain().focus().toggleLink({ href: url }).run();
   }, [editor]);
 
   if (!editor) {
@@ -285,7 +281,9 @@ const Tiptap = () => {
           <option value="3">Columna encabezado</option>
           <option value="4">Fila encabezado</option>
         </select>
-        <button onClick={setLink}>setLink</button>
+        <button onClick={setLink}>
+          <LinkIcon />
+        </button>
       </div>
       <EditorContent
         id="editor"
