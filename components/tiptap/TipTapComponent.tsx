@@ -19,7 +19,12 @@ import TextAlign from '@tiptap/extension-text-align';
 
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
-import { useEditor, EditorContent } from '@tiptap/react';
+import {
+  useEditor,
+  EditorContent,
+  generateHTML,
+  JSONContent,
+} from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import {
   AlingCenterIcon,
@@ -40,8 +45,10 @@ import {
   TableIcon,
   UndoIcon,
 } from '../Icons/Icons';
-import { useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import TipTapOutput from './TipTapOutput';
 const Tiptap = () => {
+  const [json, setJson] = useState<JSONContent>({ type: 'doc' });
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -77,7 +84,11 @@ const Tiptap = () => {
         levels: [1, 2, 3, 4, 5],
       }),
     ],
-    content: '<p>Hello World! 🌎️</p>',
+    content: '<p>Comienza a escribir!! </p>',
+    onUpdate: ({ editor }) => {
+      const json = editor.getJSON();
+      setJson(json);
+    },
   });
   const setLink = useCallback(() => {
     if (!editor) {
@@ -174,7 +185,7 @@ const Tiptap = () => {
           Font:
         </div>
         <select
-          className="border italic border-black flex justify-center items-center"
+          className="border italic border-black flex justify-center  items-center"
           onChange={(ev) => {
             const value = ev.currentTarget.value;
 
@@ -320,7 +331,7 @@ const Tiptap = () => {
           <option value="4">Fila encabezado</option>
         </select>
         <button
-          className="border italic w-7 h-7 border-black flex justify-center items-center ml-6"
+          className="border italic w-8 h-7 border-black flex justify-center items-center ml-6 "
           onClick={setLink}
         >
           <LinkIcon />
@@ -355,6 +366,8 @@ const Tiptap = () => {
         className="prose p-5  top-0 relative"
         editor={editor}
       />
+      <div className="flex justify-center">Asi se vera tu producto</div>
+      <TipTapOutput json={json} />
     </>
   );
 };
