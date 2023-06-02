@@ -22,6 +22,10 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import {
+  AlingCenterIcon,
+  AlingLeftIcon,
+  AlingRightIcon,
+  AlingjustifyIcon,
   BulletIcon,
   ColumAfterIcon,
   ColumBeforeIcon,
@@ -292,7 +296,7 @@ const Tiptap = () => {
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
         >
-          left
+          <AlingLeftIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
@@ -300,13 +304,13 @@ const Tiptap = () => {
             editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''
           }
         >
-          center
+          <AlingCenterIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
           className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
         >
-          right
+          <AlingRightIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
@@ -314,7 +318,7 @@ const Tiptap = () => {
             editor.isActive({ textAlign: 'justify' }) ? 'is-active' : ''
           }
         >
-          justify
+          <AlingjustifyIcon />
         </button>
       </div>
       <EditorContent

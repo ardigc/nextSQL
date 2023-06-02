@@ -615,3 +615,95 @@ export function LinkIcon() {
     </div>
   );
 }
+export function AlingLeftIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-align-left"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 6l16 0" />
+        <path d="M4 12l10 0" />
+        <path d="M4 18l14 0" />
+      </svg>
+    </div>
+  );
+}
+export function AlingCenterIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-align-center"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 6l16 0" />
+        <path d="M8 12l8 0" />
+        <path d="M6 18l12 0" />
+      </svg>
+    </div>
+  );
+}
+export function AlingRightIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-align-right"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 6l16 0" />
+        <path d="M10 12l10 0" />
+        <path d="M6 18l14 0" />
+      </svg>
+    </div>
+  );
+}
+export function AlingjustifyIcon() {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-align-justified"
+        width={20}
+        height={20}
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 6l16 0" />
+        <path d="M4 12l16 0" />
+        <path d="M4 18l12 0" />
+      </svg>
+    </div>
+  );
+}
