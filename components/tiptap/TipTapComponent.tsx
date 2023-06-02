@@ -18,7 +18,16 @@ import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { BulletIcon, OrderedIcon, RedoIcon, UndoIcon } from '../Icons/Icons';
+import {
+  BulletIcon,
+  ColumAfterIcon,
+  ColumBeforeIcon,
+  ColumDeleteIcon,
+  OrderedIcon,
+  RedoIcon,
+  TableIcon,
+  UndoIcon,
+} from '../Icons/Icons';
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [
@@ -197,16 +206,16 @@ const Tiptap = () => {
               .run()
           }
         >
-          insertTable
+          <TableIcon />
         </button>
         <button onClick={() => editor.chain().focus().addColumnBefore().run()}>
-          addColumnBefore
+          <ColumBeforeIcon />
         </button>
         <button onClick={() => editor.chain().focus().addColumnAfter().run()}>
-          addColumnAfter
+          <ColumAfterIcon />
         </button>
         <button onClick={() => editor.chain().focus().deleteColumn().run()}>
-          deleteColumn
+          <ColumDeleteIcon />
         </button>
         <button onClick={() => editor.chain().focus().addRowBefore().run()}>
           addRowBefore
