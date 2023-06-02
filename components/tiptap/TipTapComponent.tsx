@@ -107,14 +107,14 @@ const Tiptap = () => {
     <>
       <div className="flex">
         <button
-          className="border italic w-7 h-7 border-black"
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().undo()}
         >
           <UndoIcon />
         </button>
         <button
-          className="border italic w-7 h-7 border-black"
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().redo()}
         >
@@ -122,41 +122,42 @@ const Tiptap = () => {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className="font-bold italic border  w-7 h-7 border-black"
+          className="font-bold italic border  w-7 h-7 border-black flex justify-center items-center"
         >
           N
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className="line-through border italic w-7 h-7 border-black"
+          className="line-through border italic w-7 h-7 border-black flex justify-center items-center"
         >
           S
         </button>
         <button
           onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className="underline border italic w-7 h-7 border-black"
+          className="underline border italic w-7 h-7 border-black flex justify-center items-center"
         >
           U
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className="border italic w-7 h-7 border-black"
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           I
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className="border italic w-7 h-7 border-black"
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <BulletIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className="border italic w-7 h-7 border-black"
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <OrderedIcon />
         </button>
         <select
+          className="border italic border-black flex justify-center items-center"
           onChange={(ev) => {
             const value = parseInt(ev.currentTarget.value) as Level;
             console.log(editor);
@@ -169,9 +170,11 @@ const Tiptap = () => {
           <option value={2}>H2</option>
           <option value={1}>H1</option>
         </select>
-        <div className="ml-2">Font:</div>
+        <div className="ml-2 border italic border-black flex justify-center items-center pr-1">
+          Font:
+        </div>
         <select
-          className="border"
+          className="border italic border-black flex justify-center items-center"
           onChange={(ev) => {
             const value = ev.currentTarget.value;
 
@@ -187,9 +190,11 @@ const Tiptap = () => {
           <option value={'monospace'}>Monospace</option>
           <option value={'cursive'}>Cursive</option>
         </select>
-        <div className="ml-2">Color:</div>
+        <div className="ml-2 border italic border-black flex justify-center items-center pr-1">
+          Color:
+        </div>
         <select
-          className="border "
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
           onChange={(ev) => {
             const value = ev.currentTarget.value;
 
@@ -211,9 +216,11 @@ const Tiptap = () => {
           <option value={'#000000'} className="w-2 h-2 bg-black"></option>
           <option value={'#FFFFFF'} className="w-2 h-2 bg-white"></option>
         </select>
-        <div className="ml-2">Highlight:</div>
+        <div className="ml-2 border italic border-black flex justify-center items-center pr-1">
+          Highlight:
+        </div>
         <select
-          className="border "
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
           onChange={(ev) => {
             const value = ev.currentTarget.value;
 
@@ -238,6 +245,7 @@ const Tiptap = () => {
       </div>
       <div className="flex">
         <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() =>
             editor
               .chain()
@@ -248,28 +256,50 @@ const Tiptap = () => {
         >
           <TableIcon />
         </button>
-        <button onClick={() => editor.chain().focus().addColumnBefore().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().addColumnBefore().run()}
+        >
           <ColumBeforeIcon />
         </button>
-        <button onClick={() => editor.chain().focus().addColumnAfter().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().addColumnAfter().run()}
+        >
           <ColumAfterIcon />
         </button>
-        <button onClick={() => editor.chain().focus().deleteColumn().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().deleteColumn().run()}
+        >
           <ColumDeleteIcon />
         </button>
-        <button onClick={() => editor.chain().focus().addRowBefore().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().addRowBefore().run()}
+        >
           <RowBeforeIcon />
         </button>
-        <button onClick={() => editor.chain().focus().addRowAfter().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().addRowAfter().run()}
+        >
           <RowAfterIcon />
         </button>
-        <button onClick={() => editor.chain().focus().deleteRow().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().deleteRow().run()}
+        >
           <RowDeleteIcon />
         </button>
-        <button onClick={() => editor.chain().focus().deleteTable().run()}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
+          onClick={() => editor.chain().focus().deleteTable().run()}
+        >
           <TableDeleteIcon />
         </button>
         <select
+          className="border italic w-7 h-7 border-black flex justify-center items-center "
           onChange={(ev) => {
             const value = ev.currentTarget.value;
             if (value === '1') {
@@ -289,34 +319,33 @@ const Tiptap = () => {
           <option value="3">Columna encabezado</option>
           <option value="4">Fila encabezado</option>
         </select>
-        <button onClick={setLink}>
+        <button
+          className="border italic w-7 h-7 border-black flex justify-center items-center ml-6"
+          onClick={setLink}
+        >
           <LinkIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
-          className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingLeftIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
-          className={
-            editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''
-          }
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingCenterIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
-          className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingRightIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-          className={
-            editor.isActive({ textAlign: 'justify' }) ? 'is-active' : ''
-          }
+          className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingjustifyIcon />
         </button>
