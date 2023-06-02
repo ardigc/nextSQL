@@ -45,7 +45,7 @@ const Tiptap = () => {
       BulletList,
       OrderedList,
       ListItem,
-
+      Link,
       TextStyle,
       Table.configure({
         resizable: true,
