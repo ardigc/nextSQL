@@ -235,7 +235,11 @@ const Tiptap = () => {
           toggleHeaderRow
         </button>
       </div>
-      <EditorContent className="prose top-0 relative" editor={editor} />
+      <EditorContent
+        id="editor"
+        className="prose top-0 relative"
+        editor={editor}
+      />
     </>
   );
 };

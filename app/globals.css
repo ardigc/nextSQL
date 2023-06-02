@@ -52,32 +52,35 @@
   position: relative;
 }
 
-table {
+#editor table {
   display: table;
   border-collapse: collapse;
   margin: 0;
   overflow: hidden;
-  table-layout: fixed !important;
+  table-layout: fixed;
   width: 100%;
   text-indent: initial;
   border-spacing: 2px;
   border-color: gray;
   word-wrap: break-word;
 }
-colgroup {
+#editor colgroup {
   display: table-column-group;
 }
-tbody {
+#editor p {
+  margin: 0;
+}
+#editor tbody {
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;
 }
-tr {
+#editor tr {
   display: table-row;
   vertical-align: inherit;
   border-color: inherit;
 }
-th {
+#editor th {
   background-color: #f1f3f5;
   font-weight: 700;
   text-align: left;
@@ -89,13 +92,13 @@ th {
   vertical-align: top;
   display: table-cell;
 }
-col {
+#editor col {
   display: table-column;
 }
-colgroup {
+#editor colgroup {
   display: table-column-group;
 }
-td {
+#editor td {
   display: table-cell;
   border: 2px solid #ced4da;
   box-sizing: border-box;
@@ -104,7 +107,7 @@ td {
   position: relative;
   vertical-align: top;
 }
-tbody {
+#editor tbody {
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;
