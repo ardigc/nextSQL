@@ -9,7 +9,10 @@ import TextStyle from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
 import Highlight from '@tiptap/extension-highlight';
 import BulletList from '@tiptap/extension-bullet-list';
-
+import Table from '@tiptap/extension-table';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
 import History from '@tiptap/extension-history';
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
@@ -27,6 +30,15 @@ const Tiptap = () => {
       OrderedList,
       ListItem,
       TextStyle,
+      Table.configure({
+        resizable: true,
+        HTMLAttributes: {
+          class: 'table',
+        },
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       Italic,
       Highlight.configure({ multicolor: true }),
       FontFamily.configure({
@@ -176,6 +188,52 @@ const Tiptap = () => {
           <option value={'#000000'} className="w-2 h-2 bg-black"></option>
           <option value={'#FFFFFF'} className="w-2 h-2 bg-white"></option>
         </select>
+        <button
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+              .run()
+          }
+        >
+          insertTable
+        </button>
+        <button onClick={() => editor.chain().focus().addColumnBefore().run()}>
+          addColumnBefore
+        </button>
+        <button onClick={() => editor.chain().focus().addColumnAfter().run()}>
+          addColumnAfter
+        </button>
+        <button onClick={() => editor.chain().focus().deleteColumn().run()}>
+          deleteColumn
+        </button>
+        <button onClick={() => editor.chain().focus().addRowBefore().run()}>
+          addRowBefore
+        </button>
+        <button onClick={() => editor.chain().focus().addRowAfter().run()}>
+          addRowAfter
+        </button>
+        <button onClick={() => editor.chain().focus().deleteRow().run()}>
+          deleteRow
+        </button>
+        <button onClick={() => editor.chain().focus().deleteTable().run()}>
+          deleteTable
+        </button>
+        <button onClick={() => editor.chain().focus().mergeCells().run()}>
+          mergeCells
+        </button>
+        <button onClick={() => editor.chain().focus().splitCell().run()}>
+          splitCell
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleHeaderColumn().run()}
+        >
+          toggleHeaderColumn
+        </button>
+        <button onClick={() => editor.chain().focus().toggleHeaderRow().run()}>
+          toggleHeaderRow
+        </button>
       </div>
       <EditorContent className="prose top-0 relative" editor={editor} />
     </>
