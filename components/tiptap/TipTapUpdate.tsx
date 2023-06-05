@@ -47,7 +47,13 @@ import {
 } from '../Icons/Icons';
 import { useCallback, useMemo, useState } from 'react';
 import TipTapOutput from './TipTapOutput';
-const TiptapUpdate = ({ pageOnChange }: { pageOnChange?: any }) => {
+const TiptapUpdate = ({
+  pageOnChange,
+  prev,
+}: {
+  prev: string;
+  pageOnChange?: any;
+}) => {
   const [json, setJson] = useState<JSONContent>({ type: 'doc' });
   const editor = useEditor({
     extensions: [
@@ -84,7 +90,7 @@ const TiptapUpdate = ({ pageOnChange }: { pageOnChange?: any }) => {
         levels: [1, 2, 3, 4, 5],
       }),
     ],
-    content: '<p>Escribe aqui tu pagina </p>',
+    content: `${prev}`,
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       setJson(json);

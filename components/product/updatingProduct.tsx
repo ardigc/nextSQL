@@ -93,8 +93,8 @@ export default function UpdatingProduct({
     const description = formData.get('description');
     const price = formData.get('price');
     const response = await fetch('/api/upload_product', {
-      method: 'POST',
-      body: JSON.stringify({ name, description, price, productPage }),
+      method: 'PATCH',
+      body: JSON.stringify({ name, description, price, productPage, id }),
       headers: {
         'Content-type': 'application/json',
       },
@@ -109,17 +109,21 @@ export default function UpdatingProduct({
         <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl ">
           <form onSubmit={submitHandler} className="flex flex-col">
             <label> Nombre del producto:</label>
-            <input name="name" type="text"></input>
+            <input defaultValue={name} name="name" type="text"></input>
             <label> Breve descripcion del producto:</label>
-            <input name="description" type="text"></input>
+            <input
+              defaultValue={description}
+              name="description"
+              type="text"
+            ></input>
             <div className="flex justify-between mt-2">
               <div>
                 <label> Precio en euros: </label>
-                <input name="price" type="number"></input>
+                <input defaultValue={price} name="price" type="number"></input>
               </div>
             </div>
             <div className="my-5">
-              <TiptapUpdate pageOnChange={pageOnChange} />
+              <TiptapUpdate pageOnChange={pageOnChange} prev={output} />
             </div>
             <div>
               <button

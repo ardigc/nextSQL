@@ -30,6 +30,33 @@ export async function POST(req: NextRequest) {
     throw 'No se subio bien ' + error;
   }
 }
+export async function PATCH(req: NextRequest) {
+  const body = await req.json();
+  console.log(body.productPage);
+  const cookiesValue = req.cookies;
+  let userId = null;
+  try {
+    userId = verify(
+      cookiesValue.get('token')?.value || '',
+      process.env.JWT_SECRET || ''
+    );
+    if (typeof userId === 'string') return;
+    const query =
+      'UPDATE products SET name=$1, description=$2, price=$3, product_page=$4 WHERE id=$5 RETURNING *';
+    const parameters = [
+      body.name,
+      body.description,
+      body.price,
+      body.productPage,
+      body.id,
+    ];
+    const result = await pool.query(query, parameters);
+    console.log(result);
+    return new Response('Se ha subido bien', { status: 200 });
+  } catch (error) {
+    throw 'No se subio bien ' + error;
+  }
+}
 export async function PUT(req: NextRequest) {
   const body = await req.json();
   const result = await pool.query(`DELETE FROM products WHERE id=${body.id}`);
