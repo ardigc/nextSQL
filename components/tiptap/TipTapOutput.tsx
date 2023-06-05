@@ -62,7 +62,6 @@ export default function TipTapOutput({ json }: { json: JSONContent }) {
       }),
     ]);
   }, [json]);
-  // const output =JSON.parse(json)
   const sanitizedOutput = DOMPurify.sanitize(output);
   console.log(sanitizedOutput);
   return (
