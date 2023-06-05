@@ -63,7 +63,7 @@ export default function ModifyProduct({
               <button onClick={(ev) => clickDeleteHandle(ev, product.id)}>
                 <TrashIconMedium />
               </button>
-              <Link href="/profile/products/updateProduct">
+              <Link href={'/profile/products/updateProduct/' + product.id}>
                 <PenIconBig />
               </Link>
             </div>
