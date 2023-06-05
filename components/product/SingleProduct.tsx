@@ -113,6 +113,12 @@ export default function SingleProduct({
           </button>
           <div className="w-16 min-w-fit flex justify-end me-2">{price} €</div>
         </div>
+        {seller && (
+          <div className="flex justify-end items-center mt-2">
+            {' '}
+            Vendido por {seller}
+          </div>
+        )}
       </div>
     );
   } else {

@@ -10,7 +10,5 @@ export default async function ProductDetail({
   );
 
   console.log(product.rows);
-  return (
-    <div className="relative top-12 bg-blue-100 min-h-screen w-full"></div>
-  );
+  return <div className="relative bg-blue-100 min-h-screen w-full"> hola</div>;
 }
