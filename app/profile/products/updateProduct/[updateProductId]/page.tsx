@@ -1,5 +1,5 @@
 import { pool } from '@/lib/server/pg';
-
+import UpdatingProduct from '@/components/product/updatingProduct';
 export default async function ProductDetail({
   params,
 }: {
@@ -10,5 +10,9 @@ export default async function ProductDetail({
   );
 
   console.log(product.rows);
-  return <div className="relative bg-blue-100 min-h-screen w-full"> hola</div>;
+  return (
+    <div>
+      <UpdatingProduct {...product.rows[0]} />
+    </div>
+  );
 }
