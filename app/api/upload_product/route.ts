@@ -5,6 +5,7 @@ import { Pool } from 'pg';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
+  console.log(body.productPage);
   const cookiesValue = req.cookies;
   let userId = null;
   try {

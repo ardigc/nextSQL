@@ -41,11 +41,12 @@ export default function SingleProduct({
   description: string;
   price: number;
   id: number;
-  product_page: JSONContent;
+  product_page: string;
   seller?: number;
 }) {
   const { setCart } = useContext(GlobalContext);
-  console.log(product_page);
+  const productPage = JSON.parse(product_page);
+  console.log(productPage);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
     const response = await fetch('/api/cart', {
@@ -60,53 +61,52 @@ export default function SingleProduct({
     setCart(data);
   };
   if (product_page) {
-    // const output = useMemo(() => {
-    //   return generateHTML(product_page, [
-    //     StarterKit,
-    //     Bold,
-    //     Strike,
-    //     Underline,
-    //     BulletList,
-    //     OrderedList,
-    //     ListItem,
-    //     TextAlign.configure({
-    //       types: ['heading', 'paragraph'],
-    //     }),
-    //     Link,
-    //     TextStyle,
-    //     Table.configure({
-    //       resizable: true,
-    //       HTMLAttributes: {
-    //         class: 'table',
-    //       },
-    //     }),
-    //     TableRow,
-    //     TableHeader,
-    //     TableCell,
-    //     Italic,
-    //     Highlight.configure({ multicolor: true }),
-    //     FontFamily.configure({
-    //       types: ['textStyle'],
-    //     }),
-    //     Color.configure({
-    //       types: ['textStyle'],
-    //     }),
-    //     Heading.configure({
-    //       levels: [1, 2, 3, 4, 5],
-    //     }),
-    //   ]);
-    // }, [product_page]);
-    // const output =JSON.parse(json)
-    // const sanitizedOutput = DOMPurify.sanitize(output);
+    const output = useMemo(() => {
+      return generateHTML(productPage, [
+        StarterKit,
+        Bold,
+        Strike,
+        Underline,
+        BulletList,
+        OrderedList,
+        ListItem,
+        TextAlign.configure({
+          types: ['heading', 'paragraph'],
+        }),
+        Link,
+        TextStyle,
+        Table.configure({
+          resizable: true,
+          HTMLAttributes: {
+            class: 'table',
+          },
+        }),
+        TableRow,
+        TableHeader,
+        TableCell,
+        Italic,
+        Highlight.configure({ multicolor: true }),
+        FontFamily.configure({
+          types: ['textStyle'],
+        }),
+        Color.configure({
+          types: ['textStyle'],
+        }),
+        Heading.configure({
+          levels: [1, 2, 3, 4, 5],
+        }),
+      ]);
+    }, [productPage]);
+    const sanitizedOutput = DOMPurify.sanitize(output);
     return (
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
         <div
           className="prose ProseMirror"
-          // dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
+          dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
         ></div>
         <div className="flex justify-end items-center">
           <button
-            //   onClick={clickHandler}
+            onClick={clickHandler}
             className="px-1 border bg-blue-400 rounded-3xl mx-5"
           >
             Añadir al carrito
