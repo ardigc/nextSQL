@@ -47,7 +47,7 @@ import {
 } from '../Icons/Icons';
 import { useCallback, useMemo, useState } from 'react';
 import TipTapOutput from './TipTapOutput';
-const Tiptap = () => {
+const Tiptap = ({ pageOnChange }: { pageOnChange: any }) => {
   const [json, setJson] = useState<JSONContent>({ type: 'doc' });
   const editor = useEditor({
     extensions: [
@@ -90,6 +90,7 @@ const Tiptap = () => {
       setJson(json);
     },
   });
+  pageOnChange(json);
   const setLink = useCallback(() => {
     if (!editor) {
       return null;
@@ -171,7 +172,7 @@ const Tiptap = () => {
           className="border italic border-black flex justify-center items-center"
           onChange={(ev) => {
             const value = parseInt(ev.currentTarget.value) as Level;
-            console.log(editor);
+            // console.log(editor);
             editor.chain().focus().toggleHeading({ level: value }).run();
           }}
         >
@@ -366,7 +367,9 @@ const Tiptap = () => {
         className="prose p-5  top-0 relative"
         editor={editor}
       />
-      <div className="flex justify-center">Asi se vera tu producto</div>
+      <div className="flex justify-center text-lg font-bold">
+        Asi se vera la pagina de tu producto
+      </div>
       <TipTapOutput json={json} />
     </>
   );

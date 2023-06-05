@@ -25,7 +25,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { useMemo } from 'react';
 
 export default function TipTapOutput({ json }: { json: JSONContent }) {
-  console.log(json);
+  // console.log(json);
   const output = useMemo(() => {
     return generateHTML(json, [
       StarterKit,

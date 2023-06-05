@@ -1,5 +1,7 @@
 'use client';
 
+import Tiptap from '@/components/tiptap/TipTapComponent';
+import { JSONContent } from '@tiptap/react';
 import { FormEventHandler } from 'react';
 
 export default function upload() {
@@ -20,6 +22,11 @@ export default function upload() {
       window.location.assign('/profile/products');
     }
   };
+  let productPage: JSONContent = { type: 'doc' };
+  const pageOnChange = (page: JSONContent) => {
+    productPage = page;
+    console.log(page);
+  };
   return (
     <div>
       <div className="relative bg-blue-100 min-h-screen w-full">
@@ -27,13 +34,18 @@ export default function upload() {
           <form onSubmit={submitHandler} className="flex flex-col">
             <label> Nombre del producto:</label>
             <input name="name" type="text"></input>
-            <label> Descripcion del producto:</label>
+            <label> Breve descripcion del producto:</label>
             <input name="description" type="text"></input>
             <div className="flex justify-between mt-2">
               <div>
                 <label> Precio en euros: </label>
                 <input name="price" type="number"></input>
               </div>
+            </div>
+            <div className="my-5">
+              <Tiptap pageOnChange={pageOnChange} />
+            </div>
+            <div>
               <button
                 type="submit"
                 className="px-1 border bg-blue-400 rounded-3xl mx-5"
