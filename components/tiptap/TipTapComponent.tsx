@@ -47,7 +47,7 @@ import {
 } from '../Icons/Icons';
 import { useCallback, useMemo, useState } from 'react';
 import TipTapOutput from './TipTapOutput';
-const Tiptap = ({ pageOnChange }: { pageOnChange: any }) => {
+const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
   const [json, setJson] = useState<JSONContent>({ type: 'doc' });
   const editor = useEditor({
     extensions: [
@@ -84,13 +84,15 @@ const Tiptap = ({ pageOnChange }: { pageOnChange: any }) => {
         levels: [1, 2, 3, 4, 5],
       }),
     ],
-    content: '<p>Comienza a escribir!! </p>',
+    content: '<p>Escribe aqui tu pagina </p>',
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       setJson(json);
     },
   });
-  pageOnChange(json);
+  if (pageOnChange) {
+    pageOnChange(json);
+  }
   const setLink = useCallback(() => {
     if (!editor) {
       return null;
@@ -364,7 +366,7 @@ const Tiptap = ({ pageOnChange }: { pageOnChange: any }) => {
       </div>
       <EditorContent
         id="editor"
-        className="prose p-5  top-0 relative"
+        className="prose p-5 mt-3 border top-0 relative"
         editor={editor}
       />
       <div className="flex justify-center text-lg font-bold">

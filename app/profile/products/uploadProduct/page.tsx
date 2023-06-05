@@ -5,6 +5,12 @@ import { JSONContent } from '@tiptap/react';
 import { FormEventHandler } from 'react';
 
 export default function upload() {
+  let productPage: JSONContent = { type: 'doc' };
+  const pageOnChange = (page: JSONContent) => {
+    productPage = page;
+    console.log(page);
+  };
+
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
     const formData = new FormData(ev.currentTarget);
@@ -13,7 +19,7 @@ export default function upload() {
     const price = formData.get('price');
     const response = await fetch('/api/upload_product', {
       method: 'POST',
-      body: JSON.stringify({ name, description, price }),
+      body: JSON.stringify({ name, description, price, productPage }),
       headers: {
         'Content-type': 'application/json',
       },
@@ -21,11 +27,6 @@ export default function upload() {
     if (response.ok) {
       window.location.assign('/profile/products');
     }
-  };
-  let productPage: JSONContent = { type: 'doc' };
-  const pageOnChange = (page: JSONContent) => {
-    productPage = page;
-    console.log(page);
   };
   return (
     <div>
