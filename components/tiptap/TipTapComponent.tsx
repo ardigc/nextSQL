@@ -121,6 +121,7 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
     <>
       <div className="flex">
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().undo()}
@@ -128,6 +129,7 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
           <UndoIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().redo()}
@@ -135,36 +137,42 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
           <RedoIcon />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className="font-bold italic border  w-7 h-7 border-black flex justify-center items-center"
         >
           N
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className="line-through border italic w-7 h-7 border-black flex justify-center items-center"
         >
           S
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className="underline border italic w-7 h-7 border-black flex justify-center items-center"
         >
           U
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           I
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <BulletIcon />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
@@ -259,6 +267,7 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
       </div>
       <div className="flex">
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() =>
             editor
@@ -271,42 +280,49 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
           <TableIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().addColumnBefore().run()}
         >
           <ColumBeforeIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().addColumnAfter().run()}
         >
           <ColumAfterIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().deleteColumn().run()}
         >
           <ColumDeleteIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().addRowBefore().run()}
         >
           <RowBeforeIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().addRowAfter().run()}
         >
           <RowAfterIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().deleteRow().run()}
         >
           <RowDeleteIcon />
         </button>
         <button
+          type="button"
           className="border italic w-7 h-7 border-black flex justify-center items-center"
           onClick={() => editor.chain().focus().deleteTable().run()}
         >
@@ -334,30 +350,35 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
           <option value="4">Fila encabezado</option>
         </select>
         <button
+          type="button"
           className="border italic w-8 h-7 border-black flex justify-center items-center ml-6 "
           onClick={setLink}
         >
           <LinkIcon />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingLeftIcon />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingCenterIcon />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >
           <AlingRightIcon />
         </button>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
           className="border italic w-7 h-7 border-black flex justify-center items-center"
         >

@@ -83,7 +83,6 @@ export default function UpdatingProduct({
   const sanitizedOutput = DOMPurify.sanitize(output);
   const pageOnChange = (page: JSONContent) => {
     productPage = page;
-    console.log(page);
   };
 
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
@@ -123,7 +122,10 @@ export default function UpdatingProduct({
               </div>
             </div>
             <div className="my-5">
-              <TiptapUpdate pageOnChange={pageOnChange} prev={output} />
+              <TiptapUpdate
+                pageOnChange={pageOnChange}
+                prev={sanitizedOutput}
+              />
             </div>
             <div>
               <button

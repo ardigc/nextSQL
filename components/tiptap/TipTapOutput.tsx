@@ -72,7 +72,7 @@ export default function TipTapOutput({ json }: { json: JSONContent }) {
       ></div>
       <div className="flex justify-end items-center">
         <button
-          //   onClick={clickHandler}
+          type="button"
           className="px-1 border bg-blue-400 rounded-3xl mx-5"
         >
           Añadir al carrito
