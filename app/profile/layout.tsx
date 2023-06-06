@@ -23,7 +23,7 @@ export default async function RootLayout({
     if (typeof user === 'string') {
       return;
     }
-    console.log(user);
+    // console.log(user);
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
