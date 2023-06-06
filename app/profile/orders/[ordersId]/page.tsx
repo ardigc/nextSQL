@@ -42,9 +42,9 @@ export default async function OrderDetail({
       return;
     }
     orders = await pool.query(
-      `SELECT orders.id, orders.created_at, orders.user_id, orders.cart_id , users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country FROM orders INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.id=${params.ordersId} ORDER BY orders.id DESC`
+      `SELECT shipment.shipment_status, shipment.id, shipment.order_id, orders.created_at, orders.user_id, orders.cart_id , users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country FROM shipment INNER JOIN orders ON shipment.order_id=orders.id INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.id=${params.ordersId} ORDER BY orders.id DESC`
     );
-
+    console.log(orders.rows);
     const cartBeta = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
         orders.rows[0].cart_id +
