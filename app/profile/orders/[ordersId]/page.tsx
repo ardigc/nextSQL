@@ -12,6 +12,8 @@ interface Order {
   city: string;
   country: string;
   marked_as_default: Date;
+  shipment_status: string;
+  order_id: number;
 }
 interface Cart {
   cart_id: number;
@@ -22,6 +24,7 @@ interface Cart {
   product_id: number;
   qt: number;
   user_id: number;
+  seller_id: number;
 }
 export default async function OrderDetail({
   params,
@@ -32,6 +35,13 @@ export default async function OrderDetail({
   let user = null;
   let orders = null;
   let cart: Array<Cart> = [];
+  function extractShipmentData(data: Array<Order>) {
+    return data.map(({ shipment_status, id, order_id }) => ({
+      shipment_status,
+      id,
+      order_id,
+    }));
+  }
   // console.log(params.ordersId);
   try {
     user = verify(
@@ -48,9 +58,11 @@ export default async function OrderDetail({
     const cartBeta = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
         orders.rows[0].cart_id +
-        ' ORDER BY product_id DESC'
+        ' ORDER BY seller_id DESC'
     );
     cart = cartBeta.rows;
+    const shipment = extractShipmentData(orders.rows);
+    console.log(shipment);
   } catch (error: any) {
     throw error;
   }

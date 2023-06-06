@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 interface Order {
   id: number;
+  order_id: number;
   user_id: number;
   cart_id: number;
   line: string;
@@ -21,6 +22,7 @@ interface Cart {
   product_id: number;
   qt: number;
   user_id: number;
+  seller_id: number;
 }
 export default function OrderDetails({
   order,
@@ -42,7 +44,7 @@ export default function OrderDetails({
       <div className="border my-1 rounded-lg w-11/12 border-blue-900 bg-blue-400">
         <div className="flex justify-end"></div>
         <div>
-          Pedido nº {order.id} realizado el{' '}
+          Pedido nº {order.order_id} realizado el{' '}
           {order.created_at.toLocaleDateString('en-Us', options)} a las{' '}
           {order.created_at.toLocaleTimeString('en-Us', options)}
         </div>
