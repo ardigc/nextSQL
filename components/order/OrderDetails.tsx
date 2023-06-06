@@ -67,7 +67,7 @@ export default function OrderDetails({
         <div>
           {order.city}, {order.country}
         </div>
-        <div className="mt-3">Productos</div>
+        <div className="mt-3">Envios</div>
         <div className="grid grid-cols-1">
           {/* {cart.map((product) => (
             <Link

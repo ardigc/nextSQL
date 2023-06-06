@@ -1,6 +1,6 @@
 import { pool } from '@/lib/server/pg';
 import '../globals.css';
-import { verify } from 'jsonwebtoken';
+import { JwtPayload, verify } from 'jsonwebtoken';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -19,15 +19,19 @@ export default async function RootLayout({
       cookiesValue.get('token')?.value || '',
       process.env.JWT_SECRET || ''
     );
+    // const response =await
     if (typeof user === 'string') {
       return;
     }
-    // const response =await
+    console.log(user);
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
   if (user === null) {
     redirect('/login');
+  }
+  if (typeof user === 'string') {
+    return;
   }
   return (
     <div>
@@ -38,6 +42,9 @@ export default async function RootLayout({
             <Link href="/profile">Mis datos</Link>
             <Link href="/profile/adress">Mis datos de envio</Link>
             <Link href="/profile/payment">Mis medios de pago</Link>
+            {user.role === 'seller' && (
+              <Link href="/profile/products">Mis Productos</Link>
+            )}
           </div>
         </div>
         <div>{children}</div>

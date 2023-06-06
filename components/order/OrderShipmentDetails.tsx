@@ -28,20 +28,24 @@ export default function OrderShipmentDetails({
   const enlace = '/products/';
 
   return (
-    <div className="border border-blue-500">
-      {cart.map((product) => (
-        <Link
-          href={enlace + product.product_id}
-          // className="border border-blue-900 hover:bg-blue-500 m-2 p-2 rounded-md"
-        >
-          <div>{product.name}</div>
-          <div className="flex justify-between">
-            <div>Cantidad: {product.qt}</div>
-            <div>Precio: {product.price}€</div>
-          </div>
-        </Link>
-      ))}
-      <div>Estado: {shipment.shipment_status}</div>
+    <div className="my-3">
+      <div className="grid grid-cols-2">
+        {cart.map((product) => (
+          <>
+            <Link
+              href={enlace + product.product_id}
+              className="border border-blue-900 hover:bg-blue-500 m-2 p-2 rounded-md"
+            >
+              <div>{product.name}</div>
+              <div className="flex justify-between">
+                <div>Cantidad: {product.qt}</div>
+                <div>Precio: {product.price}€</div>
+              </div>
+            </Link>
+          </>
+        ))}
+      </div>
+      <div>Estado del pedido: {shipment.shipment_status}</div>
       Vendido por {shipment.name}
     </div>
   );
