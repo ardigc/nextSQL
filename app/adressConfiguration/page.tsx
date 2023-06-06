@@ -37,15 +37,24 @@ export default async function adressConfiguration() {
   // console.log(adress?.rows);
   return (
     <div className="relative top-12 bg-blue-100 min-h-screen w-full ">
-      <AdressProvider initialAdress={adressDefault?.rows[0].id}>
-        {adress && adressDefault && (
-          <NewAdress
-            adress={adress.rows}
-            userId={userId!}
-            adressDefault={adressDefault?.rows[0]}
-          />
-        )}
-      </AdressProvider>
+      {adressDefault?.rows[0] && (
+        <AdressProvider initialAdress={adressDefault?.rows[0].id}>
+          {adress && adressDefault && (
+            <NewAdress
+              adress={adress.rows}
+              userId={userId!}
+              adressDefault={adressDefault?.rows[0]}
+            />
+          )}
+        </AdressProvider>
+      )}
+      {adress && adressDefault && (
+        <NewAdress
+          adress={adress.rows}
+          userId={userId!}
+          adressDefault={adressDefault?.rows[0]}
+        />
+      )}
     </div>
   );
 }

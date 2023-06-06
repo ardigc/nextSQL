@@ -82,7 +82,23 @@ export default function PaymentSelect({
         <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl ">
           <>
             {paymentMethod.length === 0 && (
-              <div>No tienes ningun metodo de pago configurado</div>
+              <>
+                <div>No tienes ningun metodo de pago configurado</div>
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => clickIntentHandler()}
+                    className="px-1 border bg-blue-400 rounded-3xl mx-5"
+                  >
+                    Pagar con otra tarjeta
+                  </button>
+                  {/* <button
+                className="px-1 border bg-blue-400 rounded-3xl mx-5"
+                onClick={(ev) => clickHandler(ev, paymentId)}
+              >
+                Pagar
+              </button> */}
+                </div>
+              </>
             )}
             {paymentMethod.length > 0 && (
               <>
