@@ -48,7 +48,7 @@ export default async function adressConfiguration() {
           )}
         </AdressProvider>
       )}
-      {adress && adressDefault && (
+      {!adressDefault?.rows[0] && adress && (
         <NewAdress
           adress={adress.rows}
           userId={userId!}
