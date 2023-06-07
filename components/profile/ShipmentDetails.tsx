@@ -10,7 +10,6 @@ interface Shipment {
   cart_id: number;
   adress: number;
   created_at: Date;
-  state: string;
   product_id: number;
   qt: number;
   name: string;
@@ -20,6 +19,10 @@ interface Shipment {
   postal_code: number;
   city: string;
   country: string;
+  user_name: string;
+  subname: string;
+  email: string;
+  phone: string;
 }
 export default function ShipmentDetails({
   shipment,
@@ -29,7 +32,7 @@ export default function ShipmentDetails({
   const options = { timeZone: 'Europe/Madrid' };
   const enlace = '/products/';
 
-  console.log(shipment);
+  // console.log(shipment);
   return (
     <div className="border my-1 rounded-lg mx-auto w-11/12 border-blue-900 bg-blue-400">
       <div>
@@ -43,6 +46,11 @@ export default function ShipmentDetails({
       </div>
       <div>
         {shipment[0].city}, {shipment[0].country}
+      </div>
+      <div>
+        Pedido por {shipment[0].user_name} {shipment[0].subname}
+        <div>Correo electronico {shipment[0].email}</div>
+        Telefono de contacto {shipment[0].phone}
       </div>
       Productos
       <div className="grid grid-cols-2">

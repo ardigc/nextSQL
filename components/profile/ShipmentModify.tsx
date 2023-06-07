@@ -11,7 +11,16 @@ export default function ShipmenModify({
     shipment.shipment_status
   );
   console.log(selectedStatus);
-  const clickHandle: MouseEventHandler<HTMLButtonElement> = (ev) => {};
+  const clickHandle: MouseEventHandler<HTMLButtonElement> = async (ev) => {
+    ev.preventDefault;
+    const shipmentId = shipment.id;
+    const response = await fetch('/api/profile/seller/shipment', {
+      method: 'PATCH',
+      body: JSON.stringify({ selectedStatus, shipmentId }),
+      headers: { 'content-type': 'application/json' },
+    });
+    if (response.ok) window.location.reload();
+  };
   return (
     <div>
       <select

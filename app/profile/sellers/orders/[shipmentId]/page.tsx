@@ -20,9 +20,9 @@ export default async function OrderDetail({
       return;
     }
     shipment = await pool.query(
-      `SELECT * FROM shipment INNER JOIN orders ON shipment.order_id=orders.id INNER JOIN carts ON orders.cart_id=carts.id INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_adress ON orders.adress=users_adress.id WHERE shipment.id=${params.shipmentId} AND products.seller_id=${user.id}`
+      `SELECT shipment.id, shipment.order_id, shipment.seller_id, shipment.shipment_status, orders.user_id, orders.cart_id, orders.adress, orders.created_at, cart_items.product_id, cart_items.qt, users_info.name AS user_name, users_info.subname, users_info.email, users_info.phone, products.name, products.description, products.price, users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country FROM shipment  INNER JOIN orders ON shipment.order_id=orders.id INNER JOIN carts ON orders.cart_id=carts.id INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN users_info ON orders.user_id=users_info.id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_adress ON orders.adress=users_adress.id WHERE shipment.id=${params.shipmentId} AND products.seller_id=${user.id}`
     );
-    // console.log(shipment.rows)
+    console.log(shipment.rows);
   } catch (error) {
     console.log(error);
   }
