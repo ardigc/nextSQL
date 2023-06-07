@@ -34,7 +34,6 @@ export default function SellersOrders({ shipment }: { shipment: Shipment }) {
       <div>
         {shipment.city}, {shipment.country}
       </div>
-      <div>A la direccion </div>
     </Link>
   );
 }
