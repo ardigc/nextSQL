@@ -28,12 +28,12 @@ export default function SellersOrders({ shipment }: { shipment: Shipment }) {
         realizado el {shipment.created_at.toLocaleDateString('en-Us', options)}{' '}
         a las {shipment.created_at.toLocaleTimeString('en-Us', options)}
       </div>
-      <div>
+      {/* <div>
         A la direccion {shipment.line} con CP {shipment.postal_code}{' '}
       </div>
       <div>
         {shipment.city}, {shipment.country}
-      </div>
+      </div> */}
     </Link>
   );
 }
