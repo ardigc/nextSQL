@@ -28,8 +28,20 @@ export default function DragAndDropShipment({
 }) {
   const [shipment, setShipment] = useState(shipmentBeta);
   const dragEndHandle: OnDragEndResponder = async (ev) => {
-    const notify = () => toast.promise('Here is your toast.');
     console.log(ev);
+    //     const notify = (ev: number) =>
+    //     {
+    //       if (ev===1) {
+    //         toast.loading('Loading...');
+    //       } else if(ev===2){
+    //         toast.dismiss()
+    // toast.success('Modificado correctament')
+    //       }else if(ev===3){
+    //         toast.dismiss()
+    //         toast.error('Intentalo de nuevo')
+    //       }
+
+    //     }
     if (
       ev.destination &&
       ev.source.droppableId !== ev.destination.droppableId
@@ -44,14 +56,17 @@ export default function DragAndDropShipment({
       );
       const shipmentId = ev.draggableId;
       const selectedStatus = ev.destination.droppableId;
+      const notify = toast.loading('Loading...');
       const response = await fetch('/api/profile/seller/shipment', {
         method: 'PATCH',
         body: JSON.stringify({ selectedStatus, shipmentId }),
         headers: { 'content-type': 'application/json' },
       });
-      notify();
       if (response.ok) {
         console.log(response);
+        toast.success('Modificado correctamente', { id: notify });
+      } else if (!response.ok) {
+        toast.error('Intentalo de nuevo', { id: notify });
       }
     }
   };
