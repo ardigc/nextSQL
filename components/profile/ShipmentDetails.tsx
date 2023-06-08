@@ -56,6 +56,7 @@ export default function ShipmentDetails({
       <div className="grid grid-cols-2">
         {shipment.map((product) => (
           <Link
+            key={product.id}
             href={enlace + product.product_id}
             className="border border-blue-900 hover:bg-blue-500 m-2 p-2 rounded-md"
           >

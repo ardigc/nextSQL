@@ -83,6 +83,7 @@ export default function OrderDetails({
           ))} */}
           {shipment.map((shipment) => (
             <OrderShipmentDetails
+              key={shipment.id}
               shipment={shipment}
               cart={extractObjectsBySellerId(cart, shipment.seller_id)}
             />

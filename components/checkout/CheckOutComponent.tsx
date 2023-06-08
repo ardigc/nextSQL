@@ -67,7 +67,7 @@ export default function CheckOutComponent() {
       <div className="m-5 grid grid-cols-1 w-full">
         <p className="justify-center items-center flex">Tu carrito</p>
         {cart.map((product) => (
-          <div className="m-5">
+          <div key={product.id} className="m-5">
             <div className="flex justify-center">{product.name}</div>
             <div className="flex justify-between">
               <button

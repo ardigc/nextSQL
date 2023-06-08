@@ -41,10 +41,7 @@ export default function OrdersPrev({
   // console.log(cart)
   const enlace = '/profile/orders/' + order.id;
   return (
-    <div
-      key={order.id}
-      className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400"
-    >
+    <div className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400">
       <Link href={enlace}>
         <div>
           Pedido nº {order.id} realizado el{' '}

@@ -54,7 +54,7 @@ export default async function Orders() {
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg grid grid-cols-1 p-3 relative top-7 justify-center text-center bg-blue-300 shadow-black shadow-2xl  ">
         Tus pedidos
         {orders.rows.map((order, index) => (
-          <OrdersPrev order={order} cart={cart[index]} />
+          <OrdersPrev key={order.id} order={order} cart={cart[index]} />
         ))}
       </div>
     </div>
