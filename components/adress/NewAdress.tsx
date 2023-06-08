@@ -41,7 +41,10 @@ export default function NewAdress({
             <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
               Tus direcciones:
               {adress.map((adress) => (
-                <div className="flex justify-between items-center my-3">
+                <div
+                  key={adress.id}
+                  className="flex justify-between items-center my-3"
+                >
                   <div>Calle: {adress.line} </div>
                   <div>CP: {adress.postal_code} </div>
                   <div>Ciudad: {adress.city} </div>

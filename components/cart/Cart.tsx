@@ -68,7 +68,7 @@ export default function Cart({
         <div className="fixed left-0 top-12 bottom-0 bg-slate-400 w-52">
           <div className="bg-slate-500 flex justify-center">Carrito</div>
           {cartfin.map((product) => (
-            <div className="border px-3">
+            <div key={product.id} className="border px-3">
               <div className="flex justify-center">{product.name}</div>
               <div className="flex justify-between">
                 <button

@@ -43,7 +43,7 @@ export default function AddressChange({ adress }: { adress: Adress }) {
     }
   };
   return (
-    <div>
+    <div key={adress.id}>
       {!onEdit && (
         <div className="flex items-center">
           <div className="my-5 flex-grow flex flex-col">
