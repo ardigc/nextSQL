@@ -1,6 +1,12 @@
 'use client';
+import { DragEventHandler, useState } from 'react';
 import SellersOrders from './SellersOrders';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  OnDragEndResponder,
+} from 'react-beautiful-dnd';
 interface Shipment {
   id: number;
   order_id: number;
@@ -15,13 +21,21 @@ interface Shipment {
   country: string;
 }
 export default function DragAndDropShipment({
-  shipment,
+  shipmentBeta,
 }: {
-  shipment: Array<Shipment>;
+  shipmentBeta: Array<Shipment>;
 }) {
+  const [shipment, setShipment] = useState(shipmentBeta);
+  const dragEndHandle: OnDragEndResponder = (ev) => {
+    console.log(ev);
+    if (ev.source.droppableId !== ev.destination?.droppableId) {
+      console.log('hola');
+      setShipment((prev) => [...prev]);
+    }
+  };
   return (
     <>
-      <DragDropContext onDragEnd={(ev) => console.log(ev)}>
+      <DragDropContext onDragEnd={dragEndHandle}>
         <div className="grid grid-cols-4">
           <Droppable droppableId="requested">
             {(droppableProvider) => (
