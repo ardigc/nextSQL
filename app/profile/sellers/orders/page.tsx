@@ -1,3 +1,4 @@
+import DragAndDropShipment from '@/components/profile/DragAndDropShipment';
 import SellersOrders from '@/components/profile/SellersOrders';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
@@ -51,11 +52,20 @@ export default async function OrderSellers() {
         <div className="flex justify-center">
           Listado de pedidos que te han realizado
         </div>
-        <div className="grid grid-cols-4">
+        <DragAndDropShipment
+          requested={requested}
+          confirmed={confirmed}
+          shipped={shipped}
+          received={received}
+        />
+        {/* <div className="grid grid-cols-4">
           <div className="flex flex-col">
             Pendientes de recepcion
             {requested &&
-              requested.map((ship) => <SellersOrders shipment={ship} />)}
+              requested.map((ship) => <SellersOrders shipment={ship} />)
+            
+            // <DragAndDropShipment shipment={requested}/>
+            }
           </div>
           <div className="flex flex-col">
             Pendientes de envio
@@ -72,7 +82,7 @@ export default async function OrderSellers() {
             {received &&
               received.map((ship) => <SellersOrders shipment={ship} />)}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

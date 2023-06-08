@@ -66,8 +66,12 @@ export default function ShipmentDetails({
             </div>
           </Link>
         ))}
-        <div>
+      </div>
+      <div className="flex justify-center items-center">
+        <div className="mr-5 flex-grow">
           Estado del envio: {shipment[0].shipment_status}
+        </div>
+        <div className="flex-grow">
           <ShipmenModify shipment={shipment[0]} />
         </div>
       </div>

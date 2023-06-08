@@ -43,7 +43,10 @@ export default async function RootLayout({
             <Link href="/profile/adress">Mis datos de envio</Link>
             <Link href="/profile/payment">Mis medios de pago</Link>
             {user.role === 'seller' && (
-              <Link href="/profile/products">Mis Productos</Link>
+              <>
+                <Link href="/profile/products">Mis Productos</Link>
+                <Link href="/profile/sellers/orders">Pedidos recibidos</Link>
+              </>
             )}
           </div>
         </div>
