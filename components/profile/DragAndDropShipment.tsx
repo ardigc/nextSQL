@@ -28,9 +28,19 @@ export default function DragAndDropShipment({
   const [shipment, setShipment] = useState(shipmentBeta);
   const dragEndHandle: OnDragEndResponder = (ev) => {
     console.log(ev);
-    if (ev.source.droppableId !== ev.destination?.droppableId) {
+    if (
+      ev.destination &&
+      ev.source.droppableId !== ev.destination.droppableId
+    ) {
       console.log('hola');
-      setShipment((prev) => [...prev]);
+      setShipment((prev) =>
+        prev.map((item) => {
+          if (item.id === parseInt(ev.draggableId)) {
+            return { ...item, shipment_status: ev.destination!.droppableId };
+          }
+          return item;
+        })
+      );
     }
   };
   return (
