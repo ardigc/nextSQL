@@ -21,6 +21,8 @@ export default function PaymentChange({
   setUp?: boolean;
   paymentMethod: Array<PaymentMethod>;
 }) {
+  const [paymentId, setPaymentId] = useState('');
+
   const [addPayment, setAddPayment] = useState(false);
   const clickHandler = async (ev: MouseEvent, id: string) => {
     const response = await fetch('/api/payment', {
@@ -30,6 +32,8 @@ export default function PaymentChange({
         'Content-type': 'application/json',
       },
     });
+    const data = await response.json();
+    setPaymentId(data.id);
   };
   return (
     <div>
@@ -90,7 +94,13 @@ export default function PaymentChange({
           </div>
         </div>
       )}
-      {addPayment && <CheckOutPage setUp={setUp} clientSecret={clientSecret} />}
+      {addPayment && (
+        <CheckOutPage
+          paymentId={paymentId}
+          setUp={setUp}
+          clientSecret={clientSecret}
+        />
+      )}
     </div>
   );
 }
