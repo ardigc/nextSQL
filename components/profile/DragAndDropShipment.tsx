@@ -26,7 +26,7 @@ export default function DragAndDropShipment({
   shipmentBeta: Array<Shipment>;
 }) {
   const [shipment, setShipment] = useState(shipmentBeta);
-  const dragEndHandle: OnDragEndResponder = (ev) => {
+  const dragEndHandle: OnDragEndResponder = async (ev) => {
     console.log(ev);
     if (
       ev.destination &&
@@ -41,6 +41,16 @@ export default function DragAndDropShipment({
           return item;
         })
       );
+      const shipmentId = ev.draggableId;
+      const selectedStatus = ev.destination.droppableId;
+      const response = await fetch('/api/profile/seller/shipment', {
+        method: 'PATCH',
+        body: JSON.stringify({ selectedStatus, shipmentId }),
+        headers: { 'content-type': 'application/json' },
+      });
+      if (response.ok) {
+        console.log(response);
+      }
     }
   };
   return (

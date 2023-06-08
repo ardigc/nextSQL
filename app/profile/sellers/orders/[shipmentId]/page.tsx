@@ -2,6 +2,7 @@ import ShipmentDetails from '@/components/profile/ShipmentDetails';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+export const revalidate = 0;
 
 export default async function OrderDetail({
   params,
