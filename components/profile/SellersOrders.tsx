@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import {
+  DraggableChildrenFn,
+  DraggableId,
+  DraggableProvided,
+} from 'react-beautiful-dnd';
 
 interface Shipment {
   id: number;
@@ -13,13 +18,23 @@ interface Shipment {
   city: string;
   country: string;
 }
-export default function SellersOrders({ shipment }: { shipment: Shipment }) {
+
+export default function SellersOrders({
+  shipment,
+  draggableProvided,
+}: {
+  shipment: Shipment;
+  draggableProvided: DraggableProvided;
+}) {
   const options = { timeZone: 'Europe/Madrid' };
-  console.log(shipment);
+  // console.log(shipment);
   const enlace = '/profile/sellers/orders/' + shipment.id;
 
   return (
     <Link
+      {...draggableProvided.draggableProps}
+      {...draggableProvided.dragHandleProps}
+      ref={draggableProvided.innerRef}
       href={enlace}
       className="border my-1 rounded-lg border-blue-900 hover:bg-blue-500 bg-blue-400 "
     >

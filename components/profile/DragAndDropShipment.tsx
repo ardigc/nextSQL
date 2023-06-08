@@ -1,6 +1,6 @@
 'use client';
 import SellersOrders from './SellersOrders';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 interface Shipment {
   id: number;
   order_id: number;
@@ -39,28 +39,108 @@ export default function DragAndDropShipment({
                 Pendientes de recepcion
                 {
                   requested &&
-                    requested.map((ship) => <SellersOrders shipment={ship} />)
+                    requested.map((ship, index) => (
+                      <Draggable
+                        key={ship.id}
+                        draggableId={`${ship.id}`}
+                        index={index}
+                      >
+                        {(draggableProvided) => (
+                          <SellersOrders
+                            draggableProvided={draggableProvided}
+                            shipment={ship}
+                          />
+                        )}
+                      </Draggable>
+                    ))
 
                   // <DragAndDropShipment shipment={requested}/>
                 }
+                {droppableProvider.placeholder}
               </div>
             )}
           </Droppable>
-          <div className="flex flex-col">
-            Pendientes de envio
-            {confirmed &&
-              confirmed.map((ship) => <SellersOrders shipment={ship} />)}
-          </div>
-          <div className="flex flex-col">
-            Enviados
-            {shipped &&
-              shipped.map((ship) => <SellersOrders shipment={ship} />)}
-          </div>
-          <div className="flex flex-col">
-            Finalizados
-            {received &&
-              received.map((ship) => <SellersOrders shipment={ship} />)}
-          </div>
+          <Droppable droppableId="confirmed">
+            {(droppableProvider) => (
+              <div
+                {...droppableProvider.droppableProps}
+                ref={droppableProvider.innerRef}
+                className="flex flex-col"
+              >
+                Pendientes de envio
+                {confirmed &&
+                  confirmed.map((ship, index) => (
+                    <Draggable
+                      key={ship.id}
+                      draggableId={`${ship.id}`}
+                      index={index}
+                    >
+                      {(draggableProvided) => (
+                        <SellersOrders
+                          draggableProvided={draggableProvided}
+                          shipment={ship}
+                        />
+                      )}
+                    </Draggable>
+                  ))}
+                {droppableProvider.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId="shipped">
+            {(droppableProvider) => (
+              <div
+                {...droppableProvider.droppableProps}
+                ref={droppableProvider.innerRef}
+                className="flex flex-col"
+              >
+                Enviados
+                {shipped &&
+                  shipped.map((ship, index) => (
+                    <Draggable
+                      key={ship.id}
+                      draggableId={`${ship.id}`}
+                      index={index}
+                    >
+                      {(draggableProvided) => (
+                        <SellersOrders
+                          draggableProvided={draggableProvided}
+                          shipment={ship}
+                        />
+                      )}
+                    </Draggable>
+                  ))}
+                {droppableProvider.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId="received">
+            {(droppableProvider) => (
+              <div
+                {...droppableProvider.droppableProps}
+                ref={droppableProvider.innerRef}
+                className="flex flex-col"
+              >
+                Finalizados
+                {received &&
+                  received.map((ship, index) => (
+                    <Draggable
+                      key={ship.id}
+                      draggableId={`${ship.id}`}
+                      index={index}
+                    >
+                      {(draggableProvided) => (
+                        <SellersOrders
+                          draggableProvided={draggableProvided}
+                          shipment={ship}
+                        />
+                      )}
+                    </Draggable>
+                  ))}
+                {droppableProvider.placeholder}
+              </div>
+            )}
+          </Droppable>
         </div>
       </DragDropContext>
     </>
