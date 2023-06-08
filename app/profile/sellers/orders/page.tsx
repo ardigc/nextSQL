@@ -52,12 +52,7 @@ export default async function OrderSellers() {
         <div className="flex justify-center">
           Listado de pedidos que te han realizado
         </div>
-        <DragAndDropShipment
-          requested={requested}
-          confirmed={confirmed}
-          shipped={shipped}
-          received={received}
-        />
+        <DragAndDropShipment shipment={shipment.rows} />
         {/* <div className="grid grid-cols-4">
           <div className="flex flex-col">
             Pendientes de recepcion

@@ -15,15 +15,9 @@ interface Shipment {
   country: string;
 }
 export default function DragAndDropShipment({
-  requested,
-  confirmed,
-  shipped,
-  received,
+  shipment,
 }: {
-  requested: Array<Shipment>;
-  confirmed: Array<Shipment>;
-  shipped: Array<Shipment>;
-  received: Array<Shipment>;
+  shipment: Array<Shipment>;
 }) {
   return (
     <>
@@ -38,8 +32,9 @@ export default function DragAndDropShipment({
               >
                 Pendientes de recepcion
                 {
-                  requested &&
-                    requested.map((ship, index) => (
+                  shipment
+                    .filter((ship) => ship.shipment_status === 'requested')
+                    .map((ship, index) => (
                       <Draggable
                         key={ship.id}
                         draggableId={`${ship.id}`}
@@ -68,8 +63,9 @@ export default function DragAndDropShipment({
                 className="flex flex-col"
               >
                 Pendientes de envio
-                {confirmed &&
-                  confirmed.map((ship, index) => (
+                {shipment
+                  .filter((ship) => ship.shipment_status === 'confirmed')
+                  .map((ship, index) => (
                     <Draggable
                       key={ship.id}
                       draggableId={`${ship.id}`}
@@ -95,8 +91,9 @@ export default function DragAndDropShipment({
                 className="flex flex-col"
               >
                 Enviados
-                {shipped &&
-                  shipped.map((ship, index) => (
+                {shipment
+                  .filter((ship) => ship.shipment_status === 'shipped')
+                  .map((ship, index) => (
                     <Draggable
                       key={ship.id}
                       draggableId={`${ship.id}`}
@@ -122,8 +119,9 @@ export default function DragAndDropShipment({
                 className="flex flex-col"
               >
                 Finalizados
-                {received &&
-                  received.map((ship, index) => (
+                {shipment
+                  .filter((ship) => ship.shipment_status === 'received')
+                  .map((ship, index) => (
                     <Draggable
                       key={ship.id}
                       draggableId={`${ship.id}`}
