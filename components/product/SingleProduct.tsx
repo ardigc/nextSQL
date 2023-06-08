@@ -61,42 +61,40 @@ export default function SingleProduct({
     setCart(data);
   };
   if (product_page) {
-    const output = useMemo(() => {
-      return generateHTML(productPage, [
-        StarterKit,
-        Bold,
-        Strike,
-        Underline,
-        BulletList,
-        OrderedList,
-        ListItem,
-        TextAlign.configure({
-          types: ['heading', 'paragraph'],
-        }),
-        Link,
-        TextStyle,
-        Table.configure({
-          resizable: true,
-          HTMLAttributes: {
-            class: 'table',
-          },
-        }),
-        TableRow,
-        TableHeader,
-        TableCell,
-        Italic,
-        Highlight.configure({ multicolor: true }),
-        FontFamily.configure({
-          types: ['textStyle'],
-        }),
-        Color.configure({
-          types: ['textStyle'],
-        }),
-        Heading.configure({
-          levels: [1, 2, 3, 4, 5],
-        }),
-      ]);
-    }, [productPage]);
+    const output = generateHTML(productPage, [
+      StarterKit,
+      Bold,
+      Strike,
+      Underline,
+      BulletList,
+      OrderedList,
+      ListItem,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
+      Link,
+      TextStyle,
+      Table.configure({
+        resizable: true,
+        HTMLAttributes: {
+          class: 'table',
+        },
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
+      Italic,
+      Highlight.configure({ multicolor: true }),
+      FontFamily.configure({
+        types: ['textStyle'],
+      }),
+      Color.configure({
+        types: ['textStyle'],
+      }),
+      Heading.configure({
+        levels: [1, 2, 3, 4, 5],
+      }),
+    ]);
     const sanitizedOutput = DOMPurify.sanitize(output);
     return (
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
