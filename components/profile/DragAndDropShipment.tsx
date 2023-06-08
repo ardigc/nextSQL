@@ -7,6 +7,7 @@ import {
   Droppable,
   OnDragEndResponder,
 } from 'react-beautiful-dnd';
+import { Toaster, toast } from 'react-hot-toast';
 interface Shipment {
   id: number;
   order_id: number;
@@ -27,12 +28,12 @@ export default function DragAndDropShipment({
 }) {
   const [shipment, setShipment] = useState(shipmentBeta);
   const dragEndHandle: OnDragEndResponder = async (ev) => {
+    const notify = () => toast.promise('Here is your toast.');
     console.log(ev);
     if (
       ev.destination &&
       ev.source.droppableId !== ev.destination.droppableId
     ) {
-      console.log('hola');
       setShipment((prev) =>
         prev.map((item) => {
           if (item.id === parseInt(ev.draggableId)) {
@@ -48,6 +49,7 @@ export default function DragAndDropShipment({
         body: JSON.stringify({ selectedStatus, shipmentId }),
         headers: { 'content-type': 'application/json' },
       });
+      notify();
       if (response.ok) {
         console.log(response);
       }
@@ -56,6 +58,7 @@ export default function DragAndDropShipment({
   return (
     <>
       <DragDropContext onDragEnd={dragEndHandle}>
+        <Toaster />
         <div className="grid grid-cols-4">
           <Droppable droppableId="requested">
             {(droppableProvider) => (
