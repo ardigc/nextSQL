@@ -10,10 +10,10 @@ export async function middleware(req: NextRequest) {
     body: JSON.stringify({ token }),
     headers: { 'content-type': 'application/json' },
   });
-  if (!response.ok) return;
+  if (!response.ok) console.log('no resgistrado');
   const data = await response.json();
   const user = data.user;
-  console.log(user.role);
+  console.log(user);
   return NextResponse.redirect(new URL('/products', req.url));
 }
 export const config = {
