@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { pool } from '@/lib/server/pg';
 import { compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 
 export async function POST(req: NextRequest) {
