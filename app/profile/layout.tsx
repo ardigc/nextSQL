@@ -35,7 +35,7 @@ export default async function RootLayout({
   }
   return (
     <div>
-      <div className="grid grid-cols-[1fr_6fr] top-12 relative">
+      <div className="grid grid-cols-[1fr_6fr] relative">
         <div className=" left-0 bg-blue-400  z-10  h-screen">
           <div className="sticky top-12 flex flex-col justify-around items-center h-1/4">
             <Link href="/profile/orders"> Mis pedidos</Link>
