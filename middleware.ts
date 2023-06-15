@@ -11,6 +11,7 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get('token');
   const URLFetch = new URL('/api/auth', req.url);
   console.log(URLFetch.href);
+  // console.log('token', token)
   console.log('antes del fetch');
   const response = await fetch(URLFetch, {
     method: 'POST',
@@ -65,7 +66,7 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/register/:path*',
-    '/logIn/:path*',
+    '/login/:path*',
     '/api/:path*',
     '/adressConfiguration/:path*',
     '/checkout/:path*',

@@ -11,22 +11,22 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookiesValue = cookies();
-  let user = null;
-  try {
-    user = verify(
-      cookiesValue.get('token')?.value || '',
-      process.env.JWT_SECRET || ''
-    );
-    if (typeof user === 'string') {
-      return;
-    }
-    // const response =await
-  } catch (error: any) {
-    console.error('Error al verificar el token:', error.message);
-  }
-  if (user !== null) {
-    redirect('/products');
-  }
+  // const cookiesValue = cookies();
+  // let user = null;
+  // try {
+  //   user = verify(
+  //     cookiesValue.get('token')?.value || '',
+  //     process.env.JWT_SECRET || ''
+  //   );
+  //   if (typeof user === 'string') {
+  //     return;
+  //   }
+  //   // const response =await
+  // } catch (error: any) {
+  //   console.error('Error al verificar el token:', error.message);
+  // }
+  // if (user !== null) {
+  //   redirect('/products');
+  // }
   return <div>{children}</div>;
 }
