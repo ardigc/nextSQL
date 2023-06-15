@@ -30,11 +30,14 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
-  if (req.nextUrl.pathname.startsWith('/adressConfiguration')) {
+  if (
+    req.nextUrl.pathname.startsWith('/adressConfiguration') ||
+    req.nextUrl.pathname.startsWith('/checkout')
+  ) {
     if (response.ok) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL('/logIn', req.url));
+      return NextResponse.redirect(new URL('/login', req.url));
     }
   }
   const data = await response.json();
@@ -43,5 +46,11 @@ export async function middleware(req: NextRequest) {
   return NextResponse.redirect(new URL('/products', req.url));
 }
 export const config = {
-  matcher: ['/register/:path*', '/logIn/:path*', '/api/:path*'],
+  matcher: [
+    '/register/:path*',
+    '/logIn/:path*',
+    '/api/:path*',
+    '/adressConfiguration/:path*',
+    '/checkout/:path*',
+  ],
 };
