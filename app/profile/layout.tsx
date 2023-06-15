@@ -27,9 +27,9 @@ export default async function RootLayout({
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
-  if (user === null) {
-    redirect('/login');
-  }
+  // if (user === null) {
+  //   redirect('/login');
+  // }
   if (typeof user === 'string') {
     return;
   }
@@ -42,7 +42,7 @@ export default async function RootLayout({
             <Link href="/profile">Mis datos</Link>
             <Link href="/profile/adress">Mis datos de envio</Link>
             <Link href="/profile/payment">Mis medios de pago</Link>
-            {user.role === 'seller' && (
+            {user && user.role === 'seller' && (
               <>
                 <Link href="/profile/products">Mis Productos</Link>
                 <Link href="/profile/sellers/orders">Pedidos recibidos</Link>

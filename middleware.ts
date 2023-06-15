@@ -14,6 +14,8 @@ export async function middleware(req: NextRequest) {
     body: JSON.stringify({ token }),
     headers: { 'content-type': 'application/json' },
   });
+  const data = await response.json();
+  const user = data.user;
   if (!response.ok) console.log('no resgistrado');
   console.log(req.nextUrl.pathname);
   if (
@@ -31,9 +33,21 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
   if (
+    req.nextUrl.pathname.startsWith('/profile/products') ||
+    req.nextUrl.pathname.startsWith('/profile/sellers')
+  ) {
+    console.log(user);
+    if (user.role === 'seller') {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL('/profile', req.url));
+    }
+  }
+  if (
     req.nextUrl.pathname.startsWith('/adressConfiguration') ||
     req.nextUrl.pathname.startsWith('/checkout') ||
     req.nextUrl.pathname.startsWith('/payment') ||
+    req.nextUrl.pathname.startsWith('/profile') ||
     req.nextUrl.pathname.startsWith('/confirmation')
   ) {
     if (response.ok) {
@@ -42,9 +56,6 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
   }
-  const data = await response.json();
-  const user = data.user;
-  console.log(user);
   return NextResponse.redirect(new URL('/products', req.url));
 }
 export const config = {
@@ -56,5 +67,6 @@ export const config = {
     '/checkout/:path*',
     '/confirmation/:path*',
     '/payment/:path*',
+    '/profile/:path*',
   ],
 };
