@@ -19,15 +19,19 @@ export function Product({
   const enlace = '/products/' + id;
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
-    const response = await fetch('/api/cart', {
-      method: 'POST',
-      body: JSON.stringify({ id }),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    setCart(data);
+    try {
+      const response = await fetch('/api/cart', {
+        method: 'POST',
+        body: JSON.stringify({ id }),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      setCart(data);
+    } catch (error) {
+      window.location.assign('/login');
+    }
 
     // window.location.reload();
   };
