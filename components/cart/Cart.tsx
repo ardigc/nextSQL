@@ -65,8 +65,8 @@ export default function Cart({
       </div>
 
       {showCart && (
-        <div className="fixed left-0 top-12 bottom-0 bg-slate-400 w-52">
-          <div className="bg-slate-500 flex justify-center">Carrito</div>
+        <div className="fixed left-0 top-12 bottom-0 bg-blue-300 w-52 border border-blue-600">
+          <div className="bg-blue-400 flex justify-center">Carrito</div>
           {cartfin.map((product) => (
             <div key={product.id} className="border px-3">
               <div className="flex justify-center">{product.name}</div>
@@ -84,9 +84,14 @@ export default function Cart({
               </div>
             </div>
           ))}
-          <div>
+          <div className="text-right mx-3">
             Precio total: {totalPrice(cartfin)} €{' '}
-            <Link href="/checkout">CHECKOUT</Link>
+            <Link
+              className="px-1 border bg-blue-400 rounded-3xl"
+              href="/checkout"
+            >
+              CHECKOUT
+            </Link>
           </div>
         </div>
       )}
