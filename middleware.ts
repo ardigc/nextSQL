@@ -32,7 +32,8 @@ export async function middleware(req: NextRequest) {
   }
   if (
     req.nextUrl.pathname.startsWith('/adressConfiguration') ||
-    req.nextUrl.pathname.startsWith('/checkout')
+    req.nextUrl.pathname.startsWith('/checkout') ||
+    req.nextUrl.pathname.startsWith('/confirmation')
   ) {
     if (response.ok) {
       return NextResponse.next();
@@ -52,5 +53,6 @@ export const config = {
     '/api/:path*',
     '/adressConfiguration/:path*',
     '/checkout/:path*',
+    '/confirmation/:path*',
   ],
 };

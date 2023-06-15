@@ -110,41 +110,43 @@ export default function PaymentSelect({
                   <div className="flex justify-center">Año caducidad</div>
                   <div className="flex justify-center">Ultimos digitos</div>
                   <div></div>
-
-                  {paymentMethod.map((payment) => (
-                    // <div className="mb-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_1fr]">
-                    <div key={payment.id}>
-                      <div className="flex justify-center">
-                        {' '}
-                        {payment.card?.brand}
-                      </div>
-                      <div className="flex justify-center">
-                        {' '}
-                        {payment.card?.funding}
-                      </div>
-                      <div className="flex justify-center">
-                        {' '}
-                        {payment.card?.exp_month}
-                      </div>
-                      <div className="flex justify-center">
-                        {' '}
-                        {payment.card?.exp_year}
-                      </div>
-                      <div className="flex justify-center">
-                        {' '}
-                        {payment.card?.last4}
-                      </div>
-                      <div className="flex items-center justify-center">
-                        <input
-                          name="card"
-                          className="w-3 h-3"
-                          onChange={() => setPaymentId(payment.id)}
-                          type="radio"
-                        ></input>
-                      </div>
-                    </div>
-                  ))}
                 </div>
+                {paymentMethod.map((payment) => (
+                  // <div className="mb-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_1fr]">
+                  <div
+                    key={payment.id}
+                    className="my-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_2fr] "
+                  >
+                    <div className="flex justify-center">
+                      {' '}
+                      {payment.card?.brand}
+                    </div>
+                    <div className="flex justify-center">
+                      {' '}
+                      {payment.card?.funding}
+                    </div>
+                    <div className="flex justify-center">
+                      {' '}
+                      {payment.card?.exp_month}
+                    </div>
+                    <div className="flex justify-center">
+                      {' '}
+                      {payment.card?.exp_year}
+                    </div>
+                    <div className="flex justify-center">
+                      {' '}
+                      {payment.card?.last4}
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <input
+                        name="card"
+                        className="w-3 h-3"
+                        onChange={() => setPaymentId(payment.id)}
+                        type="radio"
+                      ></input>
+                    </div>
+                  </div>
+                ))}
                 <div className="flex items-center justify-between">
                   <button
                     onClick={() => clickIntentHandler()}
