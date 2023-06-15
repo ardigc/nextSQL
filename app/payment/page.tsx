@@ -82,7 +82,7 @@ export default async function Payment() {
   console.log(paymentMethods.data);
   // console.log(clientSecret);
   return (
-    <div className="relative bg-blue-100 top-12 min-h-screen w-full">
+    <div className="relative bg-blue-100 min-h-screen w-full">
       <PaymentSelect
         cart={cart.rows}
         adressId={adress.rows[0].id}

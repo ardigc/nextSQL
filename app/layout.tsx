@@ -84,7 +84,7 @@ export default async function RootLayout({
             </div>
           </div>
           <div className="bg-blue-100 min-h-screen w-full overflow-auto ">
-            <div className="relative top-7">{children}</div>
+            <div className="relative top-9">{children}</div>
           </div>
         </Provider>
       </body>

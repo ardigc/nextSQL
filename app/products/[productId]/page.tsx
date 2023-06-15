@@ -14,7 +14,7 @@ export default async function ProductDetail({
   );
 
   return (
-    <div className="relative top-12 bg-blue-100 min-h-screen w-full">
+    <div className="relative bg-blue-100 min-h-screen w-full">
       <SingleProduct {...product.rows[0]} seller={seller.rows[0]?.name} />
     </div>
   );
