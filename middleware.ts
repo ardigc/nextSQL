@@ -30,13 +30,13 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
-  // if (req.nextUrl.pathname.startsWith('/adressConfiguration')) {
-  //   if (response.ok) {
-  //     return NextResponse.next()
-  //   }else{
-  //     return NextResponse.redirect(new URL('/logIn', req.url))
-  //   }
-  // }
+  if (req.nextUrl.pathname.startsWith('/adressConfiguration')) {
+    if (response.ok) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL('/logIn', req.url));
+    }
+  }
   const data = await response.json();
   const user = data.user;
   console.log(user);
