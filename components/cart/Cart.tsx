@@ -65,7 +65,7 @@ export default function Cart({
       </div>
 
       {showCart && (
-        <div className="fixed left-0 top-12 bottom-0 bg-blue-300 w-52 border border-blue-600">
+        <div className="fixed left-0 top-12 bottom-0 bg-blue-300 w-52 border border-blue-600 overflow-scroll">
           <div className="bg-blue-400 flex justify-center">Carrito</div>
           {cartfin.map((product) => (
             <div key={product.id} className="border px-3">
