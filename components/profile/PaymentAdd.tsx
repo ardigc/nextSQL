@@ -32,8 +32,12 @@ export default function PaymentChange({
         'Content-type': 'application/json',
       },
     });
-    const data = await response.json();
-    setPaymentId(data.id);
+    // const data = await response.json();
+    // setPaymentId(data.id);
+    console.log(response.ok);
+    if (response.ok) {
+      window.location.reload();
+    }
   };
   return (
     <div>

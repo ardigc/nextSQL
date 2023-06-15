@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest) {
 
   try {
     const paymentMethod = await stripe.paymentMethods.detach(`${id}`);
-    return new Response('Se ha subido bien', { status: 200 });
+    return new Response(JSON.stringify(paymentMethod), { status: 200 });
   } catch (error) {
     throw new Error('fallo en el pago' + error);
   }
