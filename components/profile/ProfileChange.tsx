@@ -59,7 +59,7 @@ export default function ProfileChange({ user }: { user: User }) {
     }
   };
   return (
-    <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg min-w-1/4 h-52 flex justify-center bg-blue-300 shadow-black shadow-2xl">
+    <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg min-w-1/4 w-80 h-56 flex justify-center bg-blue-300 shadow-black shadow-2xl">
       <div className="px-3 grid grid-cols-1 justify-center items-center">
         <div className="flex justify-center">Tu perfil</div>
         {edit !== 1 && (
@@ -111,7 +111,7 @@ export default function ProfileChange({ user }: { user: User }) {
           </form>
         )}
         {edit !== 4 && (
-          <div>
+          <div className="mb-3">
             Telefono: {user.phone}{' '}
             <button onClick={() => setEdit(4)}>
               <PenIcon />
