@@ -32,11 +32,7 @@ export default function NewAdress({
     <div>
       {!showAdress && (
         <div>
-          {adress.length === 0 && (
-            <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
-              <AdressComponent userId={userId!} />
-            </div>
-          )}
+          {adress.length === 0 && <AdressComponent userId={userId!} />}
           {adress.length! > 0 && (
             <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
               Tus direcciones:
