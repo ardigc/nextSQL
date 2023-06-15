@@ -7,13 +7,17 @@ export async function middleware(req: NextRequest) {
   if (req.nextUrl.pathname.startsWith('/api/auth')) {
     return NextResponse.next();
   }
+  console.log('despues del api');
   const token = req.cookies.get('token');
   const URLFetch = new URL('/api/auth', req.url);
+  console.log(URLFetch.href);
+  console.log('antes del fetch');
   const response = await fetch(URLFetch, {
     method: 'POST',
     body: JSON.stringify({ token }),
     headers: { 'content-type': 'application/json' },
   });
+  console.log('despues del fetch');
   const data = await response.json();
   const user = data.user;
   if (!response.ok) console.log('no resgistrado');

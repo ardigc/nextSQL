@@ -4,6 +4,7 @@ import { compare } from 'bcrypt';
 import { sign, verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 export async function POST(req: NextRequest) {
+  console.log('dentro del fetch');
   const body = await req.json();
   const token = body.token;
   let user = null;
