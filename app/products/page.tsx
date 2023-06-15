@@ -4,7 +4,9 @@ import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 
 export default async function Products() {
-  const result = await pool.query('SELECT * FROM products;');
+  const result = await pool.query(
+    'SELECT * FROM products WHERE delete_at IS NULL;'
+  );
   return (
     <div>
       <div

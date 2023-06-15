@@ -32,9 +32,14 @@ export async function POST(req: NextRequest) {
 }
 export async function PATCH(req: NextRequest) {
   const body = await req.json();
-  console.log(body.productPage);
   const cookiesValue = req.cookies;
   let userId = null;
+  console.log(body.name);
+  // if (!body.name) {
+  //   const result = await pool.query(`UPDATE products SET delete_at=NOW() WHERE id=${body.id}`);
+  //   console.log(result);
+  //   return new Response('Se ha borrado bien', { status: 200 });
+  // }
   try {
     userId = verify(
       cookiesValue.get('token')?.value || '',
@@ -59,7 +64,9 @@ export async function PATCH(req: NextRequest) {
 }
 export async function PUT(req: NextRequest) {
   const body = await req.json();
-  const result = await pool.query(`DELETE FROM products WHERE id=${body.id}`);
+  const result = await pool.query(
+    `UPDATE products SET delete_at=NOW() WHERE id=${body.id}`
+  );
   console.log(result);
   return new Response('Se ha borrado bien', { status: 200 });
 }
