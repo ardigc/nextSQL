@@ -83,7 +83,9 @@ export default async function RootLayout({
               )}
             </div>
           </div>
-          {children}
+          <div className="top-7 relative bg-blue-100 min-h-screen w-full">
+            {children}
+          </div>
         </Provider>
       </body>
     </html>
