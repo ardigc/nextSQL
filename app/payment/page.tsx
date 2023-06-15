@@ -79,7 +79,7 @@ export default async function Payment() {
   });
   // const clientSecret = paymentIntent.client_secret;
 
-  console.log(paymentMethods);
+  console.log(paymentMethods.data);
   // console.log(clientSecret);
   return (
     <div className="relative bg-blue-100 top-12 min-h-screen w-full">

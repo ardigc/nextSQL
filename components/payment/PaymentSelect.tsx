@@ -113,7 +113,7 @@ export default function PaymentSelect({
 
                   {paymentMethod.map((payment) => (
                     // <div className="mb-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_1fr]">
-                    <>
+                    <div key={payment.id}>
                       <div className="flex justify-center">
                         {' '}
                         {payment.card?.brand}
@@ -142,7 +142,7 @@ export default function PaymentSelect({
                           type="radio"
                         ></input>
                       </div>
-                    </>
+                    </div>
                   ))}
                 </div>
                 <div className="flex items-center justify-between">
