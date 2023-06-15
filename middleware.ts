@@ -14,6 +14,7 @@ export async function middleware(req: NextRequest) {
   // console.log('token', token)
   console.log('antes del fetch');
   const response = await fetch(URLFetch, {
+    // const response = await fetch('/api/auth', {
     method: 'POST',
     body: JSON.stringify({ token }),
     headers: { 'content-type': 'application/json' },
@@ -67,7 +68,7 @@ export const config = {
   matcher: [
     '/register/:path*',
     '/login/:path*',
-    '/api/:path*',
+    // '/api/:path*',
     '/adressConfiguration/:path*',
     '/checkout/:path*',
     '/confirmation/:path*',
