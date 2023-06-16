@@ -22,7 +22,12 @@ export function Product({
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
     try {
-      const notify = toast.loading('Añadiendo al carrito...');
+      const notify = toast.loading('Añadiendo al carrito...', {
+        style: {
+          backgroundColor: '#bfdbfe',
+          // color:'white',
+        },
+      });
       const response = await fetch('/api/cart', {
         method: 'POST',
         body: JSON.stringify({ id }),
@@ -45,14 +50,7 @@ export function Product({
     // hacer que no se vaya al enlace al hacer click sobre button
     <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
       <Link href={enlace} className="flex-grow">
-        <Toaster
-          toastOptions={{
-            style: {
-              backgroundColor: '##60a5fa',
-              // color: '#fff',
-            },
-          }}
-        />
+        <Toaster />
         <div className="flex justify-center">{name}</div>
         <div className="flex justify-center items-center">{description}</div>
         <div className="flex justify-end items-center">

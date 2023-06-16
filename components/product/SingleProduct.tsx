@@ -26,6 +26,7 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import { generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useMemo } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
 
 // import { useRouter } from 'next/navigation';
 
@@ -49,6 +50,12 @@ export default function SingleProduct({
   console.log(productPage);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
+    const notify = toast.loading('Añadiendo al carrito...', {
+      style: {
+        backgroundColor: '#dbeafe',
+        // color:'white',
+      },
+    });
     const response = await fetch('/api/cart', {
       method: 'POST',
       body: JSON.stringify({ id }),
@@ -58,6 +65,9 @@ export default function SingleProduct({
       },
     });
     const data = await response.json();
+    if (response.ok) {
+      toast.success('Añadido correctamente', { id: notify });
+    }
     setCart(data);
   };
   if (product_page) {
@@ -122,6 +132,7 @@ export default function SingleProduct({
   } else {
     return (
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
+        <Toaster />
         <div className="flex justify-center">{name}</div>
         <div className="flex justify-center items-center">{description}</div>
         <div className="flex justify-end items-center">
