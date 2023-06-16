@@ -29,19 +29,7 @@ export default function DragAndDropShipment({
   const [shipment, setShipment] = useState(shipmentBeta);
   const dragEndHandle: OnDragEndResponder = async (ev) => {
     console.log(ev);
-    //     const notify = (ev: number) =>
-    //     {
-    //       if (ev===1) {
-    //         toast.loading('Loading...');
-    //       } else if(ev===2){
-    //         toast.dismiss()
-    // toast.success('Modificado correctament')
-    //       }else if(ev===3){
-    //         toast.dismiss()
-    //         toast.error('Intentalo de nuevo')
-    //       }
 
-    //     }
     if (
       ev.destination &&
       ev.source.droppableId !== ev.destination.droppableId
@@ -54,6 +42,7 @@ export default function DragAndDropShipment({
           return item;
         })
       );
+      // l
       const shipmentId = ev.draggableId;
       const selectedStatus = ev.destination.droppableId;
       const notify = toast.loading('Loading...');

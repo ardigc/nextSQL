@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { MouseEventHandler, useContext } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
+import { Toaster, toast } from 'react-hot-toast';
+import Color from '@tiptap/extension-color';
 
 export function Product({
   name,
@@ -20,6 +22,7 @@ export function Product({
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
     try {
+      const notify = toast.loading('Añadiendo al carrito...');
       const response = await fetch('/api/cart', {
         method: 'POST',
         body: JSON.stringify({ id }),
@@ -28,6 +31,9 @@ export function Product({
         },
       });
       const data = await response.json();
+      if (response.ok) {
+        toast.success('Añadido correctamente', { id: notify });
+      }
       setCart(data);
     } catch (error) {
       window.location.assign('/login');
@@ -39,6 +45,14 @@ export function Product({
     // hacer que no se vaya al enlace al hacer click sobre button
     <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
       <Link href={enlace} className="flex-grow">
+        <Toaster
+          toastOptions={{
+            style: {
+              backgroundColor: '##60a5fa',
+              // color: '#fff',
+            },
+          }}
+        />
         <div className="flex justify-center">{name}</div>
         <div className="flex justify-center items-center">{description}</div>
         <div className="flex justify-end items-center">
