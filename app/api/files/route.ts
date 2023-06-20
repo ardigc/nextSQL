@@ -8,11 +8,9 @@ export async function POST(req: NextRequest) {
   const file = formData.get('file');
   if (!file) return new Response(null, { status: 400 });
   if (!(file instanceof Blob)) return new Response(null, { status: 400 });
-  console.log(file);
   const buffer = await file.arrayBuffer();
   const fileType = file.type;
   const fileName = file.name;
-  console.log(fileType);
   const blockBlobClient = containerClient.getBlockBlobClient(fileName);
   const upload = await blockBlobClient.uploadData(buffer, {
     blobHTTPHeaders: { blobContentType: fileType.toString() },
