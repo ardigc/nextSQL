@@ -11,7 +11,21 @@ export async function POST(req: NextRequest) {
   const buffer = await file.arrayBuffer();
   const fileType = file.type;
   const fileName = file.name;
-  const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+  function insertDateTimeInFileName(fileName: string): string {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleString().replace(/[/:]/g, '-');
+    const dotIndex = fileName.lastIndexOf('.');
+
+    if (dotIndex !== -1) {
+      const name = fileName.substring(0, dotIndex);
+      const extension = fileName.substring(dotIndex);
+      return `${name}_${formattedDate}${extension}`;
+    }
+
+    return `${fileName}_${formattedDate}`;
+  }
+  const finalFileName = insertDateTimeInFileName(fileName);
+  const blockBlobClient = containerClient.getBlockBlobClient(finalFileName);
   const upload = await blockBlobClient.uploadData(buffer, {
     blobHTTPHeaders: { blobContentType: fileType.toString() },
   });

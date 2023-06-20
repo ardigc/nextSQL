@@ -27,6 +27,7 @@ import { useMemo } from 'react';
 import Tiptap from '@/components/tiptap/TipTapComponent';
 import { FormEventHandler } from 'react';
 import TiptapUpdate from '../tiptap/TipTapUpdate';
+import Image from '@tiptap/extension-image';
 
 export default function UpdatingProduct({
   name,
@@ -67,6 +68,7 @@ export default function UpdatingProduct({
       TableRow,
       TableHeader,
       TableCell,
+      Image,
       Italic,
       Highlight.configure({ multicolor: true }),
       FontFamily.configure({
