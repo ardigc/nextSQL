@@ -111,6 +111,7 @@ export default function SingleProduct({
     const sanitizedOutput = DOMPurify.sanitize(output);
     return (
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
+        <Toaster />
         <div
           className="prose ProseMirror"
           dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
