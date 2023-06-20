@@ -16,6 +16,7 @@ import TableRow from '@tiptap/extension-table-row';
 import History from '@tiptap/extension-history';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
+import Image from '@tiptap/extension-image';
 
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
@@ -45,7 +46,7 @@ import {
   TableIcon,
   UndoIcon,
 } from '../Icons/Icons';
-import { useCallback, useMemo, useState } from 'react';
+import { ChangeEventHandler, useCallback, useMemo, useState } from 'react';
 import TipTapOutput from './TipTapOutput';
 const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
   const [json, setJson] = useState<JSONContent>({ type: 'doc' });
@@ -56,6 +57,7 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
       Strike,
       Underline,
       BulletList,
+      Image,
       OrderedList,
       ListItem,
       TextAlign.configure({
@@ -113,6 +115,32 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
     // editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
     editor.chain().focus().toggleLink({ href: url }).run();
   }, [editor]);
+  const addImage: ChangeEventHandler<HTMLInputElement> = useCallback(
+    async (e) => {
+      if (!editor) {
+        return null;
+      }
+      if (!e.target.files) return;
+      const file = e.target.files[0];
+      if (!file.type.startsWith('image/')) {
+        console.log('No has subido una imagen');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('file', file);
+      const response = await fetch('/api/files', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      const url = data._response.request.url;
+      console.log(url);
+      if (url) {
+        editor.chain().focus().setImage({ src: url }).run();
+      }
+    },
+    [editor]
+  );
 
   if (!editor) {
     return null;
@@ -384,6 +412,8 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
         >
           <AlingjustifyIcon />
         </button>
+        {/* <button onClick={addImage}>setImage</button> */}
+        <input type="file" onChange={addImage} />
       </div>
       <EditorContent
         id="editor"
