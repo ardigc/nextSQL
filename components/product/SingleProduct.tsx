@@ -27,6 +27,7 @@ import { generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useMemo } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
+import Image from '@tiptap/extension-image';
 
 // import { useRouter } from 'next/navigation';
 
@@ -77,6 +78,8 @@ export default function SingleProduct({
       Strike,
       Underline,
       BulletList,
+      Image,
+
       OrderedList,
       ListItem,
       TextAlign.configure({

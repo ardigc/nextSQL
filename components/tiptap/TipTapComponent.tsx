@@ -133,7 +133,7 @@ const Tiptap = ({ pageOnChange }: { pageOnChange?: any }) => {
         body: formData,
       });
       const data = await response.json();
-      const url = data._response.request.url;
+      const url = data;
       console.log(url);
       if (url) {
         editor.chain().focus().setImage({ src: url }).run();

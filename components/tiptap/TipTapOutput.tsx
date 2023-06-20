@@ -23,6 +23,7 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent, generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useMemo } from 'react';
+import Image from '@tiptap/extension-image';
 
 export default function TipTapOutput({ json }: { json: JSONContent }) {
   console.log(json);
@@ -33,6 +34,8 @@ export default function TipTapOutput({ json }: { json: JSONContent }) {
       Strike,
       Underline,
       BulletList,
+      Image,
+
       OrderedList,
       ListItem,
       TextAlign.configure({

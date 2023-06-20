@@ -18,5 +18,7 @@ export async function POST(req: NextRequest) {
 
   console.log(upload);
   console.log(upload._response.request.url);
-  return new Response(JSON.stringify(upload), { status: 200 });
+  return new Response(JSON.stringify(upload._response.request.url), {
+    status: 200,
+  });
 }
