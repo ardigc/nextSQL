@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
-  return NextResponse.next();
+  // return NextResponse.next();
   console.log('desde el middleware');
   if (req.nextUrl.pathname.startsWith('/api/auth')) {
     return NextResponse.next();
