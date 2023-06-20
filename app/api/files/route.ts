@@ -9,10 +9,10 @@ export async function POST(req: NextRequest) {
   if (!file) return new Response(null, { status: 400 });
   if (!(file instanceof Blob)) return new Response(null, { status: 400 });
   console.log(file);
-
+  const buffer = await file.arrayBuffer();
   const blockBlobClient = containerClient.getBlockBlobClient('test.jpg');
-  const upload = await blockBlobClient.uploadData(file);
+  const upload = await blockBlobClient.uploadData(buffer);
 
-  console.log(upload);
+  console.log(upload._response.request.url);
   return new Response(null, { status: 200 });
 }
