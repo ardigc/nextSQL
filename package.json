@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.14.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -43,6 +44,7 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
+    "busboy": "^1.6.0",
     "clsx": "^1.2.1",
     "dompurify": "^3.0.3",
     "eslint": "8.40.0",
@@ -64,6 +66,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@types/bcrypt": "^5.0.0",
+    "@types/busboy": "^1.5.0",
     "@types/dompurify": "^3.0.2",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/pg": "^8.6.6",
