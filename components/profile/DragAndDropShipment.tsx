@@ -7,7 +7,7 @@ import {
   Droppable,
   OnDragEndResponder,
 } from 'react-beautiful-dnd';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 interface Shipment {
   id: number;
   order_id: number;
@@ -62,7 +62,6 @@ export default function DragAndDropShipment({
   return (
     <>
       <DragDropContext onDragEnd={dragEndHandle}>
-        <Toaster />
         <div className="grid grid-cols-4">
           <Droppable droppableId="requested">
             {(droppableProvider) => (

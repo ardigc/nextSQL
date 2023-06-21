@@ -12,9 +12,7 @@
   box-sizing: border-box;
   color: rgb(255, 255, 255);
 }
-/* .toaster{
-  background-color: #60a5fa;
-} */
+
 #phone-input {
   position: relative;
   font-size: 14px;

@@ -26,7 +26,7 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import { generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useMemo } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import Image from '@tiptap/extension-image';
 
 // import { useRouter } from 'next/navigation';
@@ -111,7 +111,6 @@ export default function SingleProduct({
     const sanitizedOutput = DOMPurify.sanitize(output);
     return (
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
-        <Toaster />
         <div
           className="prose ProseMirror"
           dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
@@ -136,7 +135,6 @@ export default function SingleProduct({
   } else {
     return (
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
-        <Toaster />
         <div className="flex justify-center">{name}</div>
         <div className="flex justify-center items-center">{description}</div>
         <div className="flex justify-end items-center">

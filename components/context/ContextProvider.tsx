@@ -7,6 +7,7 @@ import {
   createContext,
   useState,
 } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 interface Cart {
   cart_id: number;
@@ -41,6 +42,7 @@ export function Provider({
 
   return (
     <GlobalContext.Provider value={{ cart, setCart }}>
+      <Toaster />
       {children}
     </GlobalContext.Provider>
   );
