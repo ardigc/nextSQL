@@ -35,8 +35,6 @@ export default function SignIn() {
               Iniciar sesión
             </div>
             <form onSubmit={submitHandler} className="gap-3 grid grid-cols-1 ">
-              {/* <label>Correo electronico</label>
-            <input name="email" type="email"></input> */}
               <TextField
                 label="Correo Electronico"
                 name="email"
@@ -44,8 +42,6 @@ export default function SignIn() {
                 classes={{ inputClassName: 'w-full' }}
               />
 
-              {/* <label>Contraseña</label>
-            <input name="pass" type="password"></input> */}
               <TextField
                 name="pass"
                 type="password"
