@@ -31,7 +31,9 @@ export default function SignIn() {
       <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex  justify-center bg-white max-w-5xl ">
         <div className=" m-3  grid grid-cols-1 md:grid-cols-2  w-full gap-3">
           <div>
-            <div className="text-3xl border-b pb-2 mb-2">Iniciar sesión</div>
+            <div className="text-3xl border-b pb-2 mb-2 text-blue-400">
+              Iniciar sesión
+            </div>
             <form onSubmit={submitHandler} className="gap-3 grid grid-cols-1 ">
               {/* <label>Correo electronico</label>
             <input name="email" type="email"></input> */}
@@ -40,7 +42,7 @@ export default function SignIn() {
                 name="email"
                 type="email"
                 classes={{ inputClassName: 'w-full' }}
-              ></TextField>
+              />
 
               {/* <label>Contraseña</label>
             <input name="pass" type="password"></input> */}
@@ -49,7 +51,7 @@ export default function SignIn() {
                 type="password"
                 classes={{ inputClassName: 'w-full' }}
                 label="Contraseña"
-              ></TextField>
+              />
               <div className="flex justify-end">
                 <Button
                   disableRipple
@@ -70,7 +72,12 @@ export default function SignIn() {
             <div className="flex flex-col gap-3">
               Crea tu cuenta ahora y disfruta de todos los productos disponibles
               <Link href="/register" className="flex justify-end">
-                <Button size="small" color="success" variant="contained">
+                <Button
+                  disableRipple
+                  size="small"
+                  color="success"
+                  variant="contained"
+                >
                   Crear Cuenta
                 </Button>
               </Link>
