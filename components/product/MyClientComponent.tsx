@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { MouseEventHandler, useContext } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
 import { toast } from 'react-hot-toast';
+import { Button } from 'gordo-ui';
+
 import Color from '@tiptap/extension-color';
 
 export function Product({
@@ -53,12 +55,9 @@ export function Product({
         <div className="flex justify-center">{name}</div>
         <div className="flex justify-center items-center">{description}</div>
         <div className="flex justify-end items-center">
-          <button
-            className="px-1 border bg-blue-400 rounded-3xl mx-5"
-            onClick={clickHandler}
-          >
+          <Button variant="contained" disableRipple onClick={clickHandler}>
             Añadir al carrito
-          </button>
+          </Button>
           <div className="w-16 flex justify-end me-2">{price} €</div>
         </div>
       </Link>
