@@ -34,6 +34,8 @@ export default function SignIn() {
       window.location.assign('/products');
     }
   };
+  console.log('reguster');
+
   return (
     <div className="relative top-12 bg-blue-100 min-h-screen w-full">
       <div className=" absolute top-7 left-1/2 py-3  -translate-x-1/2 border rounded-lg w-2/6 flex justify-center bg-blue-300 shadow-black shadow-2xl">

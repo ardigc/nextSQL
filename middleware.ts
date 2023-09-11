@@ -10,9 +10,7 @@ export async function middleware(req: NextRequest) {
   }
   const token = req.cookies.get('token');
   const URLFetch = new URL('/api/auth', req.url);
-  // console.log('token', token)
   const response = await fetch(URLFetch, {
-    // const response = await fetch('/api/auth', {
     method: 'POST',
     body: JSON.stringify({ token }),
     headers: { 'content-type': 'application/json' },
@@ -26,6 +24,8 @@ export async function middleware(req: NextRequest) {
     (req.nextUrl.pathname.startsWith('/register') ||
       req.nextUrl.pathname.startsWith('/login'))
   ) {
+    console.log('holiwi');
+
     return NextResponse.next();
   }
   if (

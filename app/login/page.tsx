@@ -1,9 +1,8 @@
 'use client';
-import { FormEventHandler } from 'react';
-// import {useRouter} from 'next/navigation';
+import { FormEventHandler, useState } from 'react';
 import Link from 'next/link';
-export default async function SignIn() {
-  // const {push} =useRouter()
+import { SnackBar, Alert } from 'gordo-ui';
+export default function SignIn() {
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -16,13 +15,15 @@ export default async function SignIn() {
         'Content-type': 'application/json',
       },
     });
-    if (!response.ok) return;
-    const data = await response.json();
-    document.cookie = `token=${data.token};`;
-    // push("/products")
-    window.location.assign('/products');
+    if (!response.ok) {
+      return;
+    } else {
+      const data = await response.json();
+      document.cookie = `token=${data.token};`;
+      // push("/products")
+      window.location.assign('/products');
+    }
   };
-
   return (
     <div className="relativew-full">
       <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg min-w-fit flex justify-center bg-blue-300 shadow-black shadow-2xl">

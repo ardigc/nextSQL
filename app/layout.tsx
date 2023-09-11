@@ -53,9 +53,6 @@ export default async function RootLayout({
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
-
-    // console.log(cartId.rows);
-
     cart = await pool.query(
       `SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=${cartId.rows[0].id} ORDER BY product_id DESC`
     );
@@ -64,6 +61,7 @@ export default async function RootLayout({
     const noCart: Array<Cart> = [];
     cart = { rows: noCart };
   }
+
   return (
     <html lang="en">
       <body className="relative">
@@ -73,11 +71,7 @@ export default async function RootLayout({
             <div className="absolute rounded-lg min-w-fit right-20 ">
               {!user && (
                 <>
-                  <Link
-                    href="/login"
-                    // className="border rounded-3xl bg-blue-400 px-6 py-[6px] mx-10"
-                  >
-                    {/* Iniciar sesión */}
+                  <Link href="/login">
                     <Button variant="contained" disableRipple>
                       Iniciar Sesion
                     </Button>
