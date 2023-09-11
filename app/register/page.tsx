@@ -88,7 +88,9 @@ export default function SignIn() {
               <div className="flex justify-between">
                 <div>
                   <input id="seller" name="seller" type="checkbox"></input>
-                  <label htmlFor="seller">¿Eres vendedor?</label>
+                  <label htmlFor="seller" className="pl-2">
+                    ¿Eres vendedor?
+                  </label>
                 </div>
                 <Button
                   disableRipple
