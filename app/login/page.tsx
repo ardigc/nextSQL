@@ -1,7 +1,7 @@
 'use client';
 import { FormEventHandler, useState } from 'react';
 import Link from 'next/link';
-import { SnackBar, Alert, Paper } from 'gordo-ui';
+import { SnackBar, Alert, Paper, Button } from 'gordo-ui';
 export default function SignIn() {
   const [openAlert, setOpenAlert] = useState(false);
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -28,24 +28,29 @@ export default function SignIn() {
   };
   return (
     <div className="relative w-full flex">
-      <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex justify-center bg-blue-300 w-fit">
-        <form onSubmit={submitHandler} className="px-3 grid grid-cols-1">
+      <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex justify-center bg-blue-300 w-1/6 ">
+        <form
+          onSubmit={submitHandler}
+          className="m-3 gap-3 grid grid-cols-1 w-full"
+        >
           <label>Correo electronico</label>
           <input name="email" type="email"></input>
+
           <label>Contraseña</label>
           <input name="pass" type="password"></input>
-          <div className="flex">
-            <Link href="/register">No tienes cuenta?</Link>
 
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                className="px-1 my-2 border bg-blue-400 rounded-3xl ml-7"
-              >
-                Log In
-              </button>
-            </div>
+          <div className="flex justify-end">
+            <Button
+              disableRipple
+              className="w-full my-2"
+              color="success"
+              variant="contained"
+              size="small"
+            >
+              Iniciar Sesión
+            </Button>
           </div>
+          <Link href="/register">No tienes cuenta?</Link>
         </form>
         <SnackBar
           autoHideDuration={3000}
