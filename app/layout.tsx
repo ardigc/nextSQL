@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import '/node_modules/gordo-ui/dist/style.css';
+
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { cookies, headers } from 'next/headers';
@@ -8,6 +10,7 @@ import Cart from '@/components/cart/Cart';
 import { pool } from '@/lib/server/pg';
 import { Provider } from '@/components/context/ContextProvider';
 import { HomeIcon } from '@/components/Icons/Icons';
+import { Button } from 'gordo-ui';
 
 interface Cart {
   cart_id: number;
@@ -65,16 +68,21 @@ export default async function RootLayout({
     <html lang="en">
       <body className="relative">
         <Provider initialCart={cart.rows}>
-          <div className="z-50 fixed top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
+          <div className="z-50 sticky top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
             <Link href="/products">Eshop</Link>
             <div className="absolute rounded-lg min-w-fit right-20 ">
               {!user && (
-                <Link
-                  href="/login"
-                  className="border rounded-3xl bg-blue-400 px-2 mx-10"
-                >
-                  Iniciar sesión
-                </Link>
+                <>
+                  <Link
+                    href="/login"
+                    // className="border rounded-3xl bg-blue-400 px-6 py-[6px] mx-10"
+                  >
+                    {/* Iniciar sesión */}
+                    <Button variant="contained" disableRipple>
+                      Iniciar Sesion
+                    </Button>
+                  </Link>
+                </>
               )}
               {userFin && cart && (
                 <div className="flex">
@@ -83,9 +91,7 @@ export default async function RootLayout({
               )}
             </div>
           </div>
-          <div className="bg-blue-100 min-h-screen w-full overflow-auto ">
-            <div className="relative top-9">{children}</div>
-          </div>
+          <main className=" w-full ">{children}</main>
         </Provider>
       </body>
     </html>

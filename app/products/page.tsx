@@ -8,16 +8,10 @@ export default async function Products() {
     'SELECT * FROM products WHERE delete_at IS NULL;'
   );
   return (
-    <div>
-      <div
-      // className="relative bg-blue-100 min-h-screen w-full"
-      >
-        <div className="relative grid grid-cols-2">
-          {result.rows.map((row) => (
-            <Product key={row.id} {...row} />
-          ))}
-        </div>
-      </div>
+    <div className="relative grid grid-cols-2">
+      {result.rows.map((row) => (
+        <Product key={row.id} {...row} />
+      ))}
     </div>
   );
 }

@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 200 50% 3%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-blue-100;
+  }
+}
 #card-element {
   border-radius: 0.5rem;
   padding: 12px;
