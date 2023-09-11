@@ -62,7 +62,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="relative">
+      <body className="relative font-base">
         <Provider initialCart={cart.rows}>
           <div className="z-50 sticky top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
             <Link href="/products">Eshop</Link>

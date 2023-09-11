@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        base: 'Roboto, sans-serif',
+      },
       colors: {
         background: 'hsl(var(--background))',
         // foreground: 'hsl(var(--foreground))',
