@@ -53,7 +53,7 @@ export default function SignIn() {
               <div className="flex justify-end">
                 <Button
                   disableRipple
-                  className="w-full my-2"
+                  className=" my-2"
                   color="success"
                   variant="contained"
                   size="small"
@@ -69,8 +69,10 @@ export default function SignIn() {
             </div>
             <div className="flex flex-col gap-3">
               Crea tu cuenta ahora y disfruta de todos los productos disponibles
-              <Link href="/register">
-                <Button variant="contained">Crear Cuenta</Button>
+              <Link href="/register" className="flex justify-end">
+                <Button size="small" color="success" variant="contained">
+                  Crear Cuenta
+                </Button>
               </Link>
             </div>
           </div>
