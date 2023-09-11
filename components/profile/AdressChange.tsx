@@ -32,7 +32,6 @@ export default function AddressChange({ adress }: { adress: Adress }) {
     if (response.ok) {
       window.location.reload();
     }
-    // console.log(response);
   };
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     const response = await fetch(`/api/adress/${adress.id}`, {

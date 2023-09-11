@@ -140,7 +140,6 @@ const TiptapUpdate = ({
       });
       const data = await response.json();
       const url = data;
-      console.log(url);
       if (url) {
         editor.chain().focus().setImage({ src: url }).run();
       }
@@ -215,7 +214,6 @@ const TiptapUpdate = ({
           className="border italic border-black flex justify-center items-center"
           onChange={(ev) => {
             const value = parseInt(ev.currentTarget.value) as Level;
-            // console.log(editor);
             editor.chain().focus().toggleHeading({ level: value }).run();
           }}
         >

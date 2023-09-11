@@ -10,7 +10,6 @@ export default function ShipmenModify({
   const [selectedStatus, setSelectedStatus] = useState(
     shipment.shipment_status
   );
-  console.log(selectedStatus);
   const clickHandle: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault;
     const shipmentId = shipment.id;

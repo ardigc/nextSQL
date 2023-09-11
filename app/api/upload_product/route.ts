@@ -5,7 +5,6 @@ import { Pool } from 'pg';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  console.log(body.productPage);
   const cookiesValue = req.cookies;
   let userId = null;
   try {
@@ -24,7 +23,6 @@ export async function POST(req: NextRequest) {
       body.productPage,
     ];
     const result = await pool.query(query, parameters);
-    console.log(result);
     return new Response('Se ha subido bien', { status: 200 });
   } catch (error) {
     throw 'No se subio bien ' + error;
@@ -34,10 +32,8 @@ export async function PATCH(req: NextRequest) {
   const body = await req.json();
   const cookiesValue = req.cookies;
   let userId = null;
-  console.log(body.name);
   // if (!body.name) {
   //   const result = await pool.query(`UPDATE products SET delete_at=NOW() WHERE id=${body.id}`);
-  //   console.log(result);
   //   return new Response('Se ha borrado bien', { status: 200 });
   // }
   try {
@@ -56,7 +52,6 @@ export async function PATCH(req: NextRequest) {
       body.id,
     ];
     const result = await pool.query(query, parameters);
-    console.log(result);
     return new Response('Se ha subido bien', { status: 200 });
   } catch (error) {
     throw 'No se subio bien ' + error;
@@ -67,6 +62,5 @@ export async function PUT(req: NextRequest) {
   const result = await pool.query(
     `UPDATE products SET delete_at=NOW() WHERE id=${body.id}`
   );
-  console.log(result);
   return new Response('Se ha borrado bien', { status: 200 });
 }

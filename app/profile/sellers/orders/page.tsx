@@ -35,7 +35,6 @@ export default async function OrderSellers() {
     shipment = await pool.query(
       `SELECT shipment.id, shipment.order_id, shipment.seller_id,shipment.shipment_status, orders.cart_id, orders.created_at, orders.adress, users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country FROM shipment INNER JOIN orders ON shipment.order_id=orders.id INNER JOIN users_adress ON orders.adress=users_adress.id WHERE seller_id=${user.id}`
     );
-    // console.log(shipment.rows)
   } catch (error) {
     console.log(error);
   }

@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
     let cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + userId.id + " AND state='unpay'"
     );
-    // console.log(cartId);
     if (cartId.rowCount === 0) {
       const createCart = await pool.query(
         'INSERT INTO carts(user_id, state) VALUES (' + userId.id + ",'unpay' )"

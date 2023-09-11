@@ -41,7 +41,6 @@ export default async function Payment() {
     if (typeof user === 'string') {
       return;
     }
-    // console.log(user);
     name = user.name;
     const cartId = await pool.query(
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
@@ -61,7 +60,6 @@ export default async function Payment() {
     adress = await pool.query(
       `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY marked_as_default DESC LIMIT 1`
     );
-    //  console.log(adress.rows[0].id)
   } catch (error: any) {
     throw error;
   }
@@ -79,8 +77,6 @@ export default async function Payment() {
   });
   // const clientSecret = paymentIntent.client_secret;
 
-  console.log(paymentMethods.data);
-  // console.log(clientSecret);
   return (
     <div className="relative bg-blue-100 min-h-screen w-full">
       <PaymentSelect

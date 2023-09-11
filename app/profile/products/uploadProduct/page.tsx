@@ -8,7 +8,6 @@ export default function upload() {
   let productPage: JSONContent = { type: 'doc' };
   const pageOnChange = (page: JSONContent) => {
     productPage = page;
-    console.log(page);
   };
 
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {

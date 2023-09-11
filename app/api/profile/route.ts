@@ -8,23 +8,14 @@ export async function POST(req: NextRequest) {
   const id = body.id;
   if (set === 'name') {
     const query = 'UPDATE users_info SET name=$1 WHERE id=$2';
-    const parameters = [
-      // set,
-      mode,
-      id,
-    ];
+    const parameters = [mode, id];
     const result = await pool.query(query, parameters);
 
-    // console.log(result);
     const token = sign({ id: id, name: mode }, process.env.JWT_SECRET || '');
     return new Response(JSON.stringify({ token }), { status: 200 });
   } else if (set === 'subname') {
     const query = 'UPDATE users_info SET subname=$1 WHERE id=$2';
-    const parameters = [
-      // set,
-      mode,
-      id,
-    ];
+    const parameters = [mode, id];
     const result = await pool.query(query, parameters);
     return new Response('Se ha subido bien', { status: 200 });
   } else if (set === 'email') {

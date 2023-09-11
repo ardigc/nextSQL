@@ -9,7 +9,6 @@ export default async function ProductDetail({
     'SELECT * FROM products WHERE id=' + params.updateProductId
   );
 
-  console.log(product.rows);
   return (
     <div>
       <UpdatingProduct {...product.rows[0]} />

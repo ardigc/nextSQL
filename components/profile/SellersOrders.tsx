@@ -27,7 +27,6 @@ export default function SellersOrders({
   draggableProvided: DraggableProvided;
 }) {
   const options = { timeZone: 'Europe/Madrid' };
-  // console.log(shipment);
   const enlace = '/profile/sellers/orders/' + shipment.id;
 
   return (

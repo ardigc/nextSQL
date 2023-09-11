@@ -30,11 +30,9 @@ export default async function adressConfiguration() {
     adressDefault = await pool.query(
       `SELECT * FROM users_adress WHERE user_id=${user.id} ORDER BY marked_as_default DESC LIMIT 1`
     );
-    // console.log(adress)
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }
-  // console.log(adress?.rows);
   return (
     <div className="relative bg-blue-100 min-h-screen w-full ">
       {adressDefault?.rows[0] && (

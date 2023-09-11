@@ -21,6 +21,5 @@ export async function PATCH(req: NextRequest) {
     'UPDATE users_adress SET marked_as_default=now() WHERE id=$1 RETURNING id';
   const parameters = [body.adressId];
   const result = await pool.query(query, parameters);
-  // console.log(result);
   return new Response(JSON.stringify(result.rows[0]), { status: 200 });
 }

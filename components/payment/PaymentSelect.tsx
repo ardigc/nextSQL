@@ -54,7 +54,6 @@ export default function PaymentSelect({
     });
     if (response.ok) {
       const data = await response.json();
-      //   console.log(data);
       window.location.assign('/confirmation?payment_intent=' + data.id);
     }
   };
@@ -70,12 +69,10 @@ export default function PaymentSelect({
       },
     });
     const data = await response.json();
-    // console.log(data.id)
     setClientSecret(data.client_secret);
     setPaymentId(data.id);
   };
 
-  //   console.log(paymentId);
   return (
     <div>
       {!newCard && (

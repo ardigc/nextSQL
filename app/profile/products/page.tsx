@@ -24,7 +24,6 @@ export default async function productSeller() {
     const result = await pool.query(
       `SELECT * FROM products WHERE seller_id=${user.id} AND delete_at IS NULL;`
     );
-    console.log(result.rows);
     products = result.rows;
   } catch (error) {}
   return (

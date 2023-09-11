@@ -48,7 +48,6 @@ export default function SingleProduct({
 }) {
   const { setCart } = useContext(GlobalContext);
   const productPage = JSON.parse(product_page);
-  console.log(productPage);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async (ev) => {
     ev.preventDefault();
     const notify = toast.loading('Añadiendo al carrito...', {

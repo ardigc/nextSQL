@@ -32,7 +32,6 @@ export default function ShipmentDetails({
   const options = { timeZone: 'Europe/Madrid' };
   const enlace = '/products/';
 
-  // console.log(shipment);
   return (
     <div className="border my-1 rounded-lg mx-auto w-11/12 border-blue-900 bg-blue-400">
       <div>

@@ -18,8 +18,6 @@ export default function CheckoutForm({
   const stripe = useStripe();
   const elements = useElements();
 
-  console.log(paymentId);
-
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
@@ -43,7 +41,6 @@ export default function CheckoutForm({
   };
 
   const changeHandler: ChangeEventHandler<HTMLInputElement> = async (e) => {
-    // console.log(e.target.checked)
     const check = e.target.checked;
     const respone = await fetch('/api/payment', {
       method: 'PATCH',

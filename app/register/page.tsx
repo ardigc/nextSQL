@@ -18,8 +18,6 @@ export default function SignIn() {
     if (seller) {
       role = 'seller';
     }
-    console.log(role);
-    console.log(email, pass, name, subname, phone);
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name, subname, email, phone, pass, role }),
@@ -34,7 +32,6 @@ export default function SignIn() {
       window.location.assign('/products');
     }
   };
-  console.log('reguster');
 
   return (
     <div className="relative top-12 bg-blue-100 min-h-screen w-full">

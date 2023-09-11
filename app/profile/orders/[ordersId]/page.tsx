@@ -46,7 +46,6 @@ export default async function OrderDetail({
       seller_id,
     }));
   }
-  // console.log(params.ordersId);
   try {
     user = verify(
       cookiesValue.get('token')?.value || '',
@@ -58,7 +57,6 @@ export default async function OrderDetail({
     orders = await pool.query(
       `SELECT shipment.shipment_status, shipment.seller_id, shipment.id, shipment.order_id, orders.created_at, orders.user_id, orders.cart_id , users_adress.line, users_adress.postal_code, users_adress.city, users_adress.country, users_info.name FROM shipment INNER JOIN users_info ON seller_id=users_info.id INNER JOIN orders ON shipment.order_id=orders.id INNER JOIN users_adress ON orders.adress= users_adress.id WHERE orders.id=${params.ordersId} ORDER BY orders.id DESC`
     );
-    // console.log(orders.rows)
     const cartBeta = await pool.query(
       'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
         orders.rows[0].cart_id +
@@ -69,7 +67,6 @@ export default async function OrderDetail({
     throw error;
   }
   const shipment = extractShipmentData(orders.rows);
-  console.log(shipment);
   return (
     <div className="relative bg-blue-100 min-h-screen w-full">
       <div className="w-11/12 max-w-2xl mx-auto border rounded-lg grid grid-cols-1 p-3 relative top-7 justify-center text-center bg-blue-300 shadow-black shadow-2xl  ">

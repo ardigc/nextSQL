@@ -20,7 +20,6 @@ export async function POST(req: NextRequest) {
   ];
   const result = await pool.query(query, parameters);
   const customer = await stripe.customers.create({ email: body.email });
-  // console.log(result);
   const token = sign(
     {
       id: result.rows[0].id,

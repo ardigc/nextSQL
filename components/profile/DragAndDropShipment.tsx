@@ -28,8 +28,6 @@ export default function DragAndDropShipment({
 }) {
   const [shipment, setShipment] = useState(shipmentBeta);
   const dragEndHandle: OnDragEndResponder = async (ev) => {
-    console.log(ev);
-
     if (
       ev.destination &&
       ev.source.droppableId !== ev.destination.droppableId
@@ -52,7 +50,6 @@ export default function DragAndDropShipment({
         headers: { 'content-type': 'application/json' },
       });
       if (response.ok) {
-        console.log(response);
         toast.success('Modificado correctamente', { id: notify });
       } else if (!response.ok) {
         toast.error('Intentalo de nuevo', { id: notify });

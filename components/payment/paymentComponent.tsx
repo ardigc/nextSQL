@@ -18,7 +18,6 @@ export default function CheckOutPage({
   const options = {
     clientSecret,
   };
-  console.log(paymentId);
   return (
     <div>
       <Elements stripe={stripePromise} options={options}>

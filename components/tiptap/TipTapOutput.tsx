@@ -26,7 +26,6 @@ import { useMemo } from 'react';
 import Image from '@tiptap/extension-image';
 
 export default function TipTapOutput({ json }: { json: JSONContent }) {
-  console.log(json);
   const output = useMemo(() => {
     return generateHTML(json, [
       StarterKit,
@@ -66,7 +65,6 @@ export default function TipTapOutput({ json }: { json: JSONContent }) {
     ]);
   }, [json]);
   const sanitizedOutput = DOMPurify.sanitize(output);
-  console.log(sanitizedOutput);
   return (
     <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
       <div

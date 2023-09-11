@@ -3,7 +3,6 @@ import { NextRequest } from 'next/server';
 import Busboy from 'busboy';
 
 export async function POST(req: NextRequest) {
-  console.log('dentro fetch');
   const formData = await req.formData();
   const file = formData.get('file');
   if (!file) return new Response(null, { status: 400 });
@@ -30,8 +29,6 @@ export async function POST(req: NextRequest) {
     blobHTTPHeaders: { blobContentType: fileType.toString() },
   });
 
-  console.log(upload);
-  console.log(upload._response.request.url);
   return new Response(JSON.stringify(upload._response.request.url), {
     status: 200,
   });

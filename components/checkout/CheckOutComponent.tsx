@@ -22,7 +22,6 @@ export default function CheckOutComponent() {
   const { setCart } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(-1);
 
-  // console.log(cart);
   const clickHandler2 = async (product: Cart) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {

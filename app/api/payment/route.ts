@@ -49,12 +49,10 @@ export async function PATCH(req: NextRequest) {
   const body = await req.json();
   const check = body.check;
   const paymentId = body.paymentId;
-  console.log(paymentId);
   try {
     const paymentMethod = await stripe.paymentIntents.update(paymentId, {
       setup_future_usage: check ? 'off_session' : null,
     });
-    console.log(paymentMethod);
     return new Response('Se ha subido bien', { status: 200 });
   } catch (error) {
     throw new Error('fallo en el pago' + error);

@@ -51,7 +51,6 @@ export default function OrderDetails({
   }
   const options = { timeZone: 'Europe/Madrid' };
   const enlace = '/products/';
-  console.log(cart);
   return (
     <div className="flex justify-center">
       <div className="border my-1 rounded-lg w-11/12 border-blue-900 bg-blue-400">

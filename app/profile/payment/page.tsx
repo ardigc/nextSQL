@@ -24,7 +24,6 @@ export default async function PaymentConfig() {
       query: `email:\'${user.rows[0].email}\'`,
     });
     customerId = customer.data[0].id;
-    // console.log(customerId);
     // Ahora tendria que hacer un retrieve o la lista de setup intents con
     // const lista= await stripe.setupIntents.list
   } catch (error: any) {
@@ -33,7 +32,6 @@ export default async function PaymentConfig() {
   const paymentMethods = await stripe.paymentMethods.list({
     customer: customerId,
   });
-  // console.log(paymentMethods.data)
   const setupIntent = await stripe.setupIntents.create({
     payment_method_types: ['card'],
     customer: customerId,

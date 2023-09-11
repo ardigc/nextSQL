@@ -21,7 +21,6 @@ export default function Cart({
   user: { id: number; name: string; role: string };
 }) {
   // const { number } = useContext(GlobalContext);
-  // console.log(cart)
   // const cartfin = cart.cart;
   const { setCart } = useContext(GlobalContext);
   const { cart } = useContext(GlobalContext);

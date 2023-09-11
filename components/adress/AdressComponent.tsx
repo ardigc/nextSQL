@@ -9,7 +9,6 @@ export default function AdressComponent({ userId }: { userId: number }) {
     const city = formData.get('city');
     const postalCode = formData.get('postalCode');
     const country = formData.get('country');
-    // console.log(line, city, postalCode, country);
     const response = await fetch('/api/adress', {
       method: 'POST',
       body: JSON.stringify({ line, city, postalCode, country, userId }),
@@ -18,7 +17,6 @@ export default function AdressComponent({ userId }: { userId: number }) {
       },
     });
     const id = await response.json();
-    // console.log(id);
     if (response.ok) window.location.assign('/payment');
   };
   return (

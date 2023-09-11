@@ -34,7 +34,6 @@ export default function PaymentChange({
     });
     // const data = await response.json();
     // setPaymentId(data.id);
-    console.log(response.ok);
     if (response.ok) {
       window.location.reload();
     }

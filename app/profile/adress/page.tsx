@@ -19,7 +19,6 @@ export default async function Adress() {
       `SELECT * FROM users_adress WHERE user_id=${user.id} AND deleted_at IS NULL ORDER BY id DESC`
     );
     adress = adressBeta.rows;
-    // console.log(adress);
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
   }

@@ -12,7 +12,6 @@ export async function PATCH(
     'UPDATE users_adress SET line=$1, postal_code=$2, city=$3, country=$4 WHERE id=$5';
   const parameters = [body.line, body.postalCode, body.city, body.country, id];
   const result = await pool.query(query, parameters);
-  // console.log(result);
   return new Response('Se ha subido bien', { status: 200 });
 }
 export async function DELETE(
@@ -23,6 +22,5 @@ export async function DELETE(
   const result = await pool.query(
     `UPDATE users_adress SET deleted_at=NOW() WHERE id=${id}`
   );
-  // console.log(result);
   return new Response('Se ha subido bien', { status: 200 });
 }

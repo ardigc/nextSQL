@@ -24,8 +24,6 @@ export async function middleware(req: NextRequest) {
     (req.nextUrl.pathname.startsWith('/register') ||
       req.nextUrl.pathname.startsWith('/login'))
   ) {
-    console.log('holiwi');
-
     return NextResponse.next();
   }
   if (
@@ -39,7 +37,6 @@ export async function middleware(req: NextRequest) {
     req.nextUrl.pathname.startsWith('/profile/products') ||
     req.nextUrl.pathname.startsWith('/profile/sellers')
   ) {
-    console.log(user);
     if (user.role === 'seller') {
       return NextResponse.next();
     } else {
