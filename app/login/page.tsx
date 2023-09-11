@@ -1,8 +1,9 @@
 'use client';
 import { FormEventHandler, useState } from 'react';
 import Link from 'next/link';
-import { SnackBar, Alert } from 'gordo-ui';
+import { SnackBar, Alert, Paper } from 'gordo-ui';
 export default function SignIn() {
+  const [openAlert, setOpenAlert] = useState(false);
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -16,6 +17,7 @@ export default function SignIn() {
       },
     });
     if (!response.ok) {
+      setOpenAlert(true);
       return;
     } else {
       const data = await response.json();
@@ -25,8 +27,8 @@ export default function SignIn() {
     }
   };
   return (
-    <div className="relativew-full">
-      <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg min-w-fit flex justify-center bg-blue-300 shadow-black shadow-2xl">
+    <div className="relative w-full flex">
+      <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex justify-center bg-blue-300 w-fit">
         <form onSubmit={submitHandler} className="px-3 grid grid-cols-1">
           <label>Correo electronico</label>
           <input name="email" type="email"></input>
@@ -45,7 +47,17 @@ export default function SignIn() {
             </div>
           </div>
         </form>
-      </div>
+        <SnackBar
+          autoHideDuration={3000}
+          transition="fade"
+          open={openAlert}
+          onClose={() => setOpenAlert(false)}
+        >
+          <Alert onClose={() => setOpenAlert(false)} severity="error">
+            Usuario o contraseña incorrectos
+          </Alert>
+        </SnackBar>
+      </Paper>
     </div>
   );
 }
