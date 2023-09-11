@@ -37,7 +37,7 @@ export async function middleware(req: NextRequest) {
     req.nextUrl.pathname.startsWith('/profile/products') ||
     req.nextUrl.pathname.startsWith('/profile/sellers')
   ) {
-    if (user.role === 'seller') {
+    if (user && user.role === 'seller') {
       return NextResponse.next();
     } else {
       return NextResponse.redirect(new URL('/profile', req.url));
