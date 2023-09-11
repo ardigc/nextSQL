@@ -11,6 +11,7 @@ import { pool } from '@/lib/server/pg';
 import { Provider } from '@/components/context/ContextProvider';
 import { HomeIcon } from '@/components/Icons/Icons';
 import { Button } from 'gordo-ui';
+import FooterComponent from '@/components/footer/FooterComponent';
 
 interface Cart {
   cart_id: number;
@@ -84,6 +85,7 @@ export default async function RootLayout({
             </div>
           </div>
           <main className=" w-full ">{children}</main>
+          <FooterComponent />
         </Provider>
       </body>
     </html>
