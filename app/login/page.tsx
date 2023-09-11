@@ -39,6 +39,7 @@ export default function SignIn() {
                 label="Correo Electronico"
                 name="email"
                 type="email"
+                classes={{ inputClassName: 'w-full' }}
               ></TextField>
 
               {/* <label>Contraseña</label>
@@ -46,6 +47,7 @@ export default function SignIn() {
               <TextField
                 name="pass"
                 type="password"
+                classes={{ inputClassName: 'w-full' }}
                 label="Contraseña"
               ></TextField>
               <div className="flex justify-end">
@@ -62,12 +64,14 @@ export default function SignIn() {
             </form>
           </div>
           <div>
-            <div className=" text-3xl border-b  pb-2">
+            <div className=" text-3xl border-b  pb-2 mb-2">
               <p>¿No tienes cuenta?</p>
             </div>
-            <div>
+            <div className="flex flex-col gap-3">
               Crea tu cuenta ahora y disfruta de todos los productos disponibles
-              <Link href="/register">¿No tienes cuenta?</Link>
+              <Link href="/register">
+                <Button variant="contained">Crear Cuenta</Button>
+              </Link>
             </div>
           </div>
         </div>
