@@ -4,6 +4,7 @@ import 'react-phone-input-2/lib/style.css';
 
 import { FormEventHandler } from 'react';
 import { Button, Paper, TextField } from 'gordo-ui';
+import Link from 'next/link';
 
 export default function SignIn() {
   const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -42,7 +43,10 @@ export default function SignIn() {
             <div className="text-3xl border-b pb-2 mb-2 text-blue-400">
               Crear cuenta
             </div>
-            <form onSubmit={submitHandler} className="px-3 grid grid-cols-1">
+            <form
+              onSubmit={submitHandler}
+              className="px-3 grid gap-3 grid-cols-1"
+            >
               {/* <label>Correo electronico</label>
             <input name="email" type="email"></input> */}
               <TextField
@@ -51,12 +55,30 @@ export default function SignIn() {
                 label="Correo electronico"
                 classes={{ inputClassName: 'w-full' }}
               />
-              <label>Contraseña</label>
-              <input name="pass" type="password"></input>
-              <label>Nombre</label>
-              <input name="name" type="text"></input>
-              <label>Apellido</label>
-              <input name="subname" type="text"></input>
+              {/* <label>Contraseña</label>
+              <input name="pass" type="password"></input> */}
+              <TextField
+                label="Contraseña"
+                name="pass"
+                type="password"
+                classes={{ inputClassName: 'w-full' }}
+              />
+              {/* <label>Nombre</label>
+              <input name="name" type="text"></input> */}
+              <TextField
+                name="name"
+                type="text"
+                label="Nombre"
+                classes={{ inputClassName: 'w-full' }}
+              />
+              {/* <label>Apellido</label>
+              <input name="subname" type="text"></input> */}
+              <TextField
+                name="subname"
+                type="text"
+                label="Apellido"
+                classes={{ inputClassName: 'w-full' }}
+              />
               <label>Telefono</label>
               <PhoneInput
                 inputProps={{ name: 'phone', id: 'phone-input' }}
@@ -79,6 +101,24 @@ export default function SignIn() {
                 </Button>
               </div>
             </form>
+          </div>
+          <div>
+            <div className=" text-3xl border-b  pb-2 mb-2">
+              <p>¿Ya tienes cuenta?</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              Inicia sesión y disfruta de todos los productos disponibles
+              <Link href="/login" className="flex justify-end">
+                <Button
+                  disableRipple
+                  size="small"
+                  color="success"
+                  variant="contained"
+                >
+                  Iniciar Sesión
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </Paper>
