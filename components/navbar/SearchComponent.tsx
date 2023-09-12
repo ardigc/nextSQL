@@ -2,6 +2,7 @@
 import { Input, Menu, MenuItem, MenuList, TextField } from 'gordo-ui';
 import { SearchIcon } from '../Icons/Icons';
 import { ChangeEventHandler, useState } from 'react';
+import Link from 'next/link';
 interface Product {
   id: number;
   name: string;
@@ -31,7 +32,6 @@ export default function SearchComponent() {
       setAnchorEl(undefined);
     }
   };
-  console.log(anchorEl);
   return (
     <div className="max-w-xl w-full flex items-center">
       <TextField
@@ -50,14 +50,24 @@ export default function SearchComponent() {
         // onClick={clickHandler}
       />
       <Menu
+        className="max-w-[32rem] w-full "
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(undefined)}
         open={Boolean(anchorEl)}
       >
-        {products &&
-          products.map((product) => (
-            <MenuItem key={product.id}>{product.name}</MenuItem>
-          ))}
+        <MenuList className="bg-white flex flex-col">
+          {products &&
+            products.map((product) => (
+              <Link
+                onClick={() => setAnchorEl(undefined)}
+                className="border-b border-b-neutral-200 justify-start py-[6px] px-2 uppercase gap-1 flex items-center hover:bg-neutral-100"
+                key={product.id}
+                href={`/products/${product.id}`}
+              >
+                {product.name}
+              </Link>
+            ))}
+        </MenuList>
       </Menu>
     </div>
   );
