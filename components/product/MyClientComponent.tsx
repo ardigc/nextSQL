@@ -14,11 +14,13 @@ export function Product({
   description,
   price,
   id,
+  seller_name,
 }: {
   name: string;
   id: number;
   description: string;
   price: number;
+  seller_name: string;
 }) {
   const { setCart } = useContext(GlobalContext);
   const enlace = '/products/' + id;
@@ -55,8 +57,11 @@ export function Product({
     <Link className="md:h-52 h-40" href={enlace}>
       <Paper className="h-full flex justify-between flex-col bg-white p-3">
         <div className="flex justify-center">{name}</div>
-        <div className="flex justify-center max-h-28 text-sm flex-grow  items-start">
+        <div className="flex justify-center max-h-20 overflow-hidden md:max-h-28 [div>&]:text-xs [div>&]:md:text-sm flex-grow  items-start">
           {description}
+        </div>
+        <div className="flex items-start text-xs">
+          Vendido por: {seller_name}
         </div>
         <div className="flex justify-between items-center">
           {/* <Button variant="contained" disableRipple onClick={clickHandler}>
