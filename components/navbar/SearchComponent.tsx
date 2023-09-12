@@ -2,20 +2,30 @@
 import { Input, TextField } from 'gordo-ui';
 import { SearchIcon } from '../Icons/Icons';
 import { ChangeEventHandler, useState } from 'react';
-
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  seller_id: number;
+  product_page: string;
+}
 export default function SearchComponent() {
   const [inputValue, setInputValue] = useState<string>('');
+  const [products, setProducts] = useState<Product[] | null>(null);
   const changeHandler: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = async (ev) => {
     setInputValue(ev.currentTarget.value);
-
-    const response = await fetch('/api/search', {
-      method: 'POST',
-      body: JSON.stringify({ value: ev.currentTarget.value }),
-      headers: { 'Content.type': 'application/json' },
-    });
-    console.log(response);
+    if (ev.currentTarget.value !== '') {
+      const response = await fetch('/api/search', {
+        method: 'POST',
+        body: JSON.stringify({ value: ev.currentTarget.value }),
+        headers: { 'Content.type': 'application/json' },
+      });
+      const products = await response.json();
+      setProducts(products);
+    }
   };
   return (
     <div className="max-w-xl w-full flex items-center">
