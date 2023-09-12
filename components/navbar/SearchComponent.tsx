@@ -44,7 +44,8 @@ export default function SearchComponent() {
         onChange={changeHandler}
         // onClick={clickHandler}
       />
-      {products && products.map((product) => <div>{product.name}</div>)}
+      {products &&
+        products.map((product) => <div key={product.id}>{product.name}</div>)}
     </div>
   );
 }
