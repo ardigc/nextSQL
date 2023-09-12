@@ -13,12 +13,13 @@ interface Product {
 export default function SearchComponent() {
   const [inputValue, setInputValue] = useState<string>('');
   const [products, setProducts] = useState<Product[] | null>(null);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<Element | undefined>(undefined);
   const changeHandler: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = async (ev) => {
     setInputValue(ev.currentTarget.value);
     if (ev.currentTarget.value !== '') {
+      setAnchorEl(ev.currentTarget);
       const response = await fetch('/api/search', {
         method: 'POST',
         body: JSON.stringify({ value: ev.currentTarget.value }),
@@ -26,9 +27,11 @@ export default function SearchComponent() {
       });
       const products = await response.json();
       setProducts(products);
-      setOpenMenu(true);
+    } else {
+      setAnchorEl(undefined);
     }
   };
+  console.log(anchorEl);
   return (
     <div className="max-w-xl w-full flex items-center">
       <TextField
@@ -46,13 +49,15 @@ export default function SearchComponent() {
         onChange={changeHandler}
         // onClick={clickHandler}
       />
-      <Menu onClose={() => setOpenMenu(false)} open={openMenu}>
-        <MenuList>
-          {products &&
-            products.map((product) => (
-              <MenuItem key={product.id}>{product.name}</MenuItem>
-            ))}
-        </MenuList>
+      <Menu
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(undefined)}
+        open={Boolean(anchorEl)}
+      >
+        {products &&
+          products.map((product) => (
+            <MenuItem key={product.id}>{product.name}</MenuItem>
+          ))}
       </Menu>
     </div>
   );
