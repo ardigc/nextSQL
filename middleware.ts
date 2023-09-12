@@ -26,11 +26,15 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
+
   if (
     response.ok &&
     req.nextUrl.pathname.startsWith('/api') &&
     !req.nextUrl.pathname.startsWith('/api/auth')
   ) {
+    return NextResponse.next();
+  }
+  if (req.nextUrl.pathname.startsWith('/api/search')) {
     return NextResponse.next();
   }
   if (
