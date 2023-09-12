@@ -50,7 +50,7 @@
     "dompurify": "^3.0.3",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
-    "gordo-ui": "^0.0.12",
+    "gordo-ui": "^0.0.13",
     "jsonwebtoken": "^9.0.0",
     "next": "^13.4.2",
     "pg": "^8.11.0",
