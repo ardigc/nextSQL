@@ -47,32 +47,24 @@ export default function SignIn() {
               onSubmit={submitHandler}
               className="px-3 grid gap-3 grid-cols-1"
             >
-              {/* <label>Correo electronico</label>
-            <input name="email" type="email"></input> */}
               <TextField
                 name="email"
                 type="email"
                 label="Correo electronico"
                 classes={{ inputClassName: 'w-full' }}
               />
-              {/* <label>Contraseña</label>
-              <input name="pass" type="password"></input> */}
               <TextField
                 label="Contraseña"
                 name="pass"
                 type="password"
                 classes={{ inputClassName: 'w-full' }}
               />
-              {/* <label>Nombre</label>
-              <input name="name" type="text"></input> */}
               <TextField
                 name="name"
                 type="text"
                 label="Nombre"
                 classes={{ inputClassName: 'w-full' }}
               />
-              {/* <label>Apellido</label>
-              <input name="subname" type="text"></input> */}
               <TextField
                 name="subname"
                 type="text"
