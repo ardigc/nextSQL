@@ -8,7 +8,7 @@ export default async function Products() {
     'SELECT * FROM products WHERE delete_at IS NULL;'
   );
   return (
-    <div className="relative grid grid-cols-2">
+    <div className="grid gap-5  mx-5 grid-cols-2 md:grid-cols-4  max-w-5xl lg:mx-auto">
       {result.rows.map((row) => (
         <Product key={row.id} {...row} />
       ))}

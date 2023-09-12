@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { MouseEventHandler, useContext } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
 import { toast } from 'react-hot-toast';
-import { Button } from 'gordo-ui';
+import { Button, Paper } from 'gordo-ui';
 
 import Color from '@tiptap/extension-color';
 
@@ -50,7 +50,8 @@ export function Product({
   };
   return (
     // hacer que no se vaya al enlace al hacer click sobre button
-    <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
+    // <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
+    <Paper className="h-52  ">
       <Link href={enlace} className="flex-grow">
         <div className="flex justify-center">{name}</div>
         <div className="flex justify-center items-center">{description}</div>
@@ -61,6 +62,7 @@ export function Product({
           <div className="w-16 flex justify-end me-2">{price} €</div>
         </div>
       </Link>
-    </div>
+    </Paper>
+    // </div>
   );
 }
