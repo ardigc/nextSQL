@@ -65,23 +65,27 @@ export default async function RootLayout({
     <html lang="en">
       <body className="relative font-base">
         <Provider initialCart={cart.rows}>
-          <div className="z-50 sticky top-0 w-screen h-12 flex items-center justify-center bg-blue-300">
-            <Link href="/products">Eshop</Link>
-            <div className="absolute rounded-lg min-w-fit right-20 ">
-              {!user && (
-                <>
-                  <Link href="/login">
-                    <Button variant="contained" disableRipple>
-                      Iniciar Sesion
-                    </Button>
-                  </Link>
-                </>
-              )}
-              {userFin && cart && (
-                <div className="flex">
-                  <Cart user={userFin} />
-                </div>
-              )}
+          <div className="z-50 sticky top-0 w-screen h-12 flex items-center justify-center  bg-blue-300">
+            <div className="max-w-5xl flex justify-between w-[64rem] items-center">
+              <Link href="/products" className="ml-3">
+                Eshop
+              </Link>
+              <div className="rounded-lg min-w-fit mr-3 ">
+                {!user && (
+                  <>
+                    <Link href="/login">
+                      <Button variant="contained" disableRipple>
+                        Iniciar Sesion
+                      </Button>
+                    </Link>
+                  </>
+                )}
+                {userFin && cart && (
+                  <div className="flex">
+                    <Cart user={userFin} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <main className=" w-full ">{children}</main>
