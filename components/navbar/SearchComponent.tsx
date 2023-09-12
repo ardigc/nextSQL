@@ -43,10 +43,11 @@ export default function SearchComponent() {
         inputProps={{ startAdornment: <SearchIcon /> }}
         fullWidth
         value={inputValue}
-        className="bg-white  rounded-2xl "
+        className="bg-white  rounded-2xl rounded-r-2xl"
         size="small"
         classes={{
-          inputClassName: 'ml-4 [div>&]:py-1 w-full hover:text-neutral-600',
+          inputClassName:
+            'ml-4 [div>&]:py-1 w-full rounded-r-2xl hover:text-neutral-600',
         }}
         placeholder="¿Que necesitas?"
         onChange={changeHandler}
