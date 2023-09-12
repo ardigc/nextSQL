@@ -1,5 +1,5 @@
 'use client';
-import { Input, TextField } from 'gordo-ui';
+import { Input, Menu, MenuItem, MenuList, TextField } from 'gordo-ui';
 import { SearchIcon } from '../Icons/Icons';
 import { ChangeEventHandler, useState } from 'react';
 interface Product {
@@ -13,6 +13,7 @@ interface Product {
 export default function SearchComponent() {
   const [inputValue, setInputValue] = useState<string>('');
   const [products, setProducts] = useState<Product[] | null>(null);
+  const [openMenu, setOpenMenu] = useState(false);
   const changeHandler: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = async (ev) => {
@@ -25,6 +26,7 @@ export default function SearchComponent() {
       });
       const products = await response.json();
       setProducts(products);
+      setOpenMenu(true);
     }
   };
   return (
@@ -44,8 +46,14 @@ export default function SearchComponent() {
         onChange={changeHandler}
         // onClick={clickHandler}
       />
-      {products &&
-        products.map((product) => <div key={product.id}>{product.name}</div>)}
+      <Menu onClose={() => setOpenMenu(false)} open={openMenu}>
+        <MenuList>
+          {products &&
+            products.map((product) => (
+              <MenuItem key={product.id}>{product.name}</MenuItem>
+            ))}
+        </MenuList>
+      </Menu>
     </div>
   );
 }
