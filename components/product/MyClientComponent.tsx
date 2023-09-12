@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { MouseEventHandler, useContext } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
 import { toast } from 'react-hot-toast';
-import { Button, Paper } from 'gordo-ui';
+import { Button, IconButton, Paper } from 'gordo-ui';
 
 import Color from '@tiptap/extension-color';
+import { AddCartIcon } from '../Icons/Icons';
 
 export function Product({
   name,
@@ -51,18 +52,23 @@ export function Product({
   return (
     // hacer que no se vaya al enlace al hacer click sobre button
     // <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
-    <Paper className="h-52  ">
-      <Link href={enlace} className="flex-grow">
+    <Link className="md:h-52 h-40" href={enlace}>
+      <Paper className="h-full flex justify-between flex-col bg-white p-3">
         <div className="flex justify-center">{name}</div>
-        <div className="flex justify-center items-center">{description}</div>
-        <div className="flex justify-end items-center">
-          <Button variant="contained" disableRipple onClick={clickHandler}>
+        <div className="flex justify-center max-h-28 text-sm flex-grow  items-start">
+          {description}
+        </div>
+        <div className="flex justify-between items-center">
+          {/* <Button variant="contained" disableRipple onClick={clickHandler}>
             Añadir al carrito
-          </Button>
+          </Button> */}
+          <IconButton onClick={clickHandler}>
+            <AddCartIcon />
+          </IconButton>
           <div className="w-16 flex justify-end me-2">{price} €</div>
         </div>
-      </Link>
-    </Paper>
+      </Paper>
+    </Link>
     // </div>
   );
 }
