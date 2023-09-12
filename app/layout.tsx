@@ -9,8 +9,8 @@ import LogOut from '@/components/profile/LogOut';
 import Cart from '@/components/cart/Cart';
 import { pool } from '@/lib/server/pg';
 import { Provider } from '@/components/context/ContextProvider';
-import { HomeIcon } from '@/components/Icons/Icons';
-import { Button } from 'gordo-ui';
+import { HomeIcon, UserIcon } from '@/components/Icons/Icons';
+import { Button, IconButton } from 'gordo-ui';
 import FooterComponent from '@/components/footer/FooterComponent';
 import SearchComponent from '@/components/navbar/SearchComponent';
 
@@ -72,15 +72,23 @@ export default async function RootLayout({
                 Eshop
               </Link>
               <SearchComponent />
-              <div className="rounded-lg min-w-fit mx-3 ">
+              <div className="rounded-lg min-w-fit md:mx-3 mx-1 ">
                 {!user && (
-                  <>
-                    <Link href="/login">
-                      <Button variant="contained" disableRipple>
-                        Iniciar Sesion
-                      </Button>
-                    </Link>
-                  </>
+                  <Link href="/login">
+                    <Button
+                      variant="contained"
+                      className=" [a>&]:max-md:hidden md:inline-flex"
+                      disableRipple
+                    >
+                      Iniciar Sesion
+                    </Button>
+                    <IconButton
+                      className="max-md:inline-flex [a>&]:md:hidden [a>&]:hover:bg-blue-200"
+                      disableRipple
+                    >
+                      <UserIcon />
+                    </IconButton>
+                  </Link>
                 )}
                 {userFin && cart && (
                   <div className="flex">

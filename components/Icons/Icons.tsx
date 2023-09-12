@@ -163,28 +163,28 @@ export function TrashIconLittle() {
   );
 }
 
-export function UserIcon() {
-  return (
-    <div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-user"
-        width={44}
-        height={44}
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="#2c3e50"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-      </svg>
-    </div>
-  );
-}
+// export function UserIcon() {
+//   return (
+//     <div>
+//       <svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         className="icon icon-tabler icon-tabler-user"
+//         width={44}
+//         height={44}
+//         viewBox="0 0 24 24"
+//         strokeWidth="1.5"
+//         stroke="#2c3e50"
+//         fill="none"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       >
+//         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+//         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+//         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+//       </svg>
+//     </div>
+//   );
+// }
 
 export function LogOutIcon() {
   return (
@@ -753,6 +753,27 @@ export function SearchIcon() {
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
       <path d="M21 21l-6 -6"></path>
+    </svg>
+  );
+}
+export function UserIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="icon icon-tabler icon-tabler-user-circle"
+      width={30}
+      height={30}
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 12m-9 0a9 9 0 1 0 18 0 9 9 0 1 0-18 0" />
+      <path d="M12 10m-3 0a3 3 0 1 0 6 0 3 3 0 1 0-6 0" />
+      <path d="M6.168 18.849a4 4 0 0 1 3.832-2.849h4a4 4 0 0 1 3.834 2.855" />
     </svg>
   );
 }
