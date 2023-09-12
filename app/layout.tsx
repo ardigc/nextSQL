@@ -12,6 +12,7 @@ import { Provider } from '@/components/context/ContextProvider';
 import { HomeIcon } from '@/components/Icons/Icons';
 import { Button } from 'gordo-ui';
 import FooterComponent from '@/components/footer/FooterComponent';
+import SearchComponent from '@/components/navbar/SearchComponent';
 
 interface Cart {
   cart_id: number;
@@ -67,10 +68,11 @@ export default async function RootLayout({
         <Provider initialCart={cart.rows}>
           <div className="z-50 sticky top-0 w-screen h-12 flex items-center justify-center  bg-blue-300">
             <div className="max-w-5xl flex justify-between w-[64rem] items-center">
-              <Link href="/products" className="ml-3">
+              <Link href="/products" className="mx-3">
                 Eshop
               </Link>
-              <div className="rounded-lg min-w-fit mr-3 ">
+              <SearchComponent />
+              <div className="rounded-lg min-w-fit mx-3 ">
                 {!user && (
                   <>
                     <Link href="/login">

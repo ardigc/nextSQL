@@ -56,7 +56,7 @@ export default function Cart({
   }
   return (
     <div className="relative">
-      <div className="flex w-48 justify-between items-center">
+      <div className="flex gap-3 justify-between items-center">
         <ProfileButton user={user} />
         <button onClick={clickHandler}>
           <CartIcon />
