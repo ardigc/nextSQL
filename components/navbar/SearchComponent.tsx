@@ -21,11 +21,14 @@ export default function SearchComponent() {
     setInputValue(ev.currentTarget.value);
     if (ev.currentTarget.value !== '') {
       setAnchorEl(ev.currentTarget);
-      const response = await fetch('/api/search', {
-        method: 'POST',
-        body: JSON.stringify({ value: ev.currentTarget.value }),
-        headers: { 'Content.type': 'application/json' },
-      });
+      const response = await fetch(
+        `/api/search?value=${ev.currentTarget.value}`,
+        {
+          method: 'GET',
+          // body: JSON.stringify({ value: ev.currentTarget.value }),
+          // headers: { 'Content.type': 'application/json' },
+        }
+      );
       const products = await response.json();
       setProducts(products);
     } else {
