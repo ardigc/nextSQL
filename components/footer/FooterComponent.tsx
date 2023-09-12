@@ -1,5 +1,5 @@
 import { IconButton } from 'gordo-ui';
-import { GithubIcon, LinkedInIcon } from '../Icons/Icons';
+import { GithubIcon, LinkedInIcon, NPMIcon } from '../Icons/Icons';
 
 export default function FooterComponent() {
   return (
@@ -15,6 +15,10 @@ export default function FooterComponent() {
             <LinkedInIcon />
           </IconButton>
         </div>
+        <p>Libreria de componentes propia disponible en NPM</p>
+        <IconButton href="https://www.npmjs.com/package/gordo-ui">
+          <NPMIcon />
+        </IconButton>
       </div>
     </footer>
   );
