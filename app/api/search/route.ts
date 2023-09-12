@@ -1,5 +1,4 @@
 import { pool } from '@/lib/server/pg';
-import { NextApiRequest } from 'next';
 import { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
