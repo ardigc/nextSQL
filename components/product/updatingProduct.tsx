@@ -22,7 +22,7 @@ import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import { useEditor, EditorContent, generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import Tiptap from '@/components/tiptap/TipTapComponent';
 import { FormEventHandler } from 'react';
@@ -34,6 +34,7 @@ export default function UpdatingProduct({
   description,
   price,
   product_page,
+  image_url,
   seller,
   id,
 }: {
@@ -42,9 +43,12 @@ export default function UpdatingProduct({
   price: number;
   id: number;
   product_page: string;
+  image_url: string;
   seller?: number;
 }) {
   let productPage: JSONContent = JSON.parse(product_page);
+  const [imageURL, setImageURL] = useState(image_url);
+  console.log(imageURL);
   const output = useMemo(() => {
     return generateHTML(productPage, [
       StarterKit,
@@ -95,7 +99,14 @@ export default function UpdatingProduct({
     const price = formData.get('price');
     const response = await fetch('/api/upload_product', {
       method: 'PATCH',
-      body: JSON.stringify({ name, description, price, productPage, id }),
+      body: JSON.stringify({
+        name,
+        description,
+        price,
+        productPage,
+        id,
+        imageURL,
+      }),
       headers: {
         'Content-type': 'application/json',
       },
@@ -126,6 +137,7 @@ export default function UpdatingProduct({
             <div className="my-5">
               <TiptapUpdate
                 pageOnChange={pageOnChange}
+                setImageURL={setImageURL}
                 prev={sanitizedOutput}
               />
             </div>

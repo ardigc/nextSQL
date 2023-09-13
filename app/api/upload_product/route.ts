@@ -45,12 +45,13 @@ export async function PATCH(req: NextRequest) {
     );
     if (typeof userId === 'string') return;
     const query =
-      'UPDATE products SET name=$1, description=$2, price=$3, product_page=$4 WHERE id=$5 RETURNING *';
+      'UPDATE products SET name=$1, description=$2, price=$3, product_page=$4, image_url=$5 WHERE id=$6 RETURNING *';
     const parameters = [
       body.name,
       body.description,
       body.price,
       body.productPage,
+      body.imageURL,
       body.id,
     ];
     const result = await pool.query(query, parameters);

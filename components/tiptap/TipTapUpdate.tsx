@@ -45,14 +45,23 @@ import {
   TableIcon,
   UndoIcon,
 } from '../Icons/Icons';
-import { ChangeEventHandler, useCallback, useMemo, useState } from 'react';
+import {
+  ChangeEventHandler,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import TipTapOutput from './TipTapOutput';
 import Image from '@tiptap/extension-image';
 const TiptapUpdate = ({
   pageOnChange,
   prev,
+  setImageURL,
 }: {
   prev: string;
+  setImageURL: Dispatch<SetStateAction<string>>;
   pageOnChange?: any;
 }) => {
   const [json, setJson] = useState<JSONContent>({ type: 'doc' });
@@ -141,6 +150,7 @@ const TiptapUpdate = ({
       const data = await response.json();
       const url = data;
       if (url) {
+        setImageURL(url);
         editor.chain().focus().setImage({ src: url }).run();
       }
     },
