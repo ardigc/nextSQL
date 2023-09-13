@@ -29,7 +29,10 @@ export async function POST(req: NextRequest) {
     blobHTTPHeaders: { blobContentType: fileType.toString() },
   });
 
-  return new Response(JSON.stringify(upload._response.request.url), {
-    status: 200,
-  });
+  return new Response(
+    JSON.stringify({ url: upload._response.request.url, name: fileName }),
+    {
+      status: 200,
+    }
+  );
 }

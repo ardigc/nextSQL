@@ -55,6 +55,8 @@ import {
   useState,
 } from 'react';
 import TipTapOutput from './TipTapOutput';
+import { FormControl } from 'gordo-ui';
+import { url } from 'inspector';
 const Tiptap = ({
   pageOnChange,
   setImageURL,
@@ -63,6 +65,9 @@ const Tiptap = ({
   setImageURL: Dispatch<SetStateAction<string>>;
 }) => {
   const [json, setJson] = useState<JSONContent>({ type: 'doc' });
+  const [URLsArray, setURLsArray] = useState<{ url: string; name: string }[]>(
+    []
+  );
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -146,9 +151,10 @@ const Tiptap = ({
         body: formData,
       });
       const data = await response.json();
-      const url = data;
+      const { url, name } = data;
       if (url) {
-        setImageURL(url);
+        setURLsArray((prev) => [...prev, { name: name, url: url }]);
+        // setImageURL(url);
         editor.chain().focus().setImage({ src: url }).run();
       }
     },
@@ -432,9 +438,20 @@ const Tiptap = ({
         className="prose p-5 mt-3 border top-0 relative"
         editor={editor}
       />
-      <div className="flex justify-center text-lg font-bold">
+      <FormControl>
+        Selecciona que imagen quieres que se vea en la previsualizacion de tu
+        producto (recodmendamos imagen en formato cuadrado)
+        {URLsArray.map((item) => (
+          <div onClick={() => setImageURL(item.url)}>
+            <input id={item.name} name="image" type="radio"></input>
+            <label className="ml-2" htmlFor={item.name}>
+              {item.name}
+            </label>
+          </div>
+        ))}
+        <div className="flex justify-center text-lg font-bold"></div>
         Asi se vera la pagina de tu producto
-      </div>
+      </FormControl>
       <TipTapOutput json={json} />
     </>
   );

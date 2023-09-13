@@ -17,7 +17,6 @@ export default function Upload() {
     const name = formData.get('name');
     const description = formData.get('description');
     const price = formData.get('price');
-    console.log(imageURL);
     const response = await fetch('/api/upload_product', {
       method: 'POST',
       body: JSON.stringify({ name, description, price, productPage, imageURL }),
