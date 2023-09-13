@@ -2,11 +2,12 @@
 
 import Tiptap from '@/components/tiptap/TipTapComponent';
 import { JSONContent } from '@tiptap/react';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useState } from 'react';
 
 export default function upload() {
+  const [imageURL, setImageURL] = useState('');
   let productPage: JSONContent = { type: 'doc' };
-  const pageOnChange = (page: JSONContent) => {
+  const pageOnChange = (page: JSONContent, imageURL: string) => {
     productPage = page;
   };
 
@@ -16,9 +17,10 @@ export default function upload() {
     const name = formData.get('name');
     const description = formData.get('description');
     const price = formData.get('price');
+    console.log(imageURL);
     const response = await fetch('/api/upload_product', {
       method: 'POST',
-      body: JSON.stringify({ name, description, price, productPage }),
+      body: JSON.stringify({ name, description, price, productPage, imageURL }),
       headers: {
         'Content-type': 'application/json',
       },
@@ -43,7 +45,7 @@ export default function upload() {
               </div>
             </div>
             <div className="my-5">
-              <Tiptap pageOnChange={pageOnChange} />
+              <Tiptap pageOnChange={pageOnChange} setImageURL={setImageURL} />
             </div>
             <div>
               <button

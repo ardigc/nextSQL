@@ -12,15 +12,17 @@ export async function POST(req: NextRequest) {
       cookiesValue.get('token')?.value || '',
       process.env.JWT_SECRET || ''
     );
+    console.log(body);
     if (typeof userId === 'string') return;
     const query =
-      'INSERT INTO products (name, description, price, seller_id, product_page) VALUES($1, $2, $3, $4, $5) RETURNING *';
+      'INSERT INTO products (name, description, price, seller_id, product_page, image_url) VALUES($1, $2, $3, $4, $5, $6) RETURNING *';
     const parameters = [
       body.name,
       body.description,
       body.price,
       userId.id,
       body.productPage,
+      body.imageURL,
     ];
     const result = await pool.query(query, parameters);
     return new Response('Se ha subido bien', { status: 200 });
