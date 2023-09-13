@@ -158,7 +158,7 @@ const Tiptap = ({
         editor.chain().focus().setImage({ src: url }).run();
       }
     },
-    [editor, setImageURL]
+    [editor]
   );
 
   if (!editor) {
