@@ -4,7 +4,7 @@ import Tiptap from '@/components/tiptap/TipTapComponent';
 import { JSONContent } from '@tiptap/react';
 import { FormEventHandler, useState } from 'react';
 
-export default function upload() {
+export default function Upload() {
   const [imageURL, setImageURL] = useState('');
   let productPage: JSONContent = { type: 'doc' };
   const pageOnChange = (page: JSONContent, imageURL: string) => {
