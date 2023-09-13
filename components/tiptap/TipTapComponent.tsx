@@ -442,7 +442,7 @@ const Tiptap = ({
         Selecciona que imagen quieres que se vea en la previsualizacion de tu
         producto (recodmendamos imagen en formato cuadrado)
         {URLsArray.map((item) => (
-          <div onClick={() => setImageURL(item.url)}>
+          <div key={item.url} onClick={() => setImageURL(item.url)}>
             <input id={item.name} name="image" type="radio"></input>
             <label className="ml-2" htmlFor={item.name}>
               {item.name}
