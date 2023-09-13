@@ -154,7 +154,7 @@ const TiptapUpdate = ({
         editor.chain().focus().setImage({ src: url }).run();
       }
     },
-    [editor]
+    [editor, setImageURL]
   );
   if (!editor) {
     return null;
