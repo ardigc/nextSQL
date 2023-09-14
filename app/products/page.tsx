@@ -5,7 +5,7 @@ import { verify } from 'jsonwebtoken';
 
 export default async function Products() {
   const result = await pool.query(
-    'SELECT products.name, products.description, products.price, products.id, users_info.name AS seller_name FROM products INNER JOIN users_info ON products.seller_id=users_info.id WHERE delete_at IS NULL;'
+    'SELECT products.name, products.description, products.price, products.id, products.image_url ,users_info.name AS seller_name FROM products INNER JOIN users_info ON products.seller_id=users_info.id WHERE delete_at IS NULL;'
   );
   return (
     <div className=" mt-7 mx-5  max-w-5xl lg:mx-auto">

@@ -8,6 +8,7 @@ import { Button, IconButton, Paper } from 'gordo-ui';
 
 import Color from '@tiptap/extension-color';
 import { AddCartIcon } from '../Icons/Icons';
+import Image from 'next/image';
 
 export function Product({
   name,
@@ -15,12 +16,14 @@ export function Product({
   price,
   id,
   seller_name,
+  image_url,
 }: {
   name: string;
   id: number;
   description: string;
   price: number;
   seller_name: string;
+  image_url: string;
 }) {
   const { setCart } = useContext(GlobalContext);
   const enlace = '/products/' + id;
@@ -52,14 +55,26 @@ export function Product({
     // window.location.reload();
   };
   return (
-    // hacer que no se vaya al enlace al hacer click sobre button
     // <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
-    <Link className="md:h-52 h-40" href={enlace}>
-      <Paper className="h-full flex justify-between flex-col bg-white p-3">
-        <div className="flex justify-center">{name}</div>
-        <div className="flex justify-center max-h-20 overflow-hidden md:max-h-28 [div>&]:text-xs [div>&]:md:text-sm flex-grow  items-start">
+    <Link className="[div>&]:md:min-h-[300px] [div>&]:min-h-48" href={enlace}>
+      {/* <div className="h-full flex justify-between flex-col  p-3"> */}
+      <Paper className="h-full flex justify-between flex-col  p-3 bg-white">
+        {/* <div className="flex justify-center font-medium">{name}</div> */}
+        {image_url && (
+          <div className="flex justify-center">
+            <Image
+              src={image_url}
+              className="rounded-full lg:max-w-[180px] lg:max-h-[180px] max-w-[140px] max-h-[140px] object-cover object-center"
+              alt={name}
+              width={180}
+              height={180}
+            ></Image>
+          </div>
+        )}{' '}
+        <div className="flex justify-center font-medium">{name}</div>
+        {/* <div className="flex justify-center max-h-20 overflow-hidden md:max-h-28 [div>&]:text-xs [div>&]:md:text-sm flex-grow  items-start">
           {description}
-        </div>
+        </div> */}
         <div className="flex items-start text-xs">
           Vendido por: {seller_name}
         </div>
@@ -73,6 +88,7 @@ export function Product({
           <div className="w-16 flex justify-end me-2">{price} €</div>
         </div>
       </Paper>
+      {/* </div> */}
     </Link>
     // </div>
   );
