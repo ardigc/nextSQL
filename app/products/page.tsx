@@ -19,7 +19,7 @@ export default async function Products() {
           src={'https://ardigc.blob.core.windows.net/images/iphone 15 pro.webp'}
         ></Image>
       </Link>
-      <p className="text-3xl mb-3 font-semibold   ">
+      <p className="text-3xl my-3 font-semibold   ">
         Ultimos productos destacados
       </p>
       <div className="grid md:grid-cols-4 gap-5 grid-cols-2">

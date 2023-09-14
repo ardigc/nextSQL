@@ -64,14 +64,16 @@ export function Product({
           <div className="flex justify-center">
             <Image
               src={image_url}
-              className="rounded-full lg:max-w-[180px] lg:max-h-[180px] max-w-[140px] max-h-[140px] object-cover object-center"
+              className="rounded-3xl lg:max-w-[180px] lg:max-h-[180px] max-w-[140px] max-h-[140px] object-contain object-center"
               alt={name}
               width={180}
               height={180}
             ></Image>
           </div>
         )}{' '}
-        <div className="flex justify-center font-medium">{name}</div>
+        <div className="flex justify-center [div>&]:text-sm [div>&]:md:text-base font-medium">
+          {name}
+        </div>
         {/* <div className="flex justify-center max-h-20 overflow-hidden md:max-h-28 [div>&]:text-xs [div>&]:md:text-sm flex-grow  items-start">
           {description}
         </div> */}
