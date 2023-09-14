@@ -137,6 +137,7 @@ export default function UpdatingProduct({
             <div className="my-5">
               <TiptapUpdate
                 pageOnChange={pageOnChange}
+                imageURL={imageURL}
                 setImageURL={setImageURL}
                 prev={sanitizedOutput}
               />
