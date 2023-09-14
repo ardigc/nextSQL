@@ -2,6 +2,8 @@ import { pool } from '@/lib/server/pg';
 import { Product } from '../../components/product/MyClientComponent';
 import { cookies } from 'next/headers';
 import { verify } from 'jsonwebtoken';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Products() {
   const result = await pool.query(
@@ -9,6 +11,14 @@ export default async function Products() {
   );
   return (
     <div className=" mt-7 mx-5  max-w-5xl lg:mx-auto">
+      <Link href={'/products/51'}>
+        <Image
+          alt={'Main offer'}
+          width={1100}
+          height={460}
+          src={'https://ardigc.blob.core.windows.net/images/iphone 15 pro.webp'}
+        ></Image>
+      </Link>
       <p className="text-3xl mb-3 font-semibold   ">
         Ultimos productos destacados
       </p>
