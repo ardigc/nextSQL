@@ -19,7 +19,7 @@ export default function ProfileButton({
       <Button
         disableRipple
         variant="text"
-        className="[div>&]:text-black [div>&]:font-sans"
+        className="[div>&]:text-black [div>&]:font-sans [div>&]:normal-case"
         onClick={(ev) => {
           setAnchorEl(ev.currentTarget), setOpen(true);
         }}
@@ -32,9 +32,10 @@ export default function ProfileButton({
         }}
         open={open}
         anchorEl={anchorEl}
-        classes={{ MenuList: 'm-2 flex flex-col' }}
+        classes={{ MenuList: 'flex flex-col' }}
       >
         <Link
+          className="hover:bg-neutral-100 p-2"
           href="/profile"
           onClick={() => {
             setAnchorEl(undefined), setOpen(false);
@@ -44,6 +45,7 @@ export default function ProfileButton({
         </Link>
 
         <Link
+          className="hover:bg-neutral-100 p-2"
           href="/profile/orders"
           onClick={() => {
             setAnchorEl(undefined), setOpen(false);
@@ -54,6 +56,7 @@ export default function ProfileButton({
 
         {user.role === 'seller' && (
           <Link
+            className="hover:bg-neutral-100 p-2"
             href="/profile/products"
             onClick={() => {
               setAnchorEl(undefined), setOpen(false);
@@ -63,6 +66,7 @@ export default function ProfileButton({
           </Link>
         )}
         <li
+          className="hover:bg-neutral-100 p-2"
           onClick={() => {
             setAnchorEl(undefined), setOpen(false);
           }}
