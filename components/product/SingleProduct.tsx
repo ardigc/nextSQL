@@ -148,10 +148,10 @@ export default function SingleProduct({
             </div>
           </div>
         </div>
-        <div>
-          Mas informacion del producto
+        <div className="w-full mt-5">
+          <p className="font-semibold">Mas informacion del producto</p>
           <div
-            className="prose ProseMirror"
+            className="prose ProseMirror mx-auto"
             dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
           ></div>
         </div>
