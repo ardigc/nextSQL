@@ -19,7 +19,7 @@ export default function ProfileButton({
       <Button
         disableRipple
         variant="text"
-        className="[div>&]:text-black"
+        className="[div>&]:text-black [div>&]:font-sans"
         onClick={(ev) => {
           setAnchorEl(ev.currentTarget), setOpen(true);
         }}
@@ -32,41 +32,43 @@ export default function ProfileButton({
         }}
         open={open}
         anchorEl={anchorEl}
+        classes={{ MenuList: 'm-2 flex flex-col' }}
       >
-        <MenuList className="m-2">
-          <li
+        <Link
+          href="/profile"
+          onClick={() => {
+            setAnchorEl(undefined), setOpen(false);
+          }}
+        >
+          Tu perfil
+        </Link>
+
+        <Link
+          href="/profile/orders"
+          onClick={() => {
+            setAnchorEl(undefined), setOpen(false);
+          }}
+        >
+          Pedidos
+        </Link>
+
+        {user.role === 'seller' && (
+          <Link
+            href="/profile/products"
             onClick={() => {
               setAnchorEl(undefined), setOpen(false);
             }}
           >
-            <Link href="/profile" onClick={() => setOpen(false)}>
-              Tu perfil
-            </Link>
-          </li>
-          <li
-            onClick={() => {
-              setAnchorEl(undefined), setOpen(false);
-            }}
-          >
-            <Link href="/profile/orders">Pedidos</Link>
-          </li>
-          {user.role === 'seller' && (
-            <li
-              onClick={() => {
-                setAnchorEl(undefined), setOpen(false);
-              }}
-            >
-              <Link href="/profile/products">Tus productos</Link>
-            </li>
-          )}
-          <li
-            onClick={() => {
-              setAnchorEl(undefined), setOpen(false);
-            }}
-          >
-            <LogOut />
-          </li>
-        </MenuList>
+            Tus productos
+          </Link>
+        )}
+        <li
+          onClick={() => {
+            setAnchorEl(undefined), setOpen(false);
+          }}
+        >
+          <LogOut />
+        </li>
       </Menu>
       {/* {open && (
         <div className="absolute bg-blue-300 border border-blue-400 w-32 ">

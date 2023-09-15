@@ -58,20 +58,19 @@ export default function SearchComponent() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(undefined)}
         open={Boolean(anchorEl)}
+        classes={{ MenuList: 'bg-white flex flex-col' }}
       >
-        <MenuList className="bg-white flex flex-col">
-          {products &&
-            products.map((product) => (
-              <Link
-                onClick={() => setAnchorEl(undefined)}
-                className="border-b border-b-neutral-200 justify-start py-[6px] px-2 uppercase gap-1 flex items-center hover:bg-neutral-100"
-                key={product.id}
-                href={`/products/${product.id}`}
-              >
-                {product.name}
-              </Link>
-            ))}
-        </MenuList>
+        {products &&
+          products.map((product) => (
+            <Link
+              onClick={() => setAnchorEl(undefined)}
+              className="border-b border-b-neutral-200 justify-start py-[6px] px-2 uppercase gap-1 flex items-center hover:bg-neutral-100"
+              key={product.id}
+              href={`/products/${product.id}`}
+            >
+              {product.name}
+            </Link>
+          ))}
       </Menu>
     </div>
   );
