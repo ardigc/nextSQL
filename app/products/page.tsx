@@ -10,7 +10,7 @@ export default async function Products() {
     'SELECT products.name, products.description, products.price, products.id, products.image_url ,users_info.name AS seller_name FROM products INNER JOIN users_info ON products.seller_id=users_info.id WHERE delete_at IS NULL;'
   );
   return (
-    <div className=" mt-7   max-w-5xl 2xl:max-w-full lg:mx-auto">
+    <div className="max-w-5xl 2xl:max-w-full lg:mx-auto">
       <Link className="relative" href={'/products/51'}>
         <Image
           alt={'Main offer'}
