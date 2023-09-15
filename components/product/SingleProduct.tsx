@@ -2,6 +2,9 @@
 
 import { MouseEventHandler, useContext } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
+import Image from '@tiptap/extension-image';
+import NextImage from 'next/image';
+
 import { JSONContent } from '@tiptap/react';
 import Bold from '@tiptap/extension-bold';
 import Strike from '@tiptap/extension-strike';
@@ -27,7 +30,7 @@ import { generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useMemo } from 'react';
 import { toast } from 'react-hot-toast';
-import Image from '@tiptap/extension-image';
+import { Button } from 'gordo-ui';
 
 // import { useRouter } from 'next/navigation';
 
@@ -38,6 +41,7 @@ export default function SingleProduct({
   product_page,
   seller,
   id,
+  image_url,
 }: {
   name: string;
   description: string;
@@ -45,6 +49,7 @@ export default function SingleProduct({
   id: number;
   product_page: string;
   seller?: number;
+  image_url: string;
 }) {
   const { setCart } = useContext(GlobalContext);
   const productPage = JSON.parse(product_page);
@@ -109,26 +114,46 @@ export default function SingleProduct({
     ]);
     const sanitizedOutput = DOMPurify.sanitize(output);
     return (
-      <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center mb-10 bg-blue-300 shadow-black shadow-2xl ">
-        <div
-          className="prose ProseMirror"
-          dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
-        ></div>
-        <div className="flex justify-end items-center">
-          <button
-            onClick={clickHandler}
-            className="px-1 border bg-blue-400 rounded-3xl mx-5"
-          >
-            Añadir al carrito
-          </button>
-          <div className="w-16 min-w-fit flex justify-end me-2">{price} €</div>
-        </div>
-        {seller && (
-          <div className="flex justify-end items-center mt-2">
-            {' '}
-            Vendido por {seller}
+      <div className="flex flex-col">
+        <div className="flex [div>&]:md:flex-row flex-col w-full gap-3 mx-auto">
+          <div className="flex-1 flex justify-center">
+            <NextImage
+              quality={100}
+              src={image_url}
+              alt={name}
+              width={512}
+              height={640}
+            ></NextImage>
           </div>
-        )}
+          <div className="flex-1 flex flex-col gap-2 m-3 justify-between">
+            <div className="text-4xl font-bold">{name}</div>
+            <div className="flex-grow">
+              <div className="font-semibold">Acerca de este producto:</div>
+              <div>{description}</div>
+            </div>
+            <div>
+              {seller && <div> Vendido por {seller}</div>}
+              <div className="flex justify-around items-center m-2">
+                <div className="text-2xl font-semibold">{price} €</div>
+
+                <Button
+                  variant="contained"
+                  onClick={clickHandler}
+                  color="success"
+                >
+                  Añadir al carrito
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          Mas informacion del producto
+          <div
+            className="prose ProseMirror"
+            dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
+          ></div>
+        </div>
       </div>
     );
   } else {

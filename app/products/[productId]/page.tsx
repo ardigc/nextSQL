@@ -14,7 +14,7 @@ export default async function ProductDetail({
   );
 
   return (
-    <div className="relative bg-blue-100 min-h-screen w-full">
+    <div className="relative max-w-5xl mt-7 lg:max-w-7xl lg:mx-auto">
       <SingleProduct {...product.rows[0]} seller={seller.rows[0]?.name} />
     </div>
   );
