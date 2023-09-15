@@ -115,7 +115,8 @@ export default function SingleProduct({
     const sanitizedOutput = DOMPurify.sanitize(output);
     return (
       <div className="flex flex-col">
-        <div className="flex [div>&]:md:flex-row flex-col w-full gap-3 mx-auto">
+        <div className="flex [div>&]:md:flex-row flex-col w-full gap-3 max-md:items-center mx-auto ">
+          <div className="text-4xl md:hidden block font-bold m-3">{name}</div>
           <div className="flex-1 flex justify-center">
             <NextImage
               quality={100}
@@ -126,14 +127,14 @@ export default function SingleProduct({
             ></NextImage>
           </div>
           <div className="flex-1 flex flex-col gap-2 m-3 justify-between">
-            <div className="text-4xl font-bold">{name}</div>
+            <div className="text-4xl hidden md:block font-bold">{name}</div>
             <div className="flex-grow">
               <div className="font-semibold">Acerca de este producto:</div>
               <div>{description}</div>
             </div>
             <div>
               {seller && <div> Vendido por {seller}</div>}
-              <div className="flex justify-around items-center m-2">
+              <div className="flex justify-around gap-2 items-center md:m-2">
                 <div className="text-2xl font-semibold">{price} €</div>
 
                 <Button
