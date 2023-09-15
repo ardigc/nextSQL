@@ -2,7 +2,7 @@ import Link from 'next/link';
 import '/node_modules/gordo-ui/dist/style.css';
 
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import { cookies, headers } from 'next/headers';
 import { verify } from 'jsonwebtoken';
 import LogOut from '@/components/profile/LogOut';
@@ -25,7 +25,11 @@ interface Cart {
   user_id: number;
 }
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  weight: '400',
+});
 export const revalidate = 0;
 export const metadata = {
   title: 'Eshop',
@@ -64,7 +68,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="relative font-base">
+      <body className={`${poppins.variable} font-sans relative`}>
         <Provider initialCart={cart.rows}>
           <div className="z-50 sticky top-0  h-12 flex items-center justify-center w-full bg-blue-300">
             <div className="max-w-5xl flex justify-between w-[64rem] items-center">
