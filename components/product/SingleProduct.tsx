@@ -151,7 +151,7 @@ export default function SingleProduct({
         <div className="w-full mt-5">
           <p className="font-semibold">Mas informacion del producto</p>
           <div
-            className="prose ProseMirror mx-auto"
+            className="prose ProseMirror mx-auto w-fit"
             dangerouslySetInnerHTML={{ __html: sanitizedOutput }}
           ></div>
         </div>
