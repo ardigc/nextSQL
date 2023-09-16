@@ -20,8 +20,6 @@ export default function Cart({
 }: {
   user: { id: number; name: string; role: string };
 }) {
-  // const { number } = useContext(GlobalContext);
-  // const cartfin = cart.cart;
   const { setCart } = useContext(GlobalContext);
   const { cart } = useContext(GlobalContext);
   const cartfin = cart;
@@ -47,16 +45,10 @@ export default function Cart({
       const price = products.price * products.qt;
       return total + price;
     }, 0);
-    // let total = 0;
-    // products.map((product) => {
-    //   const price = product.price * product.qt;
-    //   total = total + price;
-    // });
-    // return total;
   }
   return (
     <div className="relative">
-      <div className="flex gap-3 justify-between items-center">
+      <div className="flex md:gap-3 justify-between items-center">
         <ProfileButton user={user} />
         <button onClick={clickHandler}>
           <CartIcon />

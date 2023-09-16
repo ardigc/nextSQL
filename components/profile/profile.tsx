@@ -4,7 +4,7 @@ import Cart from '../cart/Cart';
 import LogOut from './LogOut';
 import { verify } from 'jsonwebtoken';
 import Link from 'next/link';
-import { Button, Menu, MenuList, Paper, Popover } from 'gordo-ui';
+import { Button, IconButton, Menu, MenuList, Paper, Popover } from 'gordo-ui';
 
 export default function ProfileButton({
   user,
@@ -19,13 +19,22 @@ export default function ProfileButton({
       <Button
         disableRipple
         variant="text"
-        className="[div>&]:text-black [div>&]:font-sans [div>&]:normal-case"
+        className="[div>&]:text-black [div>&]:font-sans [div>&]:normal-case [div>&]:hidden [div>&]:md:block"
         onClick={(ev) => {
           setAnchorEl(ev.currentTarget), setOpen(true);
         }}
       >
         {user.name}
       </Button>
+      <IconButton
+        className="[div>&]:md:hidden"
+        disableRipple
+        onClick={(ev) => {
+          setAnchorEl(ev.currentTarget), setOpen(true);
+        }}
+      >
+        <UserIcon />
+      </IconButton>
       <Menu
         onClose={() => {
           setAnchorEl(undefined), setOpen(false);
