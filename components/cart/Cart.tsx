@@ -106,7 +106,7 @@ export default function Cart({
               <div className="text-xs">IVA incluido</div>
             </div>
             <div className="flex justify-center">
-              <Link href="/checkout">
+              <Link href="/checkout" onClick={() => setShowCart(false)}>
                 <Button variant="contained" disableRipple color="success">
                   Comprar
                 </Button>
