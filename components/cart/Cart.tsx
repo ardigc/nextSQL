@@ -4,6 +4,7 @@ import { MouseEventHandler, useContext, useState } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
 import ProfileButton from '../profile/profile';
 import Link from 'next/link';
+import { Popover } from 'gordo-ui';
 interface Cart {
   cart_id: number;
   description: string;
@@ -20,6 +21,8 @@ export default function Cart({
 }: {
   user: { id: number; name: string; role: string };
 }) {
+  // const { number } = useContext(GlobalContext);
+  // const cartfin = cart.cart;
   const { setCart } = useContext(GlobalContext);
   const { cart } = useContext(GlobalContext);
   const cartfin = cart;
@@ -48,13 +51,21 @@ export default function Cart({
   }
   return (
     <div className="relative">
-      <div className="flex md:gap-3 justify-between items-center">
+      <div className="flex gap-3 justify-between items-center">
         <ProfileButton user={user} />
         <button onClick={clickHandler}>
           <CartIcon />
         </button>
       </div>
 
+      <Popover
+        open={showCart}
+        className="top-7 bottom-7 left-7 right-7 bg-white"
+        onClose={() => setShowCart(false)}
+      >
+        <div>hola</div>
+      </Popover>
+      {/* 
       {showCart && (
         <div className="fixed left-0 top-12 bottom-0 bg-blue-300 w-52 border border-blue-600 overflow-auto">
           <div className="bg-blue-400 flex justify-center">Carrito</div>
@@ -85,7 +96,7 @@ export default function Cart({
             </Link>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
