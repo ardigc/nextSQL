@@ -4,7 +4,7 @@ import { MouseEventHandler, useContext, useState } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
 import ProfileButton from '../profile/profile';
 import Link from 'next/link';
-import { Popover } from 'gordo-ui';
+import { Button, IconButton, Paper, Popover, XIcon } from 'gordo-ui';
 interface Cart {
   cart_id: number;
   description: string;
@@ -49,6 +49,12 @@ export default function Cart({
       return total + price;
     }, 0);
   }
+  const totalProducts = () => {
+    const product = cart.reduce((total, product) => {
+      return total + product.qt;
+    }, 0);
+    return product;
+  };
   return (
     <div className="relative">
       <div className="flex gap-3 justify-between items-center">
@@ -60,10 +66,54 @@ export default function Cart({
 
       <Popover
         open={showCart}
-        className="top-7 bottom-7 left-7 right-7 bg-white"
+        className="top-7 bottom-0 md:bottom-7 left-0 right-0 md:left-7 md:right-7 p-5 bg-white flex flex-col"
         onClose={() => setShowCart(false)}
       >
-        <div>hola</div>
+        <div className="flex justify-between">
+          <div>
+            <div className="text-lg">Mi carrito</div>
+            <div className="text-xs">
+              {totalProducts() > 1
+                ? `${totalProducts()} productos`
+                : `${totalProducts()} producto`}
+            </div>
+          </div>
+          <div>
+            <IconButton disableRipple onClick={() => setShowCart(false)}>
+              <XIcon />
+            </IconButton>
+          </div>
+        </div>
+        <div className="flex w-full gap-2">
+          <div className="flex-1">d</div>
+          <div className="flex-1 text-lg rounded-lg flex flex-col p-5 gap-5 bg-neutral-100">
+            <div className="font-semibold">Resumen</div>
+            <div className="py-3 border-t border-b flex flex-col gap-2">
+              <div className="flex justify-between text-base">
+                <p>Subtotal</p>
+                <div>{totalPrice(cartfin)}€</div>
+              </div>
+              <div className="flex justify-between text-base">
+                <p>Coste del envio</p>
+                <div>Gratis</div>
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-between font-semibold">
+                <p>Total</p>
+                <div>{totalPrice(cartfin)}€</div>
+              </div>
+              <div className="text-xs">IVA incluido</div>
+            </div>
+            <div className="flex justify-center">
+              <Link href="/checkout">
+                <Button variant="contained" disableRipple color="success">
+                  Comprar
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
       </Popover>
       {/* 
       {showCart && (
