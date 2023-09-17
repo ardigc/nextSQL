@@ -11,6 +11,7 @@ import AdressDefault from './AdressDefault';
 import { Button, Collapse, Paper } from 'gordo-ui';
 import { PlusIcon } from '../Icons/Icons';
 import { AdressContext } from '../context/AdressContextProvider';
+import AdressComponent from './AdressComponent';
 interface Adress {
   id: number;
   user_id: number;
