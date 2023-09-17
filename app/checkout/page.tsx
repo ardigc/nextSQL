@@ -13,6 +13,7 @@ interface Cart {
   seller_id: number;
   seller_name: string;
   user_id: number;
+  image_url: string;
 }
 export default async function CheckOut() {
   const cookiesValue = cookies();
@@ -32,7 +33,7 @@ export default async function CheckOut() {
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
     cart = await pool.query(
-      `SELECT carts.id as cart_id , products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=${cartId.rows[0].id} ORDER BY product_id DESC`
+      `SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=${cartId.rows[0].id} ORDER BY product_id DESC`
     );
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);

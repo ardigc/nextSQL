@@ -5,7 +5,8 @@ import { GlobalContext } from '../context/ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/components/Icons/Icons';
 import { Spiner } from '../UI/Spiner';
 import Link from 'next/link';
-import { Button, Paper } from 'gordo-ui';
+import { Button, IconButton, Paper } from 'gordo-ui';
+import Image from 'next/image';
 
 interface Cart {
   cart_id: number;
@@ -39,6 +40,7 @@ type SellerCart = {
     seller_id: number;
     seller_name: string;
     user_id: number;
+    image_url: string;
   }[];
 };
 
@@ -46,7 +48,7 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
   const { cart: normalCart } = useContext(GlobalContext);
   const { setCart } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(-1);
-  const clickHandler2 = async (product: Cart) => {
+  const clickDeleteHandler = async (product: Cart) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {
       method: 'PUT',
@@ -56,7 +58,7 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
       },
     });
     const data = await response.json();
-    setCart(data);
+    if (response.ok) window.location.reload();
   };
   function totalPrice(products: Array<NormalCart>) {
     return products.reduce((total, products) => {
@@ -89,12 +91,35 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
 
   return (
     <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex p-5 gap-5 justify-center bg-white max-w-5xl ">
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col gap-3">
         {cartArrayBySellers.map((sellerItems) => (
-          <div key={sellerItems[0]}>
+          <div key={sellerItems[0]} className="flex flex-col gap-1">
             Vendido y enviado por {sellerItems[1][0].seller_name}
             {sellerItems[1].map((item) => (
-              <div key={item.product_id}>{item.name}</div>
+              <div key={item.product_id} className="flex">
+                <div className="border rounded-md flex p-2 flex-1">
+                  <div className="min-h-[75px] min-w-[75px] flex justify-center items-center">
+                    <Image
+                      src={item.image_url}
+                      alt={item.name}
+                      width={75}
+                      height={75}
+                    ></Image>
+                  </div>
+                  <div className="flex flex-col  ml-2 justify-between">
+                    <div className="text-lg font-semibold">{item.name}</div>
+                    <div className="text-lg">Precio: {item.price}€</div>
+                    <div>Unidades: {item.qt}</div>
+                  </div>
+                </div>
+                <IconButton
+                  disableRipple
+                  onClick={() => clickDeleteHandler(item)}
+                  className="[div>&]:hover:bg-transparent"
+                >
+                  <TrashIcon />
+                </IconButton>
+              </div>
             ))}
           </div>
         ))}
