@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from 'react';
+import { MouseEvent, MouseEventHandler, useContext, useState } from 'react';
 import { CartInterface, GlobalContext } from '../context/ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/components/Icons/Icons';
 import { Spiner } from '../UI/Spiner';
@@ -60,7 +60,12 @@ export default function CheckOutComponent() {
     }, 0);
   }
 
-  const qtOnClick = async (mode: number, product: CartInterface) => {
+  const qtOnClick = async (
+    mode: number,
+    product: CartInterface,
+    ev: MouseEvent<HTMLButtonElement>
+  ) => {
+    ev.preventDefault();
     setIsLoading(product.product_id);
     const id = product.product_id;
     if (mode === 1) {
@@ -85,14 +90,17 @@ export default function CheckOutComponent() {
   );
 
   return (
-    <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex p-5 gap-5 justify-center bg-white max-w-5xl ">
+    <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col md:flex-row p-5 gap-5 justify-center bg-white max-w-5xl ">
       <div className="flex-1 flex flex-col gap-3">
         {cartArrayBySellers.map((sellerItems) => (
           <div key={sellerItems[0]} className="flex flex-col gap-1">
             Vendido y enviado por {sellerItems[1][0].seller_name}
             {sellerItems[1].map((item) => (
               <div key={item.product_id} className="flex">
-                <div className="border rounded-md flex p-2 flex-1">
+                <Link
+                  href={`/products/${item.product_id}`}
+                  className="border rounded-md flex p-2 flex-1"
+                >
                   <div className="min-h-[75px] min-w-[75px] flex justify-center items-center">
                     <Image
                       src={item.image_url}
@@ -106,16 +114,16 @@ export default function CheckOutComponent() {
                     <div className="text-lg">Precio: {item.price}€</div>
                     <div className="flex  items-center">
                       Unidades:{' '}
-                      <IconButton>
+                      <IconButton onClick={(ev) => qtOnClick(1, item, ev)}>
                         <PlusIcon />
                       </IconButton>
-                      {item.qt}
-                      <IconButton>
+                      {isLoading === item.product_id ? <Spiner /> : item.qt}
+                      <IconButton onClick={(ev) => qtOnClick(2, item, ev)}>
                         <MinusIcon />
                       </IconButton>
                     </div>
                   </div>
-                </div>
+                </Link>
                 <IconButton
                   disableRipple
                   onClick={() => clickDeleteHandler(item)}
