@@ -1,8 +1,14 @@
 'use client';
-import { Paper } from 'gordo-ui';
+import { Button, Collapse, Paper, TextField } from 'gordo-ui';
 import { FormEventHandler } from 'react';
 
-export default function AdressComponent({ userId }: { userId: number }) {
+export default function AdressComponent({
+  userId,
+  showAdress,
+}: {
+  userId: number;
+  showAdress: boolean;
+}) {
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
     const formData = new FormData(ev.currentTarget);
@@ -21,33 +27,42 @@ export default function AdressComponent({ userId }: { userId: number }) {
     if (response.ok) window.location.assign('/payment');
   };
   return (
-    <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col md:flex-row p-5 gap-5 justify-center bg-white max-w-5xl ">
-      <form className="grid grid-cols-1" onSubmit={submitHandler}>
-        <label>Direccion:</label>
-        <input name="adress" type="text"></input>
-        <div className="my-2 flex justify-around">
-          <div>
-            <label>Ciudad:</label>
-            <input name="city" type="text"></input>
-          </div>
-          <div>
-            <label>Codigo postal:</label>
-            <input name="postalCode" type="number"></input>
-          </div>
-          <div>
-            <label>Pais:</label>
-            <input name="country" type="text"></input>
-          </div>
+    <Collapse open={showAdress}>
+      <form className="flex flex-col gap-2" onSubmit={submitHandler}>
+        <TextField
+          label="Dirección"
+          name="adress"
+          type="text"
+          classes={{ inputClassName: 'w-full' }}
+        />
+        <div className="md:my-2 gap-2 flex flex-col md:flex-row justify-around w-full">
+          <TextField
+            label="Ciudad"
+            name="city"
+            type="text"
+            classes={{ inputClassName: 'w-full' }}
+          />
+
+          <TextField
+            label="Codigo Postal"
+            name="postalCode"
+            type="number"
+            classes={{ inputClassName: 'w-full' }}
+          />
+
+          <TextField
+            label="Pais"
+            name="country"
+            type="text"
+            classes={{ inputClassName: 'w-full' }}
+          />
         </div>
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-10"
-          >
+        <div className="flex justify-end m-1">
+          <Button variant="contained" disableRipple color="success">
             Continuar al pago
-          </button>
+          </Button>
         </div>
       </form>
-    </Paper>
+    </Collapse>
   );
 }
