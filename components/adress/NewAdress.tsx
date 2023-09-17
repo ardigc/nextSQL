@@ -1,10 +1,14 @@
 'use client';
 
-import { MouseEventHandler, useContext, useState } from 'react';
-import AdressComponent from './AdressComponent';
+import {
+  FormEventHandler,
+  MouseEventHandler,
+  useContext,
+  useState,
+} from 'react';
 import Link from 'next/link';
 import AdressDefault from './AdressDefault';
-import { Button, Paper } from 'gordo-ui';
+import { Button, Collapse, Paper } from 'gordo-ui';
 import { PlusIcon } from '../Icons/Icons';
 import { AdressContext } from '../context/AdressContextProvider';
 interface Adress {
@@ -27,11 +31,28 @@ export default function NewAdress({
   adressDefault: Adress;
 }) {
   const { adressDef } = useContext(AdressContext);
-
   const [showAdress, setShowAdress] = useState(false);
+  const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
+    ev.preventDefault();
+    const formData = new FormData(ev.currentTarget);
+    const line = formData.get('adress');
+    const city = formData.get('city');
+    const postalCode = formData.get('postalCode');
+    const country = formData.get('country');
+    const response = await fetch('/api/adress', {
+      method: 'POST',
+      body: JSON.stringify({ line, city, postalCode, country, userId }),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    const id = await response.json();
+    if (response.ok) window.location.assign('/payment');
+  };
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowAdress(!showAdress);
   };
+  console.log(showAdress);
 
   return (
     <>
