@@ -5,6 +5,7 @@ import { GlobalContext } from '../context/ContextProvider';
 import ProfileButton from '../profile/profile';
 import Link from 'next/link';
 import { Button, IconButton, Paper, Popover, XIcon } from 'gordo-ui';
+import Image from 'next/image';
 interface Cart {
   cart_id: number;
   description: string;
@@ -14,6 +15,7 @@ interface Cart {
   product_id: number;
   qt: number;
   user_id: number;
+  image_url: string;
 }
 
 export default function Cart({
@@ -83,8 +85,30 @@ export default function Cart({
           </div>
         </div>
         <div className="flex flex-col md:flex-row w-full gap-5">
-          <div className="flex-1">
-            {cartfin.length > 0 && cartfin.map((item) => <div>hola</div>)}
+          <div className="flex-1 flex-col gap-2 flex">
+            {cartfin.length > 0 &&
+              cartfin.map((item) => (
+                <div key={item.id} className="flex">
+                  <div className="border rounded-md flex p-2 flex-1">
+                    <div className="min-h-[75px] min-w-[75px] flex justify-center items-center">
+                      <Image
+                        src={item.image_url}
+                        alt={item.name}
+                        width={75}
+                        height={75}
+                      ></Image>
+                    </div>
+                    <div className="flex flex-col  ml-2 justify-between">
+                      <div className="text-lg font-semibold">{item.name}</div>
+                      <div className="text-lg">Precio: {item.price}€</div>
+                      <div>Unidades: {item.qt}</div>
+                    </div>
+                  </div>
+                  <IconButton disableRipple onClick={() => clickHandler2(item)}>
+                    <TrashIcon />
+                  </IconButton>
+                </div>
+              ))}
             {cartfin.length === 0 && (
               <div className=" flex-col gap-5 flex items-center justify-center h-full border rounded-md pt-2 pb-4">
                 <div>No tienes nada en el carrito</div>

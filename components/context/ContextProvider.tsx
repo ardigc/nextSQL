@@ -18,6 +18,7 @@ interface Cart {
   product_id: number;
   qt: number;
   user_id: number;
+  image_url: string;
 }
 interface ContextType {
   cart: Array<Cart>;

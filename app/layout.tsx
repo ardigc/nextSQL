@@ -23,6 +23,7 @@ interface Cart {
   product_id: number;
   qt: number;
   user_id: number;
+  image_url: string;
 }
 
 const poppins = Poppins({
