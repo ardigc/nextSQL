@@ -91,10 +91,10 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
     <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex p-5 gap-5 justify-center bg-white max-w-5xl ">
       <div className="flex-1">
         {cartArrayBySellers.map((sellerItems) => (
-          <div>
+          <div key={sellerItems[0]}>
             Vendido y enviado por {sellerItems[1][0].seller_name}
             {sellerItems[1].map((item) => (
-              <div>{item.name}</div>
+              <div key={item.product_id}>{item.name}</div>
             ))}
           </div>
         ))}
