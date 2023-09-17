@@ -21,8 +21,6 @@ export default function Cart({
 }: {
   user: { id: number; name: string; role: string };
 }) {
-  // const { number } = useContext(GlobalContext);
-  // const cartfin = cart.cart;
   const { setCart } = useContext(GlobalContext);
   const { cart } = useContext(GlobalContext);
   const cartfin = cart;
@@ -66,7 +64,7 @@ export default function Cart({
 
       <Popover
         open={showCart}
-        className="top-7 bottom-0 md:bottom-7 left-0 right-0 md:left-7 md:right-7 p-5 bg-white flex flex-col"
+        className="top-7 bottom-0 md:bottom-7 left-0 right-0 md:left-7 md:right-7 p-5 bg-white flex flex-col gap-5"
         onClose={() => setShowCart(false)}
       >
         <div className="flex justify-between">
@@ -84,8 +82,21 @@ export default function Cart({
             </IconButton>
           </div>
         </div>
-        <div className="flex w-full gap-2">
-          <div className="flex-1">d</div>
+        <div className="flex flex-col md:flex-row w-full gap-5">
+          <div className="flex-1">
+            {cartfin.length > 0 && cartfin.map((item) => <div>hola</div>)}
+            {cartfin.length === 0 && (
+              <div className=" flex-col gap-5 flex items-center justify-center h-full border rounded-md pt-2 pb-4">
+                <div>No tienes nada en el carrito</div>
+                <div> Aprovecha nuestras ofertas</div>
+                <Link href={'/products'} onClick={() => setShowCart(false)}>
+                  <Button variant="contained" color="success">
+                    Continuar comprando
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </div>
           <div className="flex-1 text-lg rounded-lg flex flex-col p-5 gap-5 bg-neutral-100">
             <div className="font-semibold">Resumen</div>
             <div className="py-3 border-t border-b flex flex-col gap-2">
