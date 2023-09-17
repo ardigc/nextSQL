@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       'SELECT id FROM carts WHERE user_id =' + userId.id + " AND state='unpay'"
     );
     const cart = await pool.query(
-      'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+      'SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=' +
         cartId.rows[0].id
     );
     if (cart.rows.length > 0) {
@@ -39,9 +39,9 @@ export async function POST(req: NextRequest) {
         const parameters = [cartId.rows[0].id, productId];
         const result = await pool.query(query, parameters);
         const cartMod = await pool.query(
-          'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+          'SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=' +
             cartId.rows[0].id +
-            ' ORDER BY product_id DESC'
+            ' ORDER BY products.product_id DESC'
         );
         return new Response(JSON.stringify(cartMod.rows), { status: 200 });
       } else {
@@ -50,9 +50,9 @@ export async function POST(req: NextRequest) {
         const parameters = [qt, productId];
         const result = await pool.query(query, parameters);
         const cartMod = await pool.query(
-          'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+          'SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=' +
             cartId.rows[0].id +
-            ' ORDER BY product_id DESC'
+            ' ORDER BY products.product_id DESC'
         );
         return new Response(JSON.stringify(cartMod.rows), { status: 200 });
       }
@@ -63,9 +63,9 @@ export async function POST(req: NextRequest) {
       const parameters = [cartId.rows[0].id, productId];
       const result = await pool.query(query, parameters);
       const cartMod = await pool.query(
-        'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+        'SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=' +
           cartId.rows[0].id +
-          ' ORDER BY product_id DESC'
+          ' ORDER BY products.product_id DESC'
       );
       return new Response(JSON.stringify(cartMod.rows), { status: 200 });
     }
@@ -97,9 +97,9 @@ export async function PUT(req: NextRequest) {
     const parameters = [productId, cartId.rows[0].id];
     const result = await pool.query(query, parameters);
     const cartMod = await pool.query(
-      'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+      'SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=' +
         cartId.rows[0].id +
-        ' ORDER BY product_id DESC'
+        ' ORDER BY products.product_id DESC'
     );
     return new Response(JSON.stringify(cartMod.rows), { status: 200 });
   } catch (error: any) {
@@ -127,9 +127,9 @@ export async function PATCH(req: NextRequest) {
     const parameters = [qt, cartId.rows[0].id, productId];
     const result = await pool.query(query, parameters);
     const cartMod = await pool.query(
-      'SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=' +
+      'SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id WHERE carts.id=' +
         cartId.rows[0].id +
-        ' ORDER BY product_id DESC'
+        ' ORDER BY products.product_id DESC'
     );
     return new Response(JSON.stringify(cartMod.rows), { status: 200 });
   } catch (error: any) {
