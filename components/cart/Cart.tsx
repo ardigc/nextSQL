@@ -4,8 +4,17 @@ import { MouseEventHandler, useContext, useState } from 'react';
 import { GlobalContext } from '../context/ContextProvider';
 import ProfileButton from '../profile/profile';
 import Link from 'next/link';
-import { Button, IconButton, Paper, Popover, XIcon } from 'gordo-ui';
+import {
+  Alert,
+  Button,
+  IconButton,
+  Paper,
+  Popover,
+  SnackBar,
+  XIcon,
+} from 'gordo-ui';
 import Image from 'next/image';
+import { Spiner } from '../UI/Spiner';
 interface Cart {
   cart_id: number;
   description: string;
@@ -23,6 +32,9 @@ export default function Cart({
 }: {
   user: { id: number; name: string; role: string };
 }) {
+  const [deleteSnackbar, setDeleteSnackbar] = useState<
+    'deleting' | 'deleted' | undefined
+  >(undefined);
   const { setCart } = useContext(GlobalContext);
   const { cart } = useContext(GlobalContext);
   const cartfin = cart;
@@ -30,7 +42,8 @@ export default function Cart({
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowCart(!showCart);
   };
-  const clickHandler2 = async (product: Cart) => {
+  const clickDeleteHandler = async (product: Cart) => {
+    setDeleteSnackbar('deleting');
     const id = product.product_id;
     const response = await fetch('/api/cart', {
       method: 'PUT',
@@ -40,6 +53,9 @@ export default function Cart({
       },
     });
     const data = await response.json();
+    if (response.ok) {
+      setDeleteSnackbar('deleted');
+    }
     setCart(data);
   };
 
@@ -106,7 +122,7 @@ export default function Cart({
                   </div>
                   <IconButton
                     disableRipple
-                    onClick={() => clickHandler2(item)}
+                    onClick={() => clickDeleteHandler(item)}
                     className="[div>&]:hover:bg-transparent"
                   >
                     <TrashIcon />
@@ -153,6 +169,18 @@ export default function Cart({
             </div>
           </div>
         </div>
+        <SnackBar
+          className="[div>&]:max-[768px]:w-full [div>&]:max-[768px]:left-0"
+          open={Boolean(deleteSnackbar)}
+          autoHideDuration={deleteSnackbar === 'deleting' ? undefined : 2000}
+          onClose={() => setDeleteSnackbar(undefined)}
+        >
+          <Alert icon={deleteSnackbar === 'deleting' ? <Spiner /> : undefined}>
+            {deleteSnackbar === 'deleting'
+              ? 'Eliminando'
+              : 'Eliminado correctamente'}
+          </Alert>
+        </SnackBar>
       </Popover>
       {/* 
       {showCart && (
