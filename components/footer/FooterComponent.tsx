@@ -4,7 +4,7 @@ import { GithubIcon, LinkedInIcon, NPMIcon } from '../Icons/Icons';
 export default function FooterComponent() {
   return (
     <footer className="w-full mt-10">
-      <div className="flex mx-auto items-center flex-col">
+      <div className="flex mx-auto items-center justify-center flex-col">
         <p className="text-xl">Creado por Adrián Gordo</p>
         <div>Echa un vistazo a mis redes</div>
         <div className="flex">
@@ -15,7 +15,9 @@ export default function FooterComponent() {
             <LinkedInIcon />
           </IconButton>
         </div>
-        <p>Libreria de componentes propia disponible en NPM</p>
+        <p className="text-center">
+          Libreria de componentes propia disponible en NPM
+        </p>
         <IconButton href="https://www.npmjs.com/package/gordo-ui">
           <NPMIcon />
         </IconButton>
