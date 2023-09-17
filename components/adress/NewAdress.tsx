@@ -49,7 +49,7 @@ export default function NewAdress({
                         adressDef === adress.id ? 'black' : 'inherit',
                     }}
                     key={adress.id}
-                    className="flex flex-col gap-2 p-2 justify-around items-center my-3 border-2  rounded-md "
+                    className="flex flex-col gap-2 p-2 justify-around items-center border-2  rounded-md "
                   >
                     <div className="text-center">Calle: {adress.line} </div>
                     <div className="text-center">CP: {adress.postal_code} </div>
