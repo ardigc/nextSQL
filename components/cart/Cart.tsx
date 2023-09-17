@@ -175,7 +175,10 @@ export default function Cart({
           autoHideDuration={deleteSnackbar === 'deleting' ? undefined : 2000}
           onClose={() => setDeleteSnackbar(undefined)}
         >
-          <Alert icon={deleteSnackbar === 'deleting' ? <Spiner /> : undefined}>
+          <Alert
+            className="[div>&]:bg-blue-200 [div>&]:text-black"
+            icon={deleteSnackbar === 'deleting' ? <Spiner /> : undefined}
+          >
             {deleteSnackbar === 'deleting'
               ? 'Eliminando'
               : 'Eliminado correctamente'}
