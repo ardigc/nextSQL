@@ -114,11 +114,17 @@ export default function CheckOutComponent() {
                     <div className="text-lg">Precio: {item.price}€</div>
                     <div className="flex  items-center">
                       Unidades:{' '}
-                      <IconButton onClick={(ev) => qtOnClick(1, item, ev)}>
+                      <IconButton
+                        disableRipple
+                        onClick={(ev) => qtOnClick(1, item, ev)}
+                      >
                         <PlusIcon />
                       </IconButton>
                       {isLoading === item.product_id ? <Spiner /> : item.qt}
-                      <IconButton onClick={(ev) => qtOnClick(2, item, ev)}>
+                      <IconButton
+                        disableRipple
+                        onClick={(ev) => qtOnClick(2, item, ev)}
+                      >
                         <MinusIcon />
                       </IconButton>
                     </div>
