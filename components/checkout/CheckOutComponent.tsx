@@ -5,7 +5,7 @@ import { CartInterface, GlobalContext } from '../context/ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/components/Icons/Icons';
 import { Spiner } from '../UI/Spiner';
 import Link from 'next/link';
-import { Button, IconButton, Paper } from 'gordo-ui';
+import { Alert, Button, IconButton, Paper, SnackBar } from 'gordo-ui';
 import Image from 'next/image';
 
 type SellerCart = {
@@ -24,6 +24,9 @@ type SellerCart = {
 export default function CheckOutComponent() {
   const { cart } = useContext(GlobalContext);
   const { setCart } = useContext(GlobalContext);
+  const [deleteSnackbar, setDeleteSnackbar] = useState<
+    'deleting' | 'deleted' | undefined
+  >(undefined);
   const [isLoading, setIsLoading] = useState(-1);
   const getSellers = (cart: CartInterface[]) => {
     const sellersId: number[] = [];
@@ -42,6 +45,8 @@ export default function CheckOutComponent() {
     return sellersCart;
   };
   const clickDeleteHandler = async (product: CartInterface) => {
+    setDeleteSnackbar('deleting');
+
     const id = product.product_id;
     const response = await fetch('/api/cart', {
       method: 'PUT',
@@ -51,6 +56,9 @@ export default function CheckOutComponent() {
       },
     });
     const data = await response.json();
+    if (response.ok) {
+      setDeleteSnackbar('deleted');
+    }
     setCart(data);
   };
   function totalPrice(products: Array<CartInterface>) {
@@ -169,53 +177,21 @@ export default function CheckOutComponent() {
           </Link>
         </div>
       </div>
+      <SnackBar
+        className="[div>&]:max-[768px]:w-full [div>&]:max-[768px]:left-0 "
+        open={Boolean(deleteSnackbar)}
+        autoHideDuration={deleteSnackbar === 'deleting' ? undefined : 2000}
+        onClose={() => setDeleteSnackbar(undefined)}
+      >
+        <Alert
+          className="[div>&]:bg-blue-200 [div>&]:text-black"
+          icon={deleteSnackbar === 'deleting' ? <Spiner /> : undefined}
+        >
+          {deleteSnackbar === 'deleting'
+            ? 'Eliminando'
+            : 'Eliminado correctamente'}
+        </Alert>
+      </SnackBar>
     </Paper>
-    // <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg w-2/4 flex justify-center bg-blue-300 shadow-black shadow-2xl">
-    //   <div className="m-5 grid grid-cols-1 w-full">
-    //     <p className="justify-center items-center flex">Tu carrito</p>
-    //     {cart.map((product) => (
-    //       <div key={product.id} className="m-5">
-    //         <div className="flex justify-center">{product.name}</div>
-    //         <div className="flex justify-between">
-    //           <button
-    //             onClick={() => clickHandler2(product)}
-    //             className="order-first"
-    //           >
-    //             <TrashIcon />
-    //           </button>
-    //           <div className="text-right">
-    //             <div>Precio: {product.price}€</div>
-    //             <div className="flex justify-center items-center">
-    //               Unidades:{' '}
-    //               <button
-    //                 className="bg-blue-400 border  border-blue-500 m-1 ml-2"
-    //                 onClick={(ev) => qtOnClick(1, product)}
-    //               >
-    //                 <PlusIcon />
-    //               </button>
-    //               {isLoading !== product.id && product.qt}
-    //               {isLoading === product.id && <Spiner />}
-    //               <button
-    //                 className="bg-blue-400 border border-blue-500 m-1 mr-2"
-    //                 onClick={(ev) => qtOnClick(2, product)}
-    //               >
-    //                 <MinusIcon />
-    //               </button>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //     <div>Precio total: {totalPrice(cart)} €</div>
-    //     <div className="flex justify-end">
-    //       <Link
-    //         className="border rounded-3xl bg-blue-400 px-2 mx-10"
-    //         href="/adressConfiguration"
-    //       >
-    //         Direccion de envio
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }

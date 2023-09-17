@@ -79,7 +79,6 @@ export function Product({
           <div className="w-16 flex justify-end me-2">{price} €</div>
         </div>
       </Paper>
-      {/* </div> */}
     </Link>
   );
 }
