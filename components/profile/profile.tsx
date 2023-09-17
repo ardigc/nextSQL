@@ -39,6 +39,8 @@ export default function ProfileButton({
         onClose={() => {
           setAnchorEl(undefined), setOpen(false);
         }}
+        transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
         open={open}
         anchorEl={anchorEl}
         classes={{ MenuList: 'flex flex-col' }}
@@ -83,28 +85,6 @@ export default function ProfileButton({
           <LogOut />
         </li>
       </Menu>
-      {/* {open && (
-        <div className="absolute bg-blue-300 border border-blue-400 w-32 ">
-          <ul>
-            <li>
-              <Link href="/profile" onClick={() => setOpen(false)}>
-                Tu perfil
-              </Link>
-            </li>
-            <li>
-              <Link href="/profile/orders">Pedidos</Link>
-            </li>
-            {user.role === 'seller' && (
-              <li>
-                <Link href="/profile/products">Tus productos</Link>
-              </li>
-            )}
-            <li onClick={() => setOpen(false)}>
-              <LogOut />
-            </li>
-          </ul>
-        </div>
-      )} */}
     </div>
   );
 }
