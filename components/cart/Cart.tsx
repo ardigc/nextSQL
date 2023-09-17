@@ -170,7 +170,7 @@ export default function Cart({
           </div>
         </div>
         <SnackBar
-          className="[div>&]:max-[768px]:w-full [div>&]:max-[768px]:left-0"
+          className="[div>&]:max-[768px]:w-full [div>&]:max-[768px]:left-0 [div>&]:sticky"
           open={Boolean(deleteSnackbar)}
           autoHideDuration={deleteSnackbar === 'deleting' ? undefined : 2000}
           onClose={() => setDeleteSnackbar(undefined)}
