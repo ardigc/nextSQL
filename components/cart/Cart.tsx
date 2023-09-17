@@ -66,7 +66,7 @@ export default function Cart({
 
       <Popover
         open={showCart}
-        className="top-7 bottom-0 md:bottom-7 left-0 right-0 md:left-7 md:right-7 p-5 bg-white flex flex-col gap-5"
+        className="top-7 bottom-0 md:bottom-7 left-0 right-0 md:left-7 md:right-7 p-5 bg-white flex flex-col gap-5 overflow-auto"
         onClose={() => setShowCart(false)}
       >
         <div className="flex justify-between">
