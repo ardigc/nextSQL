@@ -10,6 +10,17 @@ import { Button, Paper } from 'gordo-ui';
 interface Cart {
   cart_id: number;
   description: string;
+  name: string;
+  price: number;
+  product_id: number;
+  qt: number;
+  seller_id: number;
+  seller_name: string;
+  user_id: number;
+}
+interface NormalCart {
+  cart_id: number;
+  description: string;
   id: number;
   name: string;
   price: number;
@@ -17,12 +28,24 @@ interface Cart {
   qt: number;
   user_id: number;
 }
+type SellerCart = {
+  [sellerId: string]: {
+    cart_id: number;
+    description: string;
+    name: string;
+    price: number;
+    product_id: number;
+    qt: number;
+    seller_id: number;
+    seller_name: string;
+    user_id: number;
+  }[];
+};
 
-export default function CheckOutComponent() {
-  const { cart } = useContext(GlobalContext);
+export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
+  const { cart: normalCart } = useContext(GlobalContext);
   const { setCart } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(-1);
-
   const clickHandler2 = async (product: Cart) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {
@@ -35,7 +58,7 @@ export default function CheckOutComponent() {
     const data = await response.json();
     setCart(data);
   };
-  function totalPrice(products: Array<Cart>) {
+  function totalPrice(products: Array<NormalCart>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;
@@ -43,7 +66,7 @@ export default function CheckOutComponent() {
   }
 
   const qtOnClick = async (mode: number, product: Cart) => {
-    setIsLoading(product.id);
+    setIsLoading(product.product_id);
     const id = product.product_id;
     if (mode === 1) {
       product.qt++;
@@ -62,15 +85,26 @@ export default function CheckOutComponent() {
     setCart(data);
     setIsLoading(-1);
   };
+  const cartArrayBySellers = Object.entries(cart);
+
   return (
     <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex p-5 gap-5 justify-center bg-white max-w-5xl ">
-      <div className="flex-1">hola</div>
+      <div className="flex-1">
+        {cartArrayBySellers.map((sellerItems) => (
+          <div>
+            Vendido y enviado por {sellerItems[1][0].seller_name}
+            {sellerItems[1].map((item) => (
+              <div>{item.name}</div>
+            ))}
+          </div>
+        ))}
+      </div>
       <div className="flex-1 h-fit text-lg rounded-lg flex flex-col p-5 gap-5 bg-neutral-100">
         <div className="font-semibold">Resumen</div>
         <div className="py-3 border-t border-b flex flex-col gap-2">
           <div className="flex justify-between text-base">
             <p>Subtotal</p>
-            <div>{totalPrice(cart)}€</div>
+            <div>{totalPrice(normalCart)}€</div>
           </div>
           <div className="flex justify-between text-base">
             <p>Coste del envio</p>
@@ -80,7 +114,7 @@ export default function CheckOutComponent() {
         <div>
           <div className="flex justify-between font-semibold">
             <p>Total</p>
-            <div>{totalPrice(cart)}€</div>
+            <div>{totalPrice(normalCart)}€</div>
           </div>
           <div className="text-xs">IVA incluido</div>
         </div>
