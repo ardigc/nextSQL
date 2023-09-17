@@ -104,7 +104,16 @@ export default function CheckOutComponent() {
                   <div className="flex flex-col  ml-2 justify-between">
                     <div className="text-lg font-semibold">{item.name}</div>
                     <div className="text-lg">Precio: {item.price}€</div>
-                    <div>Unidades: {item.qt}</div>
+                    <div className="flex  items-center">
+                      Unidades:{' '}
+                      <IconButton>
+                        <PlusIcon />
+                      </IconButton>
+                      {item.qt}
+                      <IconButton>
+                        <MinusIcon />
+                      </IconButton>
+                    </div>
                   </div>
                 </div>
                 <IconButton

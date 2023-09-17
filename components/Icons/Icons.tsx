@@ -219,7 +219,7 @@ export function PlusIcon() {
         height={16}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
-        stroke="#2c3e50"
+        stroke="#000000"
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -241,7 +241,7 @@ export function MinusIcon() {
         height={16}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
-        stroke="#2c3e50"
+        stroke="#000000"
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
