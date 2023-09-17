@@ -174,38 +174,6 @@ export default function Cart({
           </Alert>
         </SnackBar>
       </Popover>
-      {/* 
-      {showCart && (
-        <div className="fixed left-0 top-12 bottom-0 bg-blue-300 w-52 border border-blue-600 overflow-auto">
-          <div className="bg-blue-400 flex justify-center">Carrito</div>
-          {cartfin.map((product) => (
-            <div key={product.id} className="border px-3">
-              <div className="flex justify-center">{product.name}</div>
-              <div className="flex justify-between">
-                <button
-                  onClick={() => clickHandler2(product)}
-                  className="order-first"
-                >
-                  <TrashIcon />
-                </button>
-                <div className="text-right">
-                  <div>Precio: {product.price}€</div>
-                  <div>Unidades: {product.qt}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-          <div className="text-right mx-3">
-            Precio total: {totalPrice(cartfin)} €{' '}
-            <Link
-              className="px-1 border bg-blue-400 rounded-3xl"
-              href="/checkout"
-            >
-              CHECKOUT
-            </Link>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

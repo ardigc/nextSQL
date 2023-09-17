@@ -51,15 +51,10 @@ export function Product({
     } catch (error) {
       window.location.assign('/login');
     }
-
-    // window.location.reload();
   };
   return (
-    // <div className="w-11/12  border text-center mx-auto  rounded-lg p-3 my-2 relative top-7 flex justify-center bg-blue-300 shadow-black shadow-md ">
     <Link className="[div>&]:md:min-h-[300px] [div>&]:min-h-48" href={enlace}>
-      {/* <div className="h-full flex justify-between flex-col  p-3"> */}
       <Paper className="h-full flex justify-between flex-col  p-3 bg-white">
-        {/* <div className="flex justify-center font-medium">{name}</div> */}
         {image_url && (
           <div className="flex justify-center">
             <Image
@@ -74,9 +69,6 @@ export function Product({
         <div className="flex justify-center [div>&]:text-sm [div>&]:md:text-base font-medium">
           {name}
         </div>
-        {/* <div className="flex justify-center max-h-20 overflow-hidden md:max-h-28 [div>&]:text-xs [div>&]:md:text-sm flex-grow  items-start">
-          {description}
-        </div> */}
         <div className="flex items-start text-xs">
           Vendido por: {seller_name}
         </div>
@@ -89,6 +81,5 @@ export function Product({
       </Paper>
       {/* </div> */}
     </Link>
-    // </div>
   );
 }
