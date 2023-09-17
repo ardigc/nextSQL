@@ -7,21 +7,11 @@ import { cookies } from 'next/headers';
 import { pool } from '@/lib/server/pg';
 import CheckOutPage from '@/components/payment/paymentComponent';
 import PaymentSelect from '@/components/payment/PaymentSelect';
+import { CartInterface } from '@/components/context/ContextProvider';
 const stripe = stripeClient;
 
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-}
-
 export default async function Payment() {
-  function totalPrice(products: Array<Cart>) {
+  function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;

@@ -1,34 +1,13 @@
 'use client';
 
 import { useContext, useState } from 'react';
-import { GlobalContext } from '../context/ContextProvider';
+import { CartInterface, GlobalContext } from '../context/ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/components/Icons/Icons';
 import { Spiner } from '../UI/Spiner';
 import Link from 'next/link';
 import { Button, IconButton, Paper } from 'gordo-ui';
 import Image from 'next/image';
 
-interface Cart {
-  cart_id: number;
-  description: string;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  seller_id: number;
-  seller_name: string;
-  user_id: number;
-}
-interface NormalCart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-}
 type SellerCart = {
   [sellerId: string]: {
     cart_id: number;
@@ -48,7 +27,7 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
   const { cart: normalCart } = useContext(GlobalContext);
   const { setCart } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(-1);
-  const clickDeleteHandler = async (product: Cart) => {
+  const clickDeleteHandler = async (product: CartInterface) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {
       method: 'PUT',
@@ -58,16 +37,17 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
       },
     });
     const data = await response.json();
+    setCart(data);
     if (response.ok) window.location.reload();
   };
-  function totalPrice(products: Array<NormalCart>) {
+  function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;
     }, 0);
   }
 
-  const qtOnClick = async (mode: number, product: Cart) => {
+  const qtOnClick = async (mode: number, product: CartInterface) => {
     setIsLoading(product.product_id);
     const id = product.product_id;
     if (mode === 1) {

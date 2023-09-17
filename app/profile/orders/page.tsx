@@ -1,25 +1,16 @@
+import { CartInterface } from '@/components/context/ContextProvider';
 import OrdersPrev from '@/components/order/OrderPrev';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { Query, QueryResult } from 'pg';
 
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-}
 export default async function Orders() {
   const cookiesValue = cookies();
   let user = null;
   let orders = null;
-  let cart: Array<Array<Cart>> = [[]];
-  function totalPrice(products: Array<Cart>) {
+  let cart: Array<Array<CartInterface>> = [[]];
+  function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;

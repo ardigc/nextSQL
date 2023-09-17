@@ -1,20 +1,9 @@
 import CheckOutComponent from '@/components/checkout/CheckOutComponent';
+import { CartInterface } from '@/components/context/ContextProvider';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 
-interface Cart {
-  cart_id: number;
-  description: string;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  seller_id: number;
-  seller_name: string;
-  user_id: number;
-  image_url: string;
-}
 export default async function CheckOut() {
   const cookiesValue = cookies();
   let user = null;
@@ -37,10 +26,10 @@ export default async function CheckOut() {
     );
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
-    const noCart: Array<Cart> = [];
+    const noCart: Array<CartInterface> = [];
     cart = { rows: noCart };
   }
-  const getSellers = (cart: Cart[]) => {
+  const getSellers = (cart: CartInterface[]) => {
     const sellersId: number[] = [];
     cart.map((item) => {
       if (sellersId.findIndex((seller) => seller === item.seller_id) === -1) {

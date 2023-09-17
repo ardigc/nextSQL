@@ -9,20 +9,21 @@ import {
 } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-interface Cart {
+export interface CartInterface {
   cart_id: number;
   description: string;
-  id: number;
   name: string;
   price: number;
   product_id: number;
   qt: number;
+  seller_id: number;
+  seller_name: string;
   user_id: number;
   image_url: string;
 }
 interface ContextType {
-  cart: Array<Cart>;
-  setCart: Dispatch<SetStateAction<Array<Cart>>>;
+  cart: Array<CartInterface>;
+  setCart: Dispatch<SetStateAction<Array<CartInterface>>>;
 }
 
 const initialState: ContextType = {
@@ -37,9 +38,9 @@ export function Provider({
   initialCart,
 }: {
   children: ReactNode;
-  initialCart: Array<Cart>;
+  initialCart: Array<CartInterface>;
 }) {
-  const [cart, setCart] = useState<Array<Cart>>(initialCart);
+  const [cart, setCart] = useState<Array<CartInterface>>(initialCart);
 
   return (
     <GlobalContext.Provider value={{ cart, setCart }}>

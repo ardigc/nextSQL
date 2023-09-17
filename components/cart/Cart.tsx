@@ -1,7 +1,7 @@
 'use client';
 import { CartIcon, TrashIcon, UserIcon } from '@/components/Icons/Icons';
 import { MouseEventHandler, useContext, useState } from 'react';
-import { GlobalContext } from '../context/ContextProvider';
+import { CartInterface, GlobalContext } from '../context/ContextProvider';
 import ProfileButton from '../profile/profile';
 import Link from 'next/link';
 import {
@@ -15,17 +15,6 @@ import {
 } from 'gordo-ui';
 import Image from 'next/image';
 import { Spiner } from '../UI/Spiner';
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-  image_url: string;
-}
 
 export default function Cart({
   user,
@@ -42,7 +31,7 @@ export default function Cart({
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowCart(!showCart);
   };
-  const clickDeleteHandler = async (product: Cart) => {
+  const clickDeleteHandler = async (product: CartInterface) => {
     setDeleteSnackbar('deleting');
     const id = product.product_id;
     const response = await fetch('/api/cart', {
@@ -59,7 +48,7 @@ export default function Cart({
     setCart(data);
   };
 
-  function totalPrice(products: Array<Cart>) {
+  function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;
@@ -104,7 +93,7 @@ export default function Cart({
           <div className="flex-1 flex-col gap-2 flex">
             {cartfin.length > 0 &&
               cartfin.map((item) => (
-                <div key={item.id} className="flex">
+                <div key={item.product_id} className="flex">
                   <div className="border rounded-md flex p-2 flex-1">
                     <div className="min-h-[75px] min-w-[75px] flex justify-center items-center">
                       <Image

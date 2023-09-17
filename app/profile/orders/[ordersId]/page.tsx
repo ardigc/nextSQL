@@ -1,3 +1,4 @@
+import { CartInterface } from '@/components/context/ContextProvider';
 import OrderDetails from '@/components/order/OrderDetails';
 import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
@@ -17,17 +18,7 @@ interface Order {
   order_id: number;
   name: string;
 }
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-  seller_id: number;
-}
+
 export default async function OrderDetail({
   params,
 }: {
@@ -36,7 +27,7 @@ export default async function OrderDetail({
   const cookiesValue = cookies();
   let user = null;
   let orders = null;
-  let cart: Array<Cart> = [];
+  let cart: Array<CartInterface> = [];
   function extractShipmentData(data: Array<Order>) {
     return data.map(({ shipment_status, id, order_id, name, seller_id }) => ({
       shipment_status,

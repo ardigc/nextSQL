@@ -2,6 +2,7 @@
 import { MinusIcon } from '@/components/Icons/Icons';
 import Link from 'next/link';
 import OrderShipmentDetails from './OrderShipmentDetails';
+import { CartInterface } from '../context/ContextProvider';
 
 interface Order {
   id: number;
@@ -14,24 +15,14 @@ interface Order {
   country: string;
   created_at: Date;
 }
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-  seller_id: number;
-}
+
 export default function OrderDetails({
   order,
   cart,
   shipment,
 }: {
   order: Order;
-  cart: Array<Cart>;
+  cart: Array<CartInterface>;
   shipment: {
     shipment_status: string;
     id: number;
@@ -40,10 +31,13 @@ export default function OrderDetails({
     seller_id: number;
   }[];
 }) {
-  function extractObjectsBySellerId(cart: Array<Cart>, sellerId: number) {
+  function extractObjectsBySellerId(
+    cart: Array<CartInterface>,
+    sellerId: number
+  ) {
     return cart.filter((obj) => obj.seller_id === sellerId);
   }
-  function totalPrice(products: Array<Cart>) {
+  function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;

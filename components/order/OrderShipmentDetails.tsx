@@ -1,17 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-  seller_id: number;
-}
+import { CartInterface } from '../context/ContextProvider';
+
 export default function OrderShipmentDetails({
   shipment,
   cart,
@@ -23,7 +14,7 @@ export default function OrderShipmentDetails({
     name: string;
     seller_id: number;
   };
-  cart: Array<Cart>;
+  cart: Array<CartInterface>;
 }) {
   const enlace = '/products/';
 

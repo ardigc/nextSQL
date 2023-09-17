@@ -3,6 +3,7 @@ import { MinusIcon } from '@/components/Icons/Icons';
 import { pool } from '@/lib/server/pg';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { CartInterface } from '../context/ContextProvider';
 
 interface Order {
   id: number;
@@ -14,24 +15,15 @@ interface Order {
   country: string;
   created_at: Date;
 }
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-}
+
 export default function OrdersPrev({
   order,
   cart,
 }: {
   order: Order;
-  cart: Array<Cart>;
+  cart: Array<CartInterface>;
 }) {
-  function totalPrice(products: Array<Cart>) {
+  function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
       const price = products.price * products.qt;
       return total + price;

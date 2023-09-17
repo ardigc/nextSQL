@@ -8,23 +8,11 @@ import { verify } from 'jsonwebtoken';
 import LogOut from '@/components/profile/LogOut';
 import Cart from '@/components/cart/Cart';
 import { pool } from '@/lib/server/pg';
-import { Provider } from '@/components/context/ContextProvider';
+import { CartInterface, Provider } from '@/components/context/ContextProvider';
 import { HomeIcon, UserIcon } from '@/components/Icons/Icons';
 import { Button, IconButton } from 'gordo-ui';
 import FooterComponent from '@/components/footer/FooterComponent';
 import SearchComponent from '@/components/navbar/SearchComponent';
-
-interface Cart {
-  cart_id: number;
-  description: string;
-  id: number;
-  name: string;
-  price: number;
-  product_id: number;
-  qt: number;
-  user_id: number;
-  image_url: string;
-}
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -59,11 +47,11 @@ export default async function RootLayout({
       'SELECT id FROM carts WHERE user_id =' + user.id + " AND state='unpay'"
     );
     cart = await pool.query(
-      `SELECT * FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id  WHERE carts.id=${cartId.rows[0].id} ORDER BY product_id DESC`
+      `SELECT carts.id as cart_id , products.image_url, products.description, products.name, products.price, products.id as product_id, cart_items.qt, products.seller_id, users_info.name as seller_name, carts.user_id FROM carts INNER JOIN cart_items ON carts.id = cart_items.cart_id INNER JOIN products ON products.id = cart_items.product_id INNER JOIN users_info ON products.seller_id=users_info.id   WHERE carts.id=${cartId.rows[0].id} ORDER BY product_id DESC`
     );
   } catch (error: any) {
     console.error('Error al verificar el token:', error.message);
-    const noCart: Array<Cart> = [];
+    const noCart: Array<CartInterface> = [];
     cart = { rows: noCart };
   }
 
