@@ -58,7 +58,6 @@ export default function SingleProduct({
     const notify = toast.loading('Añadiendo al carrito...', {
       style: {
         backgroundColor: '#dbeafe',
-        // color:'white',
       },
     });
     const response = await fetch('/api/cart', {
