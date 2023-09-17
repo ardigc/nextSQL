@@ -104,7 +104,11 @@ export default function Cart({
                       <div>Unidades: {item.qt}</div>
                     </div>
                   </div>
-                  <IconButton disableRipple onClick={() => clickHandler2(item)}>
+                  <IconButton
+                    disableRipple
+                    onClick={() => clickHandler2(item)}
+                    className="[div>&]:hover:bg-transparent"
+                  >
                     <TrashIcon />
                   </IconButton>
                 </div>
@@ -121,7 +125,7 @@ export default function Cart({
               </div>
             )}
           </div>
-          <div className="flex-1 text-lg rounded-lg flex flex-col p-5 gap-5 bg-neutral-100">
+          <div className="flex-1 h-fit text-lg rounded-lg flex flex-col p-5 gap-5 bg-neutral-100">
             <div className="font-semibold">Resumen</div>
             <div className="py-3 border-t border-b flex flex-col gap-2">
               <div className="flex justify-between text-base">
