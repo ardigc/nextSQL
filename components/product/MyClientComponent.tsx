@@ -81,10 +81,7 @@ export function Product({
           Vendido por: {seller_name}
         </div>
         <div className="flex justify-between items-center">
-          {/* <Button variant="contained" disableRipple onClick={clickHandler}>
-            Añadir al carrito
-          </Button> */}
-          <IconButton onClick={clickHandler}>
+          <IconButton disableRipple onClick={clickHandler}>
             <AddCartIcon />
           </IconButton>
           <div className="w-16 flex justify-end me-2">{price} €</div>

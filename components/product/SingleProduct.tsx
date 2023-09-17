@@ -138,6 +138,7 @@ export default function SingleProduct({
                 <div className="text-2xl font-semibold">{price} €</div>
 
                 <Button
+                  disableRipple
                   variant="contained"
                   onClick={clickHandler}
                   color="success"
