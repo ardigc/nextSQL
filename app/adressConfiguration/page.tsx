@@ -2,7 +2,6 @@ import { pool } from '@/lib/server/pg';
 import { verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { FormEventHandler } from 'react';
-import AdressComponent from '@/components/adress/AdressComponent';
 import NewAdress from '@/components/adress/NewAdress';
 import { QueryResult } from 'pg';
 import AdressDefault from '@/components/adress/AdressDefault';
