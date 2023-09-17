@@ -2,6 +2,7 @@
 
 import { MouseEventHandler, useContext } from 'react';
 import { AdressContext } from '../context/AdressContextProvider';
+import { Button } from 'gordo-ui';
 
 export default function AdressDefault({
   adressId,
@@ -27,14 +28,16 @@ export default function AdressDefault({
   return (
     <div>
       {adressDef !== adressId && (
-        <button
+        <Button
+          disableRipple
+          size="small"
+          variant="contained"
           onClick={clickHandler}
-          className='className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-10"'
+          color="info"
         >
-          Enviar aqui
-        </button>
+          Marcar como predeterminada{' '}
+        </Button>
       )}
-      {adressDef === adressId && <div> Seleccionada </div>}
     </div>
   );
 }

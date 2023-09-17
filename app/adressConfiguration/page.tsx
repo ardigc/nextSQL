@@ -8,6 +8,7 @@ import { QueryResult } from 'pg';
 import AdressDefault from '@/components/adress/AdressDefault';
 import { AdressProvider } from '@/components/context/AdressContextProvider';
 import Link from 'next/link';
+import { Paper } from 'gordo-ui';
 
 export default async function adressConfiguration() {
   const cookiesValue = cookies();
@@ -34,7 +35,7 @@ export default async function adressConfiguration() {
     console.error('Error al verificar el token:', error.message);
   }
   return (
-    <div className="relative bg-blue-100 min-h-screen w-full ">
+    <div className="relative w-full flex">
       {adressDefault?.rows[0] && (
         <AdressProvider initialAdress={adressDefault?.rows[0].id}>
           {adress && adressDefault && (

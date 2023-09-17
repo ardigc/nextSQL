@@ -1,9 +1,12 @@
 'use client';
 
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useContext, useState } from 'react';
 import AdressComponent from './AdressComponent';
 import Link from 'next/link';
 import AdressDefault from './AdressDefault';
+import { Button, Paper } from 'gordo-ui';
+import { PlusIcon } from '../Icons/Icons';
+import { AdressContext } from '../context/AdressContextProvider';
 interface Adress {
   id: number;
   user_id: number;
@@ -23,40 +26,51 @@ export default function NewAdress({
   adress: Array<Adress>;
   adressDefault: Adress;
 }) {
+  const { adressDef } = useContext(AdressContext);
+
   const [showAdress, setShowAdress] = useState(false);
   const clickHandler: MouseEventHandler<HTMLButtonElement> = (ev) => {
     setShowAdress(!showAdress);
   };
 
   return (
-    <div>
+    <>
       {!showAdress && (
-        <div>
+        <>
           {adress.length === 0 && <AdressComponent userId={userId!} />}
           {adress.length! > 0 && (
-            <div className="w-11/12 max-w-3xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl">
-              Tus direcciones:
-              {adress.map((adress) => (
-                <div
-                  key={adress.id}
-                  className="flex justify-between items-center my-3"
-                >
-                  <div>Calle: {adress.line} </div>
-                  <div>CP: {adress.postal_code} </div>
-                  <div>Ciudad: {adress.city} </div>
-                  <div>Pais: {adress.country} </div>
+            <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col  p-5 gap-5 justify-center bg-white max-w-5xl ">
+              <p className="text-lg font-semibold">Direccion de entrega</p>
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                {adress.map((adress) => (
+                  <div
+                    style={{
+                      borderColor:
+                        adressDef === adress.id ? 'black' : 'inherit',
+                    }}
+                    key={adress.id}
+                    className="flex flex-col gap-2 p-2 justify-around items-center my-3 border-2  rounded-md "
+                  >
+                    <div className="text-center">Calle: {adress.line} </div>
+                    <div className="text-center">CP: {adress.postal_code} </div>
+                    <div className="text-center">Ciudad: {adress.city} </div>
+                    <div className="text-center">Pais: {adress.country} </div>
 
-                  <AdressDefault userId={userId!} adressId={adress.id} />
-                </div>
-              ))}
+                    <AdressDefault userId={userId!} adressId={adress.id} />
+                  </div>
+                ))}
+              </div>
               <div className="flex justify-between items-center">
                 <div className="flex justify-end">
-                  <button
+                  <Button
                     onClick={clickHandler}
-                    className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-1"
+                    variant="text"
+                    disableRipple
+                    className="[div>&]:text-black"
                   >
+                    <PlusIcon />
                     Enviar a otra direccion
-                  </button>
+                  </Button>
                 </div>
                 <Link
                   className="border mt-2 rounded-3xl bg-blue-400 px-2 mx-1"
@@ -65,11 +79,11 @@ export default function NewAdress({
                   Pagar
                 </Link>
               </div>
-            </div>
+            </Paper>
           )}
-        </div>
+        </>
       )}
       {showAdress && <AdressComponent userId={userId} />}
-    </div>
+    </>
   );
 }
