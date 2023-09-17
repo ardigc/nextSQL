@@ -5,6 +5,7 @@ import { GlobalContext } from '../context/ContextProvider';
 import { MinusIcon, PlusIcon, TrashIcon } from '@/components/Icons/Icons';
 import { Spiner } from '../UI/Spiner';
 import Link from 'next/link';
+import { Button, Paper } from 'gordo-ui';
 
 interface Cart {
   cart_id: number;
@@ -62,52 +63,82 @@ export default function CheckOutComponent() {
     setIsLoading(-1);
   };
   return (
-    <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg w-2/4 flex justify-center bg-blue-300 shadow-black shadow-2xl">
-      <div className="m-5 grid grid-cols-1 w-full">
-        <p className="justify-center items-center flex">Tu carrito</p>
-        {cart.map((product) => (
-          <div key={product.id} className="m-5">
-            <div className="flex justify-center">{product.name}</div>
-            <div className="flex justify-between">
-              <button
-                onClick={() => clickHandler2(product)}
-                className="order-first"
-              >
-                <TrashIcon />
-              </button>
-              <div className="text-right">
-                <div>Precio: {product.price}€</div>
-                <div className="flex justify-center items-center">
-                  Unidades:{' '}
-                  <button
-                    className="bg-blue-400 border  border-blue-500 m-1 ml-2"
-                    onClick={(ev) => qtOnClick(1, product)}
-                  >
-                    <PlusIcon />
-                  </button>
-                  {isLoading !== product.id && product.qt}
-                  {isLoading === product.id && <Spiner />}
-                  <button
-                    className="bg-blue-400 border border-blue-500 m-1 mr-2"
-                    onClick={(ev) => qtOnClick(2, product)}
-                  >
-                    <MinusIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
+    <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex p-5 gap-5 justify-center bg-white max-w-5xl ">
+      <div className="flex-1">hola</div>
+      <div className="flex-1 h-fit text-lg rounded-lg flex flex-col p-5 gap-5 bg-neutral-100">
+        <div className="font-semibold">Resumen</div>
+        <div className="py-3 border-t border-b flex flex-col gap-2">
+          <div className="flex justify-between text-base">
+            <p>Subtotal</p>
+            <div>{totalPrice(cart)}€</div>
           </div>
-        ))}
-        <div>Precio total: {totalPrice(cart)} €</div>
-        <div className="flex justify-end">
-          <Link
-            className="border rounded-3xl bg-blue-400 px-2 mx-10"
-            href="/adressConfiguration"
-          >
-            Direccion de envio
+          <div className="flex justify-between text-base">
+            <p>Coste del envio</p>
+            <div>Gratis</div>
+          </div>
+        </div>
+        <div>
+          <div className="flex justify-between font-semibold">
+            <p>Total</p>
+            <div>{totalPrice(cart)}€</div>
+          </div>
+          <div className="text-xs">IVA incluido</div>
+        </div>
+        <div className="flex justify-center">
+          <Link href="/adressConfiguration">
+            <Button variant="contained" disableRipple color="success">
+              Direccion de envio
+            </Button>
           </Link>
         </div>
       </div>
-    </div>
+    </Paper>
+    // <div className="absolute top-7 left-1/2 -translate-x-1/2 border rounded-lg w-2/4 flex justify-center bg-blue-300 shadow-black shadow-2xl">
+    //   <div className="m-5 grid grid-cols-1 w-full">
+    //     <p className="justify-center items-center flex">Tu carrito</p>
+    //     {cart.map((product) => (
+    //       <div key={product.id} className="m-5">
+    //         <div className="flex justify-center">{product.name}</div>
+    //         <div className="flex justify-between">
+    //           <button
+    //             onClick={() => clickHandler2(product)}
+    //             className="order-first"
+    //           >
+    //             <TrashIcon />
+    //           </button>
+    //           <div className="text-right">
+    //             <div>Precio: {product.price}€</div>
+    //             <div className="flex justify-center items-center">
+    //               Unidades:{' '}
+    //               <button
+    //                 className="bg-blue-400 border  border-blue-500 m-1 ml-2"
+    //                 onClick={(ev) => qtOnClick(1, product)}
+    //               >
+    //                 <PlusIcon />
+    //               </button>
+    //               {isLoading !== product.id && product.qt}
+    //               {isLoading === product.id && <Spiner />}
+    //               <button
+    //                 className="bg-blue-400 border border-blue-500 m-1 mr-2"
+    //                 onClick={(ev) => qtOnClick(2, product)}
+    //               >
+    //                 <MinusIcon />
+    //               </button>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     ))}
+    //     <div>Precio total: {totalPrice(cart)} €</div>
+    //     <div className="flex justify-end">
+    //       <Link
+    //         className="border rounded-3xl bg-blue-400 px-2 mx-10"
+    //         href="/adressConfiguration"
+    //       >
+    //         Direccion de envio
+    //       </Link>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
