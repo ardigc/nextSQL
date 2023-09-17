@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         cartId.rows[0].id
     );
     if (cart.rows.length > 0) {
-      const item = cart.rows.find((item) => item.id === productId);
+      const item = cart.rows.find((item) => item.product_id === productId);
       if (item === undefined) {
         const query =
           'INSERT INTO cart_items(cart_id, product_id, qt) VALUES ($1, $2, 1)';

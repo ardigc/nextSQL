@@ -9,24 +9,38 @@ import { Button, IconButton, Paper } from 'gordo-ui';
 import Image from 'next/image';
 
 type SellerCart = {
-  [sellerId: string]: {
-    cart_id: number;
-    description: string;
-    name: string;
-    price: number;
-    product_id: number;
-    qt: number;
-    seller_id: number;
-    seller_name: string;
-    user_id: number;
-    image_url: string;
-  }[];
-};
+  cart_id: number;
+  description: string;
+  name: string;
+  price: number;
+  product_id: number;
+  qt: number;
+  seller_id: number;
+  seller_name: string;
+  user_id: number;
+  image_url: string;
+}[];
 
-export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
-  const { cart: normalCart } = useContext(GlobalContext);
+export default function CheckOutComponent() {
+  const { cart } = useContext(GlobalContext);
   const { setCart } = useContext(GlobalContext);
   const [isLoading, setIsLoading] = useState(-1);
+  const getSellers = (cart: CartInterface[]) => {
+    const sellersId: number[] = [];
+    cart.map((item) => {
+      if (sellersId.findIndex((seller) => seller === item.seller_id) === -1) {
+        sellersId.push(item.seller_id);
+      }
+    });
+    let sellersCart = {};
+
+    sellersId.forEach((seller) => {
+      const products = cart.filter((item) => item.seller_id === seller);
+      sellersCart = { ...sellersCart, [seller]: products };
+    });
+
+    return sellersCart;
+  };
   const clickDeleteHandler = async (product: CartInterface) => {
     const id = product.product_id;
     const response = await fetch('/api/cart', {
@@ -38,7 +52,6 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
     });
     const data = await response.json();
     setCart(data);
-    if (response.ok) window.location.reload();
   };
   function totalPrice(products: Array<CartInterface>) {
     return products.reduce((total, products) => {
@@ -67,7 +80,9 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
     setCart(data);
     setIsLoading(-1);
   };
-  const cartArrayBySellers = Object.entries(cart);
+  const cartArrayBySellers: Array<[string, SellerCart]> = Object.entries(
+    getSellers(cart)
+  );
 
   return (
     <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex p-5 gap-5 justify-center bg-white max-w-5xl ">
@@ -109,7 +124,7 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
         <div className="py-3 border-t border-b flex flex-col gap-2">
           <div className="flex justify-between text-base">
             <p>Subtotal</p>
-            <div>{totalPrice(normalCart)}€</div>
+            <div>{totalPrice(cart)}€</div>
           </div>
           <div className="flex justify-between text-base">
             <p>Coste del envio</p>
@@ -119,7 +134,7 @@ export default function CheckOutComponent({ cart }: { cart: SellerCart }) {
         <div>
           <div className="flex justify-between font-semibold">
             <p>Total</p>
-            <div>{totalPrice(normalCart)}€</div>
+            <div>{totalPrice(cart)}€</div>
           </div>
           <div className="text-xs">IVA incluido</div>
         </div>
