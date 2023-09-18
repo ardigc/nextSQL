@@ -5,6 +5,7 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
+import { Button } from 'gordo-ui';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 export default function CheckoutForm({
   setUp,
@@ -51,35 +52,28 @@ export default function CheckoutForm({
     });
   };
   return (
-    <div>
-      <form
-        className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl "
-        onSubmit={submitHandler}
-      >
-        <PaymentElement />
-        <div className="flex justify-between">
-          {!setUp && (
-            <>
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="check"
-                  onChange={changeHandler}
-                ></input>
-                <label htmlFor="check" className="ml-2">
-                  Guardar para futuras compras
-                </label>
-              </div>
-            </>
-          )}
-          <button
-            className="px-2 py-1 mt-2 border bg-blue-400 rounded-3xl"
-            type="submit"
-          >
-            Pagar
-          </button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={submitHandler} className="p-2">
+      <PaymentElement />
+      <div className="flex justify-between mt-2">
+        {!setUp && (
+          <>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="check"
+                onChange={changeHandler}
+              ></input>
+              <label htmlFor="check" className="ml-2">
+                Guardar para futuras compras
+              </label>
+            </div>
+          </>
+        )}
+        <Button variant="contained" disableRipple color="success">
+          Pagar
+        </Button>
+      </div>
+      <div className="text-xs font-light">*Pago seguro a traves de Stripe</div>
+    </form>
   );
 }
