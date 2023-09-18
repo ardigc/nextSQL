@@ -57,7 +57,12 @@ export default function NewAdress({
 
   return (
     <>
-      {adress.length === 0 && <AdressComponent userId={userId!} />}
+      {adress.length === 0 && (
+        <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col  p-5 gap-5 justify-center bg-white max-w-5xl ">
+          {' '}
+          <AdressComponent userId={userId!} />
+        </Paper>
+      )}
       {adress.length! > 0 && (
         <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col  p-5 gap-5 justify-center bg-white max-w-5xl ">
           <p className="text-lg font-semibold">Direccion de entrega</p>
