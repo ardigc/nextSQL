@@ -8,7 +8,7 @@ import {
 } from 'react';
 import Link from 'next/link';
 import AdressDefault from './AdressDefault';
-import { Button, Collapse, Paper } from 'gordo-ui';
+import { Button, Collapse, Paper, Popover } from 'gordo-ui';
 import { PlusIcon } from '../Icons/Icons';
 import { AdressContext } from '../context/AdressContextProvider';
 import AdressComponent from './AdressComponent';
@@ -57,9 +57,7 @@ export default function NewAdress({
 
   return (
     <>
-      {adress.length === 0 && (
-        <AdressComponent userId={userId!} showAdress={true} />
-      )}
+      {adress.length === 0 && <AdressComponent userId={userId!} />}
       {adress.length! > 0 && (
         <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col  p-5 gap-5 justify-center bg-white max-w-5xl ">
           <p className="text-lg font-semibold">Direccion de entrega</p>
@@ -99,7 +97,17 @@ export default function NewAdress({
               </Button>
             </Link>
           </div>
-          <AdressComponent userId={userId} showAdress={showAdress} />
+          <Popover
+            open={showAdress}
+            onClose={() => setShowAdress(false)}
+            className="flex w-full"
+            classes={{ root: 'bg-neutral-900 bg-opacity-50' }}
+            elevation={0}
+          >
+            <Paper className="mx-auto bg-white mt-20 [div>&]:max-w-4xl p-2">
+              <AdressComponent userId={userId} />
+            </Paper>
+          </Popover>
         </Paper>
       )}
     </>

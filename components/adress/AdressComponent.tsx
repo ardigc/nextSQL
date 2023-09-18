@@ -4,10 +4,10 @@ import { FormEventHandler } from 'react';
 
 export default function AdressComponent({
   userId,
-  showAdress,
-}: {
+}: // showAdress,
+{
   userId: number;
-  showAdress: boolean;
+  // showAdress: boolean;
 }) {
   const submitHandler: FormEventHandler<HTMLFormElement> = async (ev) => {
     ev.preventDefault();
@@ -27,42 +27,42 @@ export default function AdressComponent({
     if (response.ok) window.location.assign('/payment');
   };
   return (
-    <Collapse open={showAdress}>
-      <form className="flex flex-col gap-2" onSubmit={submitHandler}>
+    // <Collapse open={showAdress}>
+    <form className="flex flex-col gap-2" onSubmit={submitHandler}>
+      <TextField
+        label="Dirección"
+        name="adress"
+        type="text"
+        classes={{ inputClassName: 'w-full' }}
+      />
+      <div className="md:my-2 gap-2 flex flex-col md:flex-row justify-around w-full">
         <TextField
-          label="Dirección"
-          name="adress"
+          label="Ciudad"
+          name="city"
           type="text"
           classes={{ inputClassName: 'w-full' }}
         />
-        <div className="md:my-2 gap-2 flex flex-col md:flex-row justify-around w-full">
-          <TextField
-            label="Ciudad"
-            name="city"
-            type="text"
-            classes={{ inputClassName: 'w-full' }}
-          />
 
-          <TextField
-            label="Codigo Postal"
-            name="postalCode"
-            type="number"
-            classes={{ inputClassName: 'w-full' }}
-          />
+        <TextField
+          label="Codigo Postal"
+          name="postalCode"
+          type="number"
+          classes={{ inputClassName: 'w-full' }}
+        />
 
-          <TextField
-            label="Pais"
-            name="country"
-            type="text"
-            classes={{ inputClassName: 'w-full' }}
-          />
-        </div>
-        <div className="flex justify-end m-1">
-          <Button variant="contained" disableRipple color="success">
-            Continuar al pago
-          </Button>
-        </div>
-      </form>
-    </Collapse>
+        <TextField
+          label="Pais"
+          name="country"
+          type="text"
+          classes={{ inputClassName: 'w-full' }}
+        />
+      </div>
+      <div className="flex justify-end m-1">
+        <Button variant="contained" disableRipple color="success">
+          Continuar al pago
+        </Button>
+      </div>
+    </form>
+    // </Collapse>
   );
 }
