@@ -123,7 +123,9 @@ export default function PaymentSelect({
                       <div className="flex "> {payment.card?.funding}</div>
                       <div className="flex flex-col ">
                         <div className="text-xs">Fecha de caducidad</div>
-                        {payment.card?.exp_month}/{payment.card?.exp_year}
+                        <div>
+                          {payment.card?.exp_month}/{payment.card?.exp_year}
+                        </div>
                       </div>
 
                       <div className="flex "> **** {payment.card?.last4}</div>
