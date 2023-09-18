@@ -3,6 +3,8 @@
 import { MouseEvent, useState } from 'react';
 import CheckOutPage from './paymentComponent';
 import { CartInterface } from '../context/ContextProvider';
+import { Paper } from 'gordo-ui';
+import Image from 'next/image';
 interface PaymentMethod {
   id: string;
   card?: {
@@ -25,7 +27,7 @@ export default function PaymentSelect({
   adressId: number;
   customerId: string;
 }) {
-  const [paymentId, setPaymentId] = useState('');
+  const [paymentId, setPaymentId] = useState(paymentMethod[0].id);
   const [newCard, setNewCard] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
   function totalPrice(products: Array<CartInterface>) {
@@ -64,11 +66,22 @@ export default function PaymentSelect({
     setClientSecret(data.client_secret);
     setPaymentId(data.id);
   };
-
+  const getPaymentIcon = (brand: string) => {
+    if (brand === 'visa') {
+      return 'https://ardigc.blob.core.windows.net/images/visa.png';
+    } else if (brand === 'amex') {
+      return 'https://ardigc.blob.core.windows.net/images/amex.png';
+    } else if (brand === 'mastercard') {
+      return 'https://ardigc.blob.core.windows.net/images/mastercard.png';
+    } else {
+      return 'https://ardigc.blob.core.windows.net/images/visa.png';
+    }
+  };
+  console.log(paymentMethod);
   return (
-    <div>
+    <>
       {!newCard && (
-        <div className="w-11/12 max-w-2xl mx-auto border rounded-lg p-3 relative top-7 justify-center bg-blue-300 shadow-black shadow-2xl ">
+        <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col md:flex-row p-5 gap-5 justify-center bg-white max-w-5xl ">
           <>
             {paymentMethod.length === 0 && (
               <>
@@ -80,62 +93,43 @@ export default function PaymentSelect({
                   >
                     Pagar con otra tarjeta
                   </button>
-                  {/* <button
-                className="px-1 border bg-blue-400 rounded-3xl mx-5"
-                onClick={(ev) => clickHandler(ev, paymentId)}
-              >
-                Pagar
-              </button> */}
                 </div>
               </>
             )}
             {paymentMethod.length > 0 && (
-              <>
-                Tus medios de pago:
-                <div className="my-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_2fr] ">
-                  <div className="flex justify-center">Marca</div>
-                  <div className="flex justify-center">Tipo</div>
-                  <div className="flex justify-center">Mes caducidad</div>
-                  <div className="flex justify-center">Año caducidad</div>
-                  <div className="flex justify-center">Ultimos digitos</div>
-                  <div></div>
+              <div className="flex flex-col w-full gap-2">
+                <div className="text-lg font-semibold">Tus medios de pago:</div>
+                <div>Selecciona un metodo de pago</div>
+                <div className="grid md:grid-cols-4 grid-cols-2 gap-2">
+                  {paymentMethod.map((payment) => (
+                    <div
+                      style={{
+                        borderWidth: paymentId === payment.id ? '2px' : '1px',
+                      }}
+                      key={payment.id}
+                      onClick={() => setPaymentId(payment.id)}
+                      className=" flex flex-col gap-2 p-2 border-black cursor-pointer rounded-md"
+                    >
+                      {payment.card && (
+                        <div className="flex justify-center">
+                          <Image
+                            alt={payment.card.brand}
+                            width={50}
+                            height={31.25}
+                            src={getPaymentIcon(payment.card.brand)}
+                          />
+                        </div>
+                      )}
+                      <div className="flex "> {payment.card?.funding}</div>
+                      <div className="flex flex-col ">
+                        <div className="text-xs">Fecha de caducidad</div>
+                        {payment.card?.exp_month}/{payment.card?.exp_year}
+                      </div>
+
+                      <div className="flex "> **** {payment.card?.last4}</div>
+                    </div>
+                  ))}
                 </div>
-                {paymentMethod.map((payment) => (
-                  // <div className="mb-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_1fr]">
-                  <div
-                    key={payment.id}
-                    className="my-5 grid grid-cols-[3fr_3fr_4fr_4fr_4fr_2fr] "
-                  >
-                    <div className="flex justify-center">
-                      {' '}
-                      {payment.card?.brand}
-                    </div>
-                    <div className="flex justify-center">
-                      {' '}
-                      {payment.card?.funding}
-                    </div>
-                    <div className="flex justify-center">
-                      {' '}
-                      {payment.card?.exp_month}
-                    </div>
-                    <div className="flex justify-center">
-                      {' '}
-                      {payment.card?.exp_year}
-                    </div>
-                    <div className="flex justify-center">
-                      {' '}
-                      {payment.card?.last4}
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <input
-                        name="card"
-                        className="w-3 h-3"
-                        onChange={() => setPaymentId(payment.id)}
-                        type="radio"
-                      ></input>
-                    </div>
-                  </div>
-                ))}
                 <div className="flex items-center justify-between">
                   <button
                     onClick={() => clickIntentHandler()}
@@ -150,10 +144,10 @@ export default function PaymentSelect({
                     Pagar
                   </button>
                 </div>
-              </>
+              </div>
             )}
           </>
-        </div>
+        </Paper>
       )}
       {newCard && (
         <>
@@ -162,6 +156,6 @@ export default function PaymentSelect({
           )}
         </>
       )}
-    </div>
+    </>
   );
 }

@@ -54,28 +54,18 @@ export default async function Payment() {
     throw error;
   }
 
-  // Create a PaymentIntent with the order amount and currency
-  // const paymentIntent = await stripeClient.paymentIntents.create({
-  //   amount: totalPrice(cart.rows) * 100,
-  //   currency: 'eur',
-  //   payment_method_types: ['card'],
-  //   metadata: { cartId: cart.rows[0].cart_id, adressId: adress.rows[0].id },
-  //   customer: customerId,
-  // });
   const paymentMethods = await stripe.paymentMethods.list({
     customer: customerId,
   });
-  // const clientSecret = paymentIntent.client_secret;
 
   return (
-    <div className="relative bg-blue-100 min-h-screen w-full">
+    <div className="relative w-full flex">
       <PaymentSelect
         cart={cart.rows}
         adressId={adress.rows[0].id}
         customerId={customerId}
         paymentMethod={paymentMethods.data}
       />
-      {/* {clientSecret && <CheckOutPage clientSecret={clientSecret} />} */}
     </div>
   );
 }
