@@ -3,8 +3,9 @@
 import { MouseEvent, useState } from 'react';
 import CheckOutPage from './paymentComponent';
 import { CartInterface } from '../context/ContextProvider';
-import { Paper } from 'gordo-ui';
+import { Button, Paper, Popover } from 'gordo-ui';
 import Image from 'next/image';
+import { Spiner } from '../UI/Spiner';
 interface PaymentMethod {
   id: string;
   card?: {
@@ -27,7 +28,9 @@ export default function PaymentSelect({
   adressId: number;
   customerId: string;
 }) {
-  const [paymentId, setPaymentId] = useState(paymentMethod[0].id);
+  const [paymentId, setPaymentId] = useState(
+    paymentMethod[0] ? paymentMethod[0].id : ''
+  );
   const [newCard, setNewCard] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
   function totalPrice(products: Array<CartInterface>) {
@@ -80,84 +83,98 @@ export default function PaymentSelect({
   console.log(paymentMethod);
   return (
     <>
-      {!newCard && (
-        <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col md:flex-row p-5 gap-5 justify-center bg-white max-w-5xl ">
-          <>
-            {paymentMethod.length === 0 && (
-              <>
-                <div>No tienes ningun metodo de pago configurado</div>
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => clickIntentHandler()}
-                    className="px-1 border bg-blue-400 rounded-3xl mx-5"
-                  >
-                    Pagar con otra tarjeta
-                  </button>
-                </div>
-              </>
-            )}
-            {paymentMethod.length > 0 && (
-              <div className="flex flex-col w-full gap-2">
-                <div className="text-lg font-semibold">Tus medios de pago:</div>
-                <div>Selecciona un metodo de pago</div>
-                <div className="grid md:grid-cols-4 grid-cols-2 gap-2">
-                  {paymentMethod.map((payment) => (
-                    <div
-                      style={{
-                        borderWidth: paymentId === payment.id ? '2px' : '1px',
-                      }}
-                      key={payment.id}
-                      onClick={() => setPaymentId(payment.id)}
-                      className=" flex flex-col gap-2 p-2 border-black cursor-pointer rounded-md"
-                    >
-                      {payment.card && (
-                        <div className="flex justify-center">
-                          <Image
-                            alt={payment.card.brand}
-                            width={50}
-                            height={31.25}
-                            src={getPaymentIcon(payment.card.brand)}
-                          />
-                        </div>
-                      )}
-                      <div className="flex "> {payment.card?.funding}</div>
-                      <div className="flex flex-col ">
-                        <div className="text-xs">Fecha de caducidad</div>
-                        <div>
-                          {payment.card?.exp_month}/{payment.card?.exp_year}
-                        </div>
-                      </div>
-
-                      <div className="flex "> **** {payment.card?.last4}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => clickIntentHandler()}
-                    className="px-1 border bg-blue-400 rounded-3xl mx-5"
-                  >
-                    Pagar con otra tarjeta
-                  </button>
-                  <button
-                    className="px-1 border bg-blue-400 rounded-3xl mx-5"
-                    onClick={(ev) => clickHandler(ev, paymentId)}
-                  >
-                    Pagar
-                  </button>
-                </div>
-              </div>
-            )}
-          </>
-        </Paper>
-      )}
-      {newCard && (
+      <Paper className=" mx-auto mt-7 border rounded-lg min-w-fit flex flex-col md:flex-row p-5 gap-5 justify-center bg-white max-w-5xl ">
         <>
+          {paymentMethod.length === 0 && (
+            <div className="flex flex-col items-center gap-2">
+              <div>No tienes ningun metodo de pago configurado</div>
+
+              <Button
+                onClick={() => clickIntentHandler()}
+                variant="contained"
+                disableRipple
+              >
+                Pagar con otra tarjeta
+              </Button>
+            </div>
+          )}
+          {paymentMethod.length > 0 && (
+            <div className="flex flex-col w-full gap-2">
+              <div className="text-lg font-semibold">Tus medios de pago:</div>
+              <div>Selecciona un metodo de pago</div>
+              <div className="grid md:grid-cols-4 grid-cols-2 gap-2">
+                {paymentMethod.map((payment) => (
+                  <div
+                    style={{
+                      borderWidth: paymentId === payment.id ? '2px' : '1px',
+                    }}
+                    key={payment.id}
+                    onClick={() => setPaymentId(payment.id)}
+                    className=" flex flex-col gap-2 p-2 border-black cursor-pointer rounded-md"
+                  >
+                    {payment.card && (
+                      <div className="flex justify-center">
+                        <Image
+                          alt={payment.card.brand}
+                          width={50}
+                          height={31.25}
+                          src={getPaymentIcon(payment.card.brand)}
+                        />
+                      </div>
+                    )}
+                    <div className="flex "> {payment.card?.funding}</div>
+                    <div className="flex flex-col ">
+                      <div className="text-xs">Fecha de caducidad</div>
+                      <div>
+                        {payment.card?.exp_month}/{payment.card?.exp_year}
+                      </div>
+                    </div>
+
+                    <div className="flex "> **** {payment.card?.last4}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between">
+                <Button
+                  variant="contained"
+                  disableRipple
+                  onClick={() => clickIntentHandler()}
+                >
+                  Pagar con otra tarjeta
+                </Button>
+                <Button
+                  variant="contained"
+                  disableRipple
+                  color="success"
+                  onClick={(ev) => clickHandler(ev, paymentId)}
+                >
+                  Pagar
+                </Button>
+              </div>
+            </div>
+          )}
+        </>
+      </Paper>
+
+      <Popover
+        open={newCard}
+        onClose={() => setNewCard(false)}
+        className="flex w-full"
+        classes={{ root: 'bg-neutral-900 bg-opacity-50' }}
+        elevation={0}
+      >
+        <Paper className="mx-auto bg-white mt-20 [div>&]:max-w-4xl p-2 m-2">
+          {!clientSecret && (
+            <div className="flex justify-center my-10 h-[350px]">
+              {' '}
+              <Spiner size={300} />
+            </div>
+          )}
           {clientSecret && (
             <CheckOutPage paymentId={paymentId} clientSecret={clientSecret} />
           )}
-        </>
-      )}
+        </Paper>
+      </Popover>
     </>
   );
 }
